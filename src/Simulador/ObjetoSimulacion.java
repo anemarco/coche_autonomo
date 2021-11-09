@@ -2,6 +2,8 @@ package Simulador;
 
 public abstract class ObjetoSimulacion {
 	
+	/*Atributos*/
+	
 	protected double x, y;
 	protected double a, h;	
 	
@@ -18,6 +20,8 @@ public abstract class ObjetoSimulacion {
 		this.a = a;
 		this.h = h;
 	}
+	
+	/*Getters y setters*/
 	
 	public double getX() {
 		return x;
