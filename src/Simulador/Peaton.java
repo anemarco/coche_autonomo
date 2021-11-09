@@ -16,6 +16,8 @@ public class Peaton extends Obstaculo {
 	public void mover(double dx) {
 		setX(getX() + dx);
 	}
+	
+	
 
 	@Override
 	public void colocar() {

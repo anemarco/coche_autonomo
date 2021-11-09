@@ -30,4 +30,6 @@ public class Semaforo extends Obstaculo {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 }
