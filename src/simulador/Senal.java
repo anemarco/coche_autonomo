@@ -2,7 +2,7 @@ package simulador;
 
 public class Senal extends Obstaculo {
 	
-	public static enum Tipo {STOP, CEDA, ENTRADA_PROHIBIDA}
+	public static enum Tipo {STOP, CEDA, SENTIDO_OBLIGATORIO}
 	
 	/*Atributos*/
 	

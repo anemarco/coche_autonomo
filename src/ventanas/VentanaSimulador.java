@@ -2,7 +2,10 @@ package ventanas;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -18,6 +21,7 @@ public class VentanaSimulador extends JFrame {
 	
 	private ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
 	private Coche miCoche;
+	
 	private JPanel contentPane;
 	
 
@@ -35,6 +39,7 @@ public class VentanaSimulador extends JFrame {
 			}
 		});
 	}
+	
 
 	/**Constructor de ventana*/
 	
@@ -87,14 +92,12 @@ public class VentanaSimulador extends JFrame {
 		if (oDetectado instanceof Senal) {
 			Senal senal = (Senal) oDetectado;
 			if (senal.getTipo() == Tipo.STOP) {
-				
+
 			} else if (senal.getTipo() == Tipo.CEDA) {
 				
-			} else if (senal.getTipo() == Tipo.ENTRADA_PROHIBIDA) {
+			} else if (senal.getTipo() == Tipo.SENTIDO_OBLIGATORIO) {
 				
 			}
 		}
 	}
-	
-	
 }
