@@ -1,7 +1,10 @@
 package Ventanas;
 
+import Simulador.Obstaculo;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,8 +14,9 @@ import javax.swing.JList;
 
 public class VentanaSimulador extends JFrame {
 
-
 	private static final long serialVersionUID = 1L;
+	
+	private ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
 	private JPanel contentPane;
 
 	/*Main*/
@@ -33,6 +37,7 @@ public class VentanaSimulador extends JFrame {
 	/**Constructor de ventana*/
 	
 	public VentanaSimulador() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -52,4 +57,6 @@ public class VentanaSimulador extends JFrame {
 		
 		
 	}
+	
+	
 }
