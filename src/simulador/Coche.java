@@ -2,20 +2,29 @@ package simulador;
 
 public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	
-	protected final SensorCoche SENSOR = new SensorCoche(0.0, 0.0, 25.0);
+	private static final  String IMG_COCHE = "/Coche_autonomo/src/simulador/img/coche.png";
+	
+	protected final Sensor S_RECON = new Sensor(0.0, 0.0, 30.0);	/*Sensor de reconocimiento*/
+	protected final Sensor S_PROX = new Sensor(0.0, 0.0, 15.0);		/*Sensor de proximidad*/
 	
 	/*Constructor*/
 	
 	public Coche(double x, double y, double a, double h) {
-		super(x, y, a, h);
-		SENSOR.setX(x);
-		SENSOR.setY(y);
+		super(x, y, a, h, IMG_COCHE);
+		S_RECON.setX(x);
+		S_RECON.setY(y);
+		S_PROX.setX(x);
+		S_PROX.setY(y);
 	}
 	
 	/*Getters y setters*/
 	
-	public SensorCoche getSENSOR() {
-		return SENSOR;
+	public Sensor getSR() {
+		return S_RECON;
+	}
+	
+	public Sensor getSP() {
+		return S_PROX;
 	}
 	
 	/*Se reescriben los setter de ObjetoSimulación, pues al cambiar las coordenadas
@@ -24,18 +33,15 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	@Override
 	public void setX(double x) {
 		this.x = x;
-		SENSOR.setX(x);
+		S_RECON.setX(x);
+		S_PROX.setX(x);
 	}
 	
 	@Override
 	public void setY(double y) {
 		this.y = y;
-		SENSOR.setY(y);
-	}
-
-	@Override
-	public void dibujar() {	
-		
+		S_RECON.setY(y);
+		S_PROX.setY(y);
 	}
 	
 	@Override

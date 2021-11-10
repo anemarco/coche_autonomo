@@ -6,6 +6,7 @@ public abstract class ObjetoSimulacion {
 	
 	protected double x, y;
 	protected double a, h;	
+	protected String img;
 	
 	/**Constructor
 	 * @param x Coordenada x del centro visual del objeto
@@ -14,11 +15,12 @@ public abstract class ObjetoSimulacion {
 	 * @param h Altura del objeto
 	 */
 	
-	public ObjetoSimulacion(double x, double y, double a, double h) {
+	public ObjetoSimulacion(double x, double y, double a, double h, String img) {
 		this.x = x;
 		this.y = y;
 		this.a = a;
 		this.h = h;
+		this.img = img;
 	}
 	
 	/*Getters y setters*/
@@ -43,7 +45,6 @@ public abstract class ObjetoSimulacion {
 		return a;
 	}
 
-
 	public void setA(double a) {
 		this.a = a;
 	}
@@ -57,9 +58,11 @@ public abstract class ObjetoSimulacion {
 		this.h = h;
 	}
 
-	/**Método que permite dibujar el objeto en la ventana gráfica
-	 */
+	public String getImg() {
+		return img;
+	}
 
-	public abstract void dibujar();
-
+	public void setImg(String img) {
+		this.img = img;
+	}
 }

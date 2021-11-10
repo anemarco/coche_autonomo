@@ -2,10 +2,12 @@ package simulador;
 
 public class Peaton extends Obstaculo {
 	
+	private static final  String IMG_PEATON = "";
+	
 	/*Constructor*/
 	
 	public Peaton(double x, double y, double a, double h) {
-		super(x, y, a, h);
+		super(x, y, a, h, IMG_PEATON);
 	}
 	
 	/**Método que mover el objeto dentro de la ventana gráfica. En este caso,

@@ -1,6 +1,6 @@
 package simulador;
 
-public class SensorCoche {
+public class Sensor {
 	
 	/*Atributos*/
 	
@@ -9,7 +9,7 @@ public class SensorCoche {
 	
 	/*Constructor*/
 	
-	public SensorCoche(double x, double y, double r) {
+	public Sensor(double x, double y, double r) {
 		this.x = x;
 		this.y = y;
 		this.r = r;

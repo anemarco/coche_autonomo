@@ -4,13 +4,8 @@ public abstract class Obstaculo extends ObjetoSimulacion {
 	
 	/*Constructor*/
 
-	public Obstaculo(double x, double y, double a, double h) {
-		super(x, y, a, h);
-	}
-
-	@Override
-	public void dibujar() {
-		
+	public Obstaculo(double x, double y, double a, double h, String img) {
+		super(x, y, a, h, img);
 	}
 	
 	/**Método que permita seleccionar un obstáculo mediante un click con el ratón

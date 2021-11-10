@@ -19,6 +19,8 @@ public class VentanaSimulador extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
+	/*Atributos*/
+	
 	private ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
 	private Coche miCoche;
 	
