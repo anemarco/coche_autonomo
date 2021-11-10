@@ -62,10 +62,23 @@ public class VentanaSimulador extends JFrame {
 	
 	public void cocheReaccion() {
 		
-		
+		Obstaculo oDetectado = null;
 		
 		for (Obstaculo o: listaObs) {
 			miCoche.getSENSOR().detectaObs(o);
+			oDetectado = o;
+		}
+		
+		if (oDetectado instanceof Semaforo) {
+			Semaforo semaf = (Semaforo) oDetectado;
+		}
+		
+		if (oDetectado instanceof Peaton) {
+			
+		}
+		
+		if (oDetectado instanceof Senal) {
+			
 		}
 	}
 	
