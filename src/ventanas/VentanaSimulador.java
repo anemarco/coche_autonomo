@@ -1,14 +1,15 @@
-package Ventanas;
-
-import Simulador.*;
-import Simulador.Semaforo.Color;
-import Simulador.Senal.Tipo;
+package ventanas;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import simulador.*;
+import simulador.Semaforo.Color;
+import simulador.Senal.Tipo;
+
 import javax.swing.JList;
 
 public class VentanaSimulador extends JFrame {

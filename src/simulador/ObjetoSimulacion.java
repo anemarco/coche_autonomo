@@ -1,4 +1,4 @@
-package Simulador;
+package simulador;
 
 public abstract class ObjetoSimulacion {
 	

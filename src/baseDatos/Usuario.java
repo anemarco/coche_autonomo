@@ -1,4 +1,4 @@
-package BaseDatos;
+package baseDatos;
 
 public class Usuario {
 	

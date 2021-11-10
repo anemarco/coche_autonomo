@@ -1,4 +1,4 @@
-package Simulador;
+package simulador;
 
 public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	
