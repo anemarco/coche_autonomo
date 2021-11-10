@@ -30,7 +30,7 @@ public class SensorCoche {
 	 * @return Obstáculo que es detectado
 	 */
 	
-	public Obstaculo detectaObstaculo(Obstaculo obs) {
+	public Obstaculo detectaObs(Obstaculo obs) {
 		double dist = Math.sqrt(Math.pow(x-obs.getX(), 2)+Math.pow(y-obs.getY(), 2));
 		if (dist < r) return obs;
 		else return null;

@@ -12,6 +12,12 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 		SENSOR.setY(y);
 	}
 	
+	/*Getters y setters*/
+	
+	public SensorCoche getSENSOR() {
+		return SENSOR;
+	}
+	
 	/*Se reescriben los setter de ObjetoSimulación, pues al cambiar las coordenadas
 	 * de el coche, también cambiarán las de su sensor*/
 	

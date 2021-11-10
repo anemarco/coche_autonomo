@@ -1,6 +1,6 @@
 package Ventanas;
 
-import Simulador.Obstaculo;
+import Simulador.*;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -17,7 +17,9 @@ public class VentanaSimulador extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
+	private Coche miCoche;
 	private JPanel contentPane;
+	
 
 	/*Main*/
 	
@@ -52,10 +54,19 @@ public class VentanaSimulador extends JFrame {
 		JList list_1 = new JList();
 		list_1.setBounds(10, 23, 91, 131);
 		contentPane.add(list_1);
-		
+	}
 	
+	/**Método que establezca la lógica del simulador, es decir, como va a reaccionar el 
+	 * coche ante los diferentes obstáculos que se le presenten
+	 */
+	
+	public void cocheReaccion() {
 		
 		
+		
+		for (Obstaculo o: listaObs) {
+			miCoche.getSENSOR().detectaObs(o);
+		}
 	}
 	
 	
