@@ -1,4 +1,4 @@
-package BaseDatos;
+package Ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -42,7 +42,7 @@ public class VentanaInicio extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaInicio() {
-		setTitle("INICIO DE SESIÓN");
+		setTitle("INICIO DE SESIï¿½N");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
