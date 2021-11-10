@@ -15,6 +15,8 @@ import simulador.Senal.Tipo;
 
 import javax.swing.JList;
 
+import java.awt.BorderLayout;
+
 public class VentanaSimulador extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -54,14 +56,23 @@ public class VentanaSimulador extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JList list = new JList();
-		list.setBounds(153, 147, -52, -86);
-		contentPane.add(list);
+		ImageIcon fondo1 = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE (1).jpg"));
+		contentPane.setLayout(null);
 		
-		JList list_1 = new JList();
-		list_1.setBounds(10, 23, 91, 131);
-		contentPane.add(list_1);
+		
+		ImageIcon cohce = new ImageIcon(getClass().getResource("../simulador/img/coche.png"));
+		contentPane.setLayout(null);
+		//JPanel.add(image, BorderLayout.NORTH);
+		JLabel label2 = new JLabel(cohce);
+		label2.setBounds(177, 189, 33, 53);
+		contentPane.add(label2);
+		//JPanel.add(image, BorderLayout.NORTH);
+		JLabel label = new JLabel(fondo1);
+		label.setBounds(58, 10, 313, 253);
+		contentPane.add(label);
+		
 	}
+	
 	
 	/**Método que establezca la lógica del simulador, es decir, como va a reaccionar el 
 	 * coche ante los diferentes obstáculos que se le presenten
