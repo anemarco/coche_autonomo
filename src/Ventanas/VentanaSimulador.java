@@ -1,4 +1,4 @@
-package Simulador;
+package Ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -15,9 +15,8 @@ public class VentanaSimulador extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
+	/*Main*/
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -31,8 +30,7 @@ public class VentanaSimulador extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
+	/**Constructor de ventana
 	 */
 	public VentanaSimulador() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
