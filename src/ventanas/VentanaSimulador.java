@@ -72,7 +72,7 @@ public class VentanaSimulador extends JFrame {
 		Obstaculo oDetectado = null;
 		
 		for (Obstaculo o: listaObs) {
-			miCoche.getSENSOR().detectaObs(o);
+			//miCoche.getSENSOR().detectaObs(o);
 			oDetectado = o;
 		}
 		
