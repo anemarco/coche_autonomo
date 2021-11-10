@@ -2,22 +2,22 @@ package Simulador;
 
 public class Senal extends Obstaculo {
 	
-	public static enum TipoSenales {STOP, CEDA, ENTRADA_PROHIBIDA}
+	public static enum Tipo {STOP, CEDA, ENTRADA_PROHIBIDA}
 	
 	/*Atributos*/
 	
-	private TipoSenales tSenal;
+	private Tipo tSenal;
 	
 	/*Constructor*/
 
-	public Senal(double x, double y, double a, double h, TipoSenales tSenal) {
+	public Senal(double x, double y, double a, double h, Tipo tSenal) {
 		super(x, y, a, h);
 		this.tSenal = tSenal;
 	}
 	
 	/*Getter*/
 
-	public TipoSenales gettSenal() {
+	public Tipo getTipo() {
 		return tSenal;
 	}
 

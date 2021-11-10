@@ -1,15 +1,14 @@
 package Ventanas;
 
 import Simulador.*;
+import Simulador.Semaforo.Color;
+import Simulador.Senal.Tipo;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import javax.swing.JList;
 
 public class VentanaSimulador extends JFrame {
@@ -71,6 +70,13 @@ public class VentanaSimulador extends JFrame {
 		
 		if (oDetectado instanceof Semaforo) {
 			Semaforo semaf = (Semaforo) oDetectado;
+			if (semaf.getColor() == Color.VERDE) {
+				
+			} else if (semaf.getColor() == Color.NARANJA) {
+				
+			} else if (semaf.getColor() == Color.ROJO) {
+				
+			}
 		}
 		
 		if (oDetectado instanceof Peaton) {
@@ -78,7 +84,14 @@ public class VentanaSimulador extends JFrame {
 		}
 		
 		if (oDetectado instanceof Senal) {
-			
+			Senal senal = (Senal) oDetectado;
+			if (senal.getTipo() == Tipo.STOP) {
+				
+			} else if (senal.getTipo() == Tipo.CEDA) {
+				
+			} else if (senal.getTipo() == Tipo.ENTRADA_PROHIBIDA) {
+				
+			}
 		}
 	}
 	
