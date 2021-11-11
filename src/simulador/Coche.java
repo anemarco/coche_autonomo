@@ -4,17 +4,20 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	
 	private static final  String IMG_COCHE = "/Coche_autonomo/src/simulador/img/coche.png";
 	
-	protected final Sensor S_RECON = new Sensor(0.0, 0.0, 30.0);	/*Sensor de reconocimiento*/
-	protected final Sensor S_PROX = new Sensor(0.0, 0.0, 15.0);		/*Sensor de proximidad*/
+	protected final Sensor S_RECON = new Sensor(0.0, 0.0, 50.0);	/*Sensor de reconocimiento: Avisa de los obstáculos que hay alrededor*/
+	protected final Sensor S_PROX = new Sensor(0.0, 0.0, 15.0);		/*Sensor de proximidad: Asegura que el coche matiene una distancia de seguridad con los demás vehículos*/
+	
+	public double velocidad;
 	
 	/*Constructor*/
 	
-	public Coche(double x, double y, double a, double h) {
+	public Coche(double x, double y, double a, double h, double v) {
 		super(x, y, a, h, IMG_COCHE);
+		this.velocidad = v;
 		S_RECON.setX(x);
 		S_RECON.setY(y);
 		S_PROX.setX(x);
-		S_PROX.setY(y);
+		S_PROX.setY(y+h/2); 
 	}
 	
 	/*Getters y setters*/
@@ -67,7 +70,7 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 
 	@Override
 	public void acelerar(double a) {
-		// TODO Auto-generated method stub
+		velocidad = velocidad + a;
 		
 	}
 }

@@ -70,19 +70,23 @@ public class VentanaSimulador extends JFrame {
 	public void cocheReaccion() {
 		
 		Obstaculo oDetectado = null;
+		OtroCoche cocheCerca = null;
 		
 		for (Obstaculo o: listaObs) {
-			//miCoche.getSENSOR().detectaObs(o);
-			oDetectado = o;
+			miCoche.getSR().detectaObs(o);
+			if (o instanceof OtroCoche) {
+				cocheCerca = (OtroCoche)o;
+			} else {
+				oDetectado = o;
+			}
+			
 		}
 		
 		if (oDetectado instanceof Semaforo) {
 			Semaforo semaf = (Semaforo) oDetectado;
 			if (semaf.getColor() == Color.VERDE) {
 				
-			} else if (semaf.getColor() == Color.NARANJA) {
-				
-			} else if (semaf.getColor() == Color.ROJO) {
+			} else if ((semaf.getColor() == Color.NARANJA) || (semaf.getColor() == Color.ROJO)) {
 				
 			}
 		}
@@ -100,6 +104,10 @@ public class VentanaSimulador extends JFrame {
 			} else if (senal.getTipo() == Tipo.SENTIDO_OBLIGATORIO) {
 				
 			}
+		}
+		
+		if ((cocheCerca.getY() < miCoche.getY()) && (cocheCerca.getX() == miCoche.getX())) {
+			
 		}
 	}
 }
