@@ -73,7 +73,7 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	 */
 	@Override
 	public boolean choca(Obstaculo obst) {
-		if ((this.x-obst.getX() < this.h/2 + obst.getH()/2) && (Math.abs(y-obst.getY()) < Math.abs(a/2 + obst.getA()/2))) return true;	/*De frente/de cualquiera de los lados*/
+		if ((this.x-obst.getX() < this.h/2 + obst.getH()/2) && (Math.abs(y-obst.getY()) < Math.abs(a/2 + obst.getA()/2))) return true;	/*De frente y de cualquiera de los lados*/
 		return false;
 	}
 

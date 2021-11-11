@@ -1,12 +1,15 @@
 package ventanas;
 
+import java.awt.*;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 
 import simulador.*;
@@ -20,55 +23,38 @@ public class VentanaSimulador extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	/*Atributos*/
-	
+	protected JList listaObst;
+	protected JComboBox senalesCombo;
 	private ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
 	private Coche miCoche;
-	
-	private JPanel contentPane;
-	
 
 	/*Main*/
-	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaSimulador frame = new VentanaSimulador();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		VentanaSimulador ventana= new VentanaSimulador();
+		ventana.setVisible(true);
 	}
 	
-
 	/**Constructor de ventana*/
-	
 	public VentanaSimulador() {
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1000, 600);
-		setLocationRelativeTo(null);
+		//Crear contenedor
+		Container cp = this.getContentPane();
+		//Crear panel para la pantalla del simulador de coche
+		JPanel simuladorPane= new JPanel();
+		simuladorPane.setLayout(null);
+		//Crear lista de los obst·culos
+		String[] obstaculos = {"PeatÛn", "Otro Coche","Sem·foro","STOP", "Ceda", "Sentido Obligatorio"};
+		JList lista= new JList(obstaculos);
 		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		//Doble panel que contiene el panel y la lista anterior
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,lista,simuladorPane);
 		
-		JList list = new JList();
-		list.setBounds(153, 147, -52, -86);
-		contentPane.add(list);
 		
-		JList list_1 = new JList();
-		list_1.setBounds(10, 23, 91, 131);
-		contentPane.add(list_1);
+		cp.add(splitPane);
+		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
+		setTitle( "Coche Autonomo" );
+		setSize(750,450);
 	}
-	
-	/**M√©todo que establezca la l√≥gica del simulador, es decir, como va a reaccionar el 
-	 * coche ante los diferentes obst√°culos que se le presenten
-	 */
-	
 	public void cocheReaccion() {
 		
 		Obstaculo oDetectado = null;
