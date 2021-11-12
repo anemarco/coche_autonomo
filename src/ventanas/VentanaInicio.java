@@ -5,21 +5,31 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
+
+import baseDatos.BD;
+import baseDatos.Usuario;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class VentanaInicio extends JFrame {
 
 	private JPanel contentPane, panelNorte, panelSur, panelCentral;
 	private JButton btnSalir, btnIniciarSesion, btnRegistrar; 
 	private JLabel lblNombreUsuario, lblDni, lblContrasenia;
-	private JTextField textNombre, textDni, textContrasenia;
+	private JTextField textNombre, textDni;
+	private JPasswordField textContrasenia;
+	public static TreeMap<String, Usuario> tmUsuarios;
 	
 
 	/**
@@ -42,6 +52,9 @@ public class VentanaInicio extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaInicio() {
+		//Connection con = BD.initBD("iniciosesion.db");
+		//tmUsuarios = BD.obtenerMapaUsuarios(con);
+		//BD.closeBD(con);
 		setTitle("INICIO DE SESIï¿½N");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -86,25 +99,38 @@ public class VentanaInicio extends JFrame {
 		lblContrasenia = new JLabel("Introduce tu contrase\u00F1a:");
 		panelCentral.add(lblContrasenia);
 		
-		textContrasenia = new JTextField();
+		textContrasenia = new JPasswordField();
 		panelCentral.add(textContrasenia);
 		textContrasenia.setColumns(10);
 		
 		/*EVENTOS*/
+		/**
+		 * Botón que saldrá de la pantalla de inicio
+		 */
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				System.exit(0);
 			}
 		});
-		
+		/**
+		 * Botón que hará que el usuario inicie sesión una vez ya registrado y nos llevará a la pantalla de simulación
+		 */
 		btnIniciarSesion.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				
+				String n = textNombre.getText();
+				String dni = textDni.getText();
+				if(tmUsuarios.get(dni) == null) {
+					JOptionPane.showMessageDialog(null, "No estás registrado!", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Bienvenido!","ACCESO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		
-
+		/**
+		 * Botón que registrará un usuario si no está ya registrado y lo guardará en la base de datos
+		 */
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String erdni = "[0-9]{8}[A-Z]";
@@ -113,11 +139,31 @@ public class VentanaInicio extends JFrame {
 				if(correctoDni) {
 					String n = textNombre.getText();
 					String dni = textDni.getText();
-					
+					String c = textContrasenia.getText();
+					if(tmUsuarios.get(dni) == null) {
+						Usuario u = new Usuario (n, dni, c);
+						tmUsuarios.put(dni, u);
+						Connection con = BD.initBD("iniciosesion.db");
+						BD.insertarUsuario(con, n, dni, c);
+						BD.closeBD(con);
+						JOptionPane.showMessageDialog(null, "Persona registrada correctamente","REGISTRO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
+						vaciarCampos();
+					}else {
+						JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese dni", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "El dni no es correcto", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 	}
 	
+	/**
+	 * Vaciará los campos cuando el usuario pulse un botón
+	 */
+	private void vaciarCampos() {
+		textNombre.setText("");
+		textDni.setText("");
+	}
 	
 }
