@@ -42,6 +42,18 @@ public class VentanaSimulador extends JFrame {
 		//Crear panel para la pantalla del simulador de coche
 		JPanel simuladorPane= new JPanel();
 		simuladorPane.setLayout(null);
+		
+		ImageIcon fondo = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE (1).jpg"));
+		cp.setLayout(null);
+		
+		ImageIcon coche = new ImageIcon(getClass().getResource("../simulador/img/coche.png"));
+		cp.setLayout(null);
+		//JPanel.add(image, BorderLayout.NORTH);
+		JLabel label2 = new JLabel(coche);
+		label2.setBounds(151, 10, 353, 393);
+		cp.add(label2);
+		
+		
 		//Crear lista de los obstáculos
 		String[] obstaculos = {"Peatón", "Otro Coche","Semáforo","STOP", "Ceda", "Sentido Obligatorio"};
 		JList lista= new JList(obstaculos);
@@ -49,8 +61,11 @@ public class VentanaSimulador extends JFrame {
 		//Doble panel que contiene el panel y la lista anterior
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,lista,simuladorPane);
 		
-		
 		cp.add(splitPane);
+		//JPanel.add(image, BorderLayout.NORTH);
+		JLabel label = new JLabel(fondo);
+		label.setBounds(151, 10, 353, 393);
+		cp.add(label);
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		setTitle( "Coche Autonomo" );
 		setSize(750,450);
