@@ -1,7 +1,6 @@
 package ventanas;
 
 import java.awt.*;
-import java.awt.EventQueue;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -21,6 +20,7 @@ import javax.swing.JList;
 public class VentanaSimulador extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private static Rectangle TAM_VENT = new Rectangle(1000, 600);
 	
 	/*Atributos*/
 	protected JList listaObst;
@@ -37,25 +37,31 @@ public class VentanaSimulador extends JFrame {
 	/**Constructor de ventana*/
 	public VentanaSimulador() {
 		
+		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
+		setTitle( "Coche Autonomo" );
+		setSize(TAM_VENT.width,TAM_VENT.height);
+		setLocationRelativeTo(null);
+		
 		//Crear contenedor
 		Container cp = this.getContentPane();
+		cp.setLayout(null);
 		//Crear panel para la pantalla del simulador de coche
 		JPanel simuladorPane= new JPanel();
 		simuladorPane.setLayout(null);
 		
-		ImageIcon fondo = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE (1).jpg"));
-		cp.setLayout(null);
+		Image fondoImg = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE (1).jpg")).getImage();
+		ImageIcon fondo = new ImageIcon(fondoImg.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
 		
-		ImageIcon coche = new ImageIcon(getClass().getResource("../simulador/img/coche.png"));
-		cp.setLayout(null);
+		Image cocheImg = new ImageIcon(getClass().getResource("../simulador/img/coche.png")).getImage();
+		ImageIcon coche = new ImageIcon(cocheImg.getScaledInstance(100, 150, Image.SCALE_SMOOTH));
+		
 		//JPanel.add(image, BorderLayout.NORTH);
 		JLabel label2 = new JLabel(coche);
-		label2.setBounds(151, 10, 353, 393);
+		label2.setBounds(279, 39, 515, 513);
 		cp.add(label2);
 		
-		
-		//Crear lista de los obstáculos
-		String[] obstaculos = {"Peatón", "Otro Coche","Semáforo","STOP", "Ceda", "Sentido Obligatorio"};
+		//Crear lista de los obstï¿½culos
+		String[] obstaculos = {"Peatï¿½n", "Otro Coche","Semï¿½foro","STOP", "Ceda", "Sentido Obligatorio"};
 		JList lista= new JList(obstaculos);
 		
 		//Doble panel que contiene el panel y la lista anterior
@@ -64,11 +70,9 @@ public class VentanaSimulador extends JFrame {
 		cp.add(splitPane);
 		//JPanel.add(image, BorderLayout.NORTH);
 		JLabel label = new JLabel(fondo);
-		label.setBounds(151, 10, 353, 393);
+		label.setBounds(10, 10, 966, 542);
 		cp.add(label);
-		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-		setTitle( "Coche Autonomo" );
-		setSize(750,450);
+		
 	}
 	public void cocheReaccion() {
 		
