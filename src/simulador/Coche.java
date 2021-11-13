@@ -96,7 +96,7 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 		
 	}
 	@Override
-	public void girar(Direccion dir) {
+	public void girar(double grados) {
 		// TODO Auto-generated method stub
 		
 	}
