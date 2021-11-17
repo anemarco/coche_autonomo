@@ -55,7 +55,7 @@ public class VentanaSimulador extends JFrame {
 		simuladorPane.setLayout(null);
 		//simuladorPane.setSize(TAM_VENT.width-20,TAM_VENT.height-10);
 		
-		//escalar imágenes
+		//escalar imï¿½genes
 		Image fondoImg = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE (1).jpg")).getImage();
 		ImageIcon fondo = new ImageIcon(fondoImg.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
 		
@@ -75,8 +75,8 @@ public class VentanaSimulador extends JFrame {
 		JPanel panelBotonero= new JPanel();
 		panelBotonero.setLayout(new BoxLayout(panelBotonero,BoxLayout.Y_AXIS));
 		
-		//Crear botones de cada obstáculo
-		b1=new JButton("         Peatón         ");
+		//Crear botones de cada obstï¿½culo
+		b1=new JButton("         Peatï¿½n         ");
 		b2= new JButton("      Otro Coche    ");
 		b3= new JButton("        Semaforo      ");
 		b4= new JButton("          STOP          ");
@@ -95,6 +95,7 @@ public class VentanaSimulador extends JFrame {
 		cp.add(splitPane);
 		
 	}
+	
 	public void cocheReaccion() {
 		
 		Obstaculo oDetectado = null;
