@@ -1,6 +1,8 @@
 package ventanas;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -67,6 +69,9 @@ public class VentanaSimulador extends JFrame {
 		Image cocheImg = new ImageIcon(getClass().getResource("../simulador/img/coche.png")).getImage();
 		ImageIcon coche = new ImageIcon(cocheImg.getScaledInstance(100, 150, Image.SCALE_SMOOTH));
 		
+		Image peatonObs = new ImageIcon(getClass().getResource("../simulador/img/recortePeaton.png")).getImage();
+		ImageIcon peaton = new ImageIcon(peatonObs.getScaledInstance(40,60, Image.SCALE_SMOOTH));
+		
 		//JPanel.add(image, BorderLayout.NORTH);
 		JLabel label2 = new JLabel(coche);
 		label2.setBounds(280, 200, 515, 513);
@@ -79,7 +84,7 @@ public class VentanaSimulador extends JFrame {
 		panelBotonero.setLayout(new BoxLayout(panelBotonero,BoxLayout.Y_AXIS));
 		
 		//Crear botones de cada obstï¿½culo
-		b1=new JButton("         Peatï¿½n         ");
+		b1=new JButton("         Peatón         ");
 		b2= new JButton("      Otro Coche    ");
 		b3= new JButton("        Semaforo      ");
 		b4= new JButton("          STOP          ");
@@ -139,6 +144,21 @@ public class VentanaSimulador extends JFrame {
         };
         time.start();
 		
+        //Action listener para el botón peatón: Hacer que aparezca la imagen peato.jpg en el simulador al presionar su botón
+        
+        b1.addActionListener(new ActionListener() {
+      
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+        		//JPanel.add(image, BorderLayout.NORTH);
+        		JLabel label3 = new JLabel(peaton);
+        		label3.setBounds(100, 40, 515, 513);
+        		simuladorPane.add(label3);
+			}
+        });
+        	
+        
 	}
 	
 	public void cocheReaccion() {
