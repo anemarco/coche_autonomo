@@ -25,6 +25,8 @@ public class VentanaSimulador extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static Rectangle TAM_VENT = new Rectangle(1150, 600);
+	private final int x_obs =100;
+	private final int y_obs=40;
 	
 	/*Atributos*/
 	protected JButton b1;
@@ -153,8 +155,32 @@ public class VentanaSimulador extends JFrame {
 				
         		//JPanel.add(image, BorderLayout.NORTH);
         		JLabel label3 = new JLabel(peaton);
-        		label3.setBounds(100, 40, 515, 513);
+        		label3.setBounds(x_obs, y_obs, 515, 513);
         		simuladorPane.add(label3);
+        		Thread moverPeaton= new Thread() {
+        			public void run(){
+        				int x=x_obs;
+        				int y=y_obs;
+        				while (x<400) {
+        					try {
+    							sleep(400);
+    						} catch (InterruptedException e1) {
+    							// TODO Auto-generated catch block
+    							e1.printStackTrace();
+    						}
+        					x+=20;
+                			y+=10;
+                			label3.setBounds(x,y,515,513);
+        				}
+        				simuladorPane.remove(label3);
+        	    		label3.setVisible(false);
+        			}
+        				
+        		};
+        		moverPeaton.start();
+    		
+    		
+    		
 			}
         });
         	
@@ -186,6 +212,7 @@ public class VentanaSimulador extends JFrame {
 		}
 		
 		if (oDetectado instanceof Peaton) {
+			Peaton peat= (Peaton) oDetectado;
 			
 		}
 		

@@ -1,6 +1,6 @@
 package simulador;
 
-public class Peaton extends Obstaculo {
+public class Peaton extends Obstaculo implements Movible{
 	
 	private static final  String IMG_PEATON = "";
 	
@@ -15,15 +15,29 @@ public class Peaton extends Obstaculo {
 	 * @param dx Desplazamiento en el eje x
 	 */
 	
-	public void mover(double dx) {
-		setX(getX() + dx);
-	}
-	
-	
 
 	@Override
 	public void colocar() {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mover(double dx, double dy) {
+		setX(getX() + dx);
+		setY(getY() + dy);
+		
+	}
+
+	@Override
+	public void girar(double grados) {
+		// no se necesita
+		
+	}
+
+	@Override
+	public void acelerar(double a) {
+		// no se necesita
+		
 	}
 
 }
