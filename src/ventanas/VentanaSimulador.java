@@ -35,6 +35,7 @@ public class VentanaSimulador extends JFrame {
 	protected JButton b4;
 	protected JButton b5;
 	protected JButton b6;
+	protected JButton b7;
 	private ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
 	private Coche miCoche;
 
@@ -92,12 +93,14 @@ public class VentanaSimulador extends JFrame {
 		b4= new JButton("          STOP          ");
 		b5= new JButton("           Ceda           ");
 		b6= new JButton("Sentido Contrario");
+		b7= new JButton("          Animal          ");
 		panelBotonero.add(b1);
 		panelBotonero.add(b2);
 		panelBotonero.add(b3);
 		panelBotonero.add(b4);
 		panelBotonero.add(b5);
 		panelBotonero.add(b6);
+		panelBotonero.add(b7);
 		
 		//Doble panel que contiene el panel y la lista anterior
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,panelBotonero,simuladorPane);
@@ -196,15 +199,6 @@ public class VentanaSimulador extends JFrame {
         			public void run(){
         				int y=y_obs-50;
         				while (y<370) {
-        				//Esperar a lanzar el hilo para que no se solapen
-        				//	if (moverCoche.isAlive()==true) {
-        				//		try {
-						// 			Thread.sleep(2*1000);
-						//		} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-						//			e.printStackTrace();
-						//		}
-        				//	}
         					try {
     							sleep(400);
     						} catch (InterruptedException e1) {
