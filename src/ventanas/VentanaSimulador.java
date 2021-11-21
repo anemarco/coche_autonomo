@@ -146,21 +146,20 @@ public class VentanaSimulador extends JFrame {
         };
         time.start();
 		
-        //Action listener para el botón peatón: Hacer que aparezca la imagen peato.jpg en el simulador al presionar su botón
-        
+        //Action listener para el botón peatón: 
         b1.addActionListener(new ActionListener() {
       
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-        		//JPanel.add(image, BorderLayout.NORTH);
+        		//Hacer que aparezca la imagen recortePeato.png  en el simulador al presionar su botón
         		JLabel label3 = new JLabel(peaton);
-        		label3.setBounds(x_obs, y_obs, 515, 513);
         		simuladorPane.add(label3);
+        		//Movimiento del peatón: cruzar carretera
         		Thread moverPeaton= new Thread() {
         			public void run(){
         				int x=x_obs;
-        				int y=y_obs;
+        				int y=y_obs+30;
         				while (x<400) {
         					try {
     							sleep(400);
@@ -168,8 +167,8 @@ public class VentanaSimulador extends JFrame {
     							// TODO Auto-generated catch block
     							e1.printStackTrace();
     						}
-        					x+=20;
-                			y+=10;
+        					x+=15;
+                			y+=4;
                 			label3.setBounds(x,y,515,513);
         				}
         				simuladorPane.remove(label3);
@@ -178,6 +177,49 @@ public class VentanaSimulador extends JFrame {
         				
         		};
         		moverPeaton.start();
+    		
+    		
+    		
+			}
+        });
+        //Action listener para el botón otroCoche: 
+        b2.addActionListener(new ActionListener() {
+            
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+        		//Hacer que aparezca la imagen coche.jpg en el simulador al presionar su botón
+        		JLabel label4 = new JLabel(coche);
+        		simuladorPane.add(label4);
+        		//Hacer que se mueva la imagen (objetivo:adelantarlo)
+        		Thread moverCoche= new Thread() {
+        			public void run(){
+        				int y=y_obs-50;
+        				while (y<370) {
+        				//Esperar a lanzar el hilo para que no se solapen
+        				//	if (moverCoche.isAlive()==true) {
+        				//		try {
+						// 			Thread.sleep(2*1000);
+						//		} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+						//			e.printStackTrace();
+						//		}
+        				//	}
+        					try {
+    							sleep(400);
+    						} catch (InterruptedException e1) {
+    							// TODO Auto-generated catch block
+    							e1.printStackTrace();
+    						}
+                			y+=20;
+                			label4.setBounds(x_obs+180,y,515,513);
+        				}
+        				simuladorPane.remove(label4);
+        	    		label4.setVisible(false);
+        			}
+        				
+        		};
+        		moverCoche.start();
     		
     		
     		
