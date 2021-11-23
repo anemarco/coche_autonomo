@@ -29,6 +29,12 @@ public class Senal extends Obstaculo {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void crearLabel() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 

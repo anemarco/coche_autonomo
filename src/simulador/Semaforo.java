@@ -30,6 +30,12 @@ public class Semaforo extends Obstaculo {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void crearLabel() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

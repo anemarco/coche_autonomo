@@ -1,19 +1,51 @@
 package simulador;
 
+import java.awt.Image;
+import java.awt.Point;
 import java.awt.Rectangle;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	
+	/*Constantes*/
+	
 	public static final Rectangle TAMANYO = new Rectangle(100, 150);
+	public static final Point COORD_DEFECT = new Point(492, 375); 
+	
+	/*Atributos*/
 	
 	protected double velocidad; /*public double velocidad*/
 	protected final Sensor S_RECON = new Sensor(0.0, 0.0, 50.0);	/*Sensor de reconocimiento: Avisa de los obstáculos que hay alrededor*/
 	protected final Sensor S_PROX = new Sensor(0.0, 0.0, 15.0);	/*Sensor de proximidad: Asegura que el coche matiene una distancia de seguridad con los demás vehículos*/
 	protected double dir;	/*�ngulo actual del coche*/
 	
+	/**Constructor por defecto*/
+	
+	public Coche() {
+		
+		super(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
+		crearLabel();
+		S_RECON.setX(x);
+		S_RECON.setY(y);
+		S_PROX.setX(x);
+		S_PROX.setY(y+h/2); 
+	}
+	
 	/*Constructor*/
 	
+	public Coche(int x, int y) {
+		
+		super(x, y, TAMANYO.width, TAMANYO.height);
+		crearLabel();
+		S_RECON.setX(x);
+		S_RECON.setY(y);
+		S_PROX.setX(x);
+		S_PROX.setY(y+h/2); 
+	}
+	
 	public Coche(int x, int y, int a, int h, double v, double dir) {
+		
 		super(x, y, a, h);
 		this.velocidad = v;
 		this.dir= dir;
@@ -88,8 +120,6 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	 * As� reaccionara de manera aut�noma
 	 */
 	
-
-
 	@Override
 	public void acelerar(double a) {
 		velocidad = velocidad + a;
@@ -100,6 +130,14 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	public void girar(double grados) {
 		
 		
+	}
+	
+	@Override
+	public void crearLabel() {
+		Image cocheImg = new ImageIcon(getClass().getResource("../simulador/img/coche.png")).getImage();
+		ImageIcon cocheIcon = new ImageIcon(cocheImg.getScaledInstance(TAMANYO.width, TAMANYO.height, Image.SCALE_SMOOTH));
+		this.lbl = new JLabel(cocheIcon);
+		this.lbl.setBounds(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
 	}
 	
 	/*

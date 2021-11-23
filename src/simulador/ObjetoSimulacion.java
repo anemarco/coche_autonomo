@@ -1,11 +1,14 @@
 package simulador;
 
+import javax.swing.JLabel;
+
 public abstract class ObjetoSimulacion {
 	
 	/*Atributos*/
 	
 	protected int x, y;
 	protected int a, h;	
+	protected JLabel lbl;
 	
 	/**Constructor
 	 * @param x Coordenada x del centro visual del objeto
@@ -29,6 +32,7 @@ public abstract class ObjetoSimulacion {
 
 	public void setX(int x) {
 		this.x = x;
+		this.lbl.setLocation(x, y);
 	}
 
 	public int getY() {
@@ -37,6 +41,7 @@ public abstract class ObjetoSimulacion {
 
 	public void setY(int y) {
 		this.y = y;
+		this.lbl.setLocation(x, y);
 	}
 	
 	public int getA() {
@@ -56,5 +61,14 @@ public abstract class ObjetoSimulacion {
 		this.h = h;
 	}
 
+	public JLabel getLbl() {
+		return lbl;
+	}
+
+	public void setLbl(JLabel lbl) {
+		this.lbl = lbl;
+	}
+	
+	public abstract void crearLabel();
 
 }

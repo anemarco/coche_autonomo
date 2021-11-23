@@ -13,5 +13,11 @@ public class Animal extends Obstaculo {
 		
 	}
 
+	@Override
+	public void crearLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

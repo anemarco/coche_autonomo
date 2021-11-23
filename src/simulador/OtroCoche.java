@@ -13,4 +13,11 @@ public class OtroCoche extends Obstaculo {
 		
 	}
 
+
+	@Override
+	public void crearLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
