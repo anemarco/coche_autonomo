@@ -17,12 +17,17 @@ import simulador.Senal.Tipo;
 
 public class VentanaSimulador extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	
 	/*Constantes*/
 	
+	private static final long serialVersionUID = 1L;
+	private static final int MS_SLEEP = 400;
+	
 	private static final Rectangle TAM_VENT = new Rectangle(1150, 600);	
+	private static final Rectangle TAM_FONDO = new Rectangle(966, 542);
+	private static final Point COORD_FONDO = new Point(10, 10);
+
 	private static final int CARRIL_DCHO = 492;
+	private static final int CARRIL_IZQ = 390;
 	
 	/*Atributos*/
 	
@@ -109,7 +114,7 @@ public class VentanaSimulador extends JFrame {
         				while (peaton.getX()<700) {
         					
         					try {
-    							sleep(400);
+    							sleep(MS_SLEEP);
     						} catch (InterruptedException e1) {
     							e1.printStackTrace();
     						}
@@ -144,7 +149,7 @@ public class VentanaSimulador extends JFrame {
         				
         				while (otroCoche.getY()<375) {
         					try {
-    							sleep(400);
+    							sleep(MS_SLEEP);
     						} catch (InterruptedException e1) {
     							e1.printStackTrace();
     						}
@@ -173,20 +178,26 @@ public class VentanaSimulador extends JFrame {
 		ImageIcon fondoIcon = new ImageIcon(fondoImg.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
 	
 		Thread time = new Thread(){
+			
+			@Override
             public void run(){
+            	
             	simuladorPane.setLayout(null);
         		//JPanel.add(image, BorderLayout.NORTH);
         		JLabel label = new JLabel(fondoIcon);
-        		label.setBounds(10, 10, 966, 542);
+        		label.setBounds(COORD_FONDO.x, COORD_FONDO.y, TAM_FONDO.width, TAM_FONDO.height);
         		simuladorPane.add(label);
+        		
         		int num=15;
+        		
         		 while(true){
+        			 
              		try {
-							sleep(400);
+							sleep(MS_SLEEP);
 						} catch (InterruptedException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+             		
                 	Image fondoImg2 = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE ("+ num +").jpg")).getImage();
             		ImageIcon fondo2 = new ImageIcon(fondoImg2.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
             		simuladorPane.setLayout(null);
@@ -194,7 +205,7 @@ public class VentanaSimulador extends JFrame {
             		label.setVisible(false);
             		
             		JLabel picSecond = new JLabel(fondo2);
-            		picSecond.setBounds(10, 10, 966, 542);
+            		picSecond.setBounds(COORD_FONDO.x, COORD_FONDO.y, TAM_FONDO.width, TAM_FONDO.height);
             		simuladorPane.add(picSecond);
             		picSecond.setVisible(true);
             		simuladorPane.revalidate();
@@ -206,14 +217,12 @@ public class VentanaSimulador extends JFrame {
             		if (num==0){
             			num = 16;  		
                     }
-            		
-
-
                 }
             }
         };
+        
         time.start();
-	
+
 	}
 	
 	public void cocheReaccion() {
@@ -241,7 +250,7 @@ public class VentanaSimulador extends JFrame {
 		}
 		
 		if (oDetectado instanceof Peaton) {
-			Peaton peat= (Peaton) oDetectado;
+			
 			
 		}
 		
