@@ -1,5 +1,7 @@
 package simulador;
 
+import javax.swing.JLabel;
+
 public class Senal extends Obstaculo {
 	
 	public static enum Tipo {STOP, CEDA, SENTIDO_OBLIGATORIO}
@@ -31,8 +33,8 @@ public class Senal extends Obstaculo {
 	}
 
 	@Override
-	public void crearLabel() {
-		// TODO Auto-generated method stub
+	public JLabel crearLabel() {
+		return null;
 		
 	}
 	

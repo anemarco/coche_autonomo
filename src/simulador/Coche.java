@@ -25,7 +25,8 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	public Coche() {
 		
 		super(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
-		crearLabel();
+		this.lbl = crearLabel();
+		this.lbl.setBounds(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
 		S_RECON.setX(x);
 		S_RECON.setY(y);
 		S_PROX.setX(x);
@@ -37,7 +38,8 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	public Coche(int x, int y) {
 		
 		super(x, y, TAMANYO.width, TAMANYO.height);
-		crearLabel();
+		this.lbl = crearLabel();
+		this.lbl.setBounds(x, y, TAMANYO.width, TAMANYO.height);
 		S_RECON.setX(x);
 		S_RECON.setY(y);
 		S_PROX.setX(x);
@@ -87,6 +89,7 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	@Override
 	public void setX(int x) {
 		this.x = x;
+		this.lbl.setLocation(x, y);
 		S_RECON.setX(x);
 		S_PROX.setX(x);
 	}
@@ -95,6 +98,7 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	@Override
 	public void setY(int y) {
 		this.y = y;
+		this.lbl.setLocation(x, y);
 		S_RECON.setY(y);
 		S_PROX.setY(y);
 	}
@@ -133,11 +137,12 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	}
 	
 	@Override
-	public void crearLabel() {
+	public JLabel crearLabel() {
 		Image cocheImg = new ImageIcon(getClass().getResource("../simulador/img/coche.png")).getImage();
 		ImageIcon cocheIcon = new ImageIcon(cocheImg.getScaledInstance(TAMANYO.width, TAMANYO.height, Image.SCALE_SMOOTH));
-		this.lbl = new JLabel(cocheIcon);
-		this.lbl.setBounds(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
+		JLabel lbl =new JLabel(cocheIcon);
+		
+		return lbl;
 	}
 	
 	/*

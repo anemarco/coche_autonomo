@@ -69,6 +69,6 @@ public abstract class ObjetoSimulacion {
 		this.lbl = lbl;
 	}
 	
-	public abstract void crearLabel();
+	public abstract JLabel crearLabel();
 
 }

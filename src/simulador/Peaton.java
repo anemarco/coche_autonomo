@@ -16,7 +16,8 @@ public class Peaton extends Obstaculo implements Movible {
 	
 	public Peaton() {
 		super(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
-		crearLabel();
+		this.lbl = crearLabel();
+		this.lbl.setBounds(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
 	}
 	
 	
@@ -24,7 +25,8 @@ public class Peaton extends Obstaculo implements Movible {
 	
 	public Peaton(int x, int y, int a, int h) {
 		super(x, y, a, h);
-		crearLabel();
+		this.lbl = crearLabel();
+		this.lbl.setBounds(x, y, TAMANYO.width, TAMANYO.height);
 	}
 	
 	/**Método que mover el objeto dentro de la ventana gráfica. En este caso,
@@ -58,11 +60,11 @@ public class Peaton extends Obstaculo implements Movible {
 	}
 
 	@Override
-	public void crearLabel() {
+	public JLabel crearLabel() {
 		Image img = new ImageIcon(getClass().getResource("../simulador/img/recortePeaton.png")).getImage();
 		ImageIcon icon = new ImageIcon(img.getScaledInstance(TAMANYO.width, TAMANYO.height, Image.SCALE_SMOOTH));
-		this.lbl = new JLabel(icon);
-		this.lbl.setBounds(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
+		JLabel lbl = new JLabel(icon);
+		return lbl;
 	}
 
 }

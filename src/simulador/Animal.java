@@ -1,5 +1,7 @@
 package simulador;
 
+import javax.swing.JLabel;
+
 public class Animal extends Obstaculo {
 
 	//constructor
@@ -14,8 +16,8 @@ public class Animal extends Obstaculo {
 	}
 
 	@Override
-	public void crearLabel() {
-		// TODO Auto-generated method stub
+	public JLabel crearLabel() {
+		return null;
 		
 	}
 

@@ -1,5 +1,7 @@
 package simulador;
 
+import javax.swing.JLabel;
+
 public class Semaforo extends Obstaculo {
 	
 	public static enum Color {VERDE, NARANJA, ROJO}
@@ -32,8 +34,8 @@ public class Semaforo extends Obstaculo {
 	}
 
 	@Override
-	public void crearLabel() {
-		// TODO Auto-generated method stub
+	public JLabel crearLabel() {
+		return null;
 		
 	}
 	

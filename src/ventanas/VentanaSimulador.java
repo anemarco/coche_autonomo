@@ -21,10 +21,8 @@ public class VentanaSimulador extends JFrame {
 	
 	/*Constantes*/
 	
-	private static Rectangle TAM_VENT = new Rectangle(1150, 600);	
-	
-	private final int x_obs =100;
-	private final int y_obs=-150;
+	private static final Rectangle TAM_VENT = new Rectangle(1150, 600);	
+	private static final int CARRIL_DCHO = 492;
 	
 	/*Atributos*/
 	
@@ -34,10 +32,15 @@ public class VentanaSimulador extends JFrame {
 	private Coche miCoche;
 
 	/*Main*/
+	
 	public static void main(String[] args) {
 		
-		VentanaSimulador ventana= new VentanaSimulador();
-		ventana.setVisible(true);
+		VentanaSimulador vent = new VentanaSimulador();
+		vent.setVisible(true);
+		
+		while (vent.isVisible()) {
+			vent.cocheReaccion();
+		}
 	}
 	
 	/**Constructor de ventana*/
@@ -53,11 +56,6 @@ public class VentanaSimulador extends JFrame {
 		Container cp = this.getContentPane();
 		simuladorPane= new JPanel();
 		simuladorPane.setLayout(null);
-		
-		/*Escalar imágenes*/
-
-		Image cocheImg = new ImageIcon(getClass().getResource("../simulador/img/coche.png")).getImage();
-		ImageIcon cocheIcon = new ImageIcon(cocheImg.getScaledInstance(100, 150, Image.SCALE_SMOOTH));
 		
 		/*Crear el objeto coche*/
 		miCoche = new Coche();
@@ -99,6 +97,8 @@ public class VentanaSimulador extends JFrame {
 				/*Crear un objeto constructor*/
 				Peaton peaton = new Peaton();
 				simuladorPane.add(peaton.getLbl());
+				listaObs.add(peaton);
+				
 				
 				/*Hilo de movimiento del peatón*/
 				Thread moverPeaton= new Thread() {
@@ -118,6 +118,7 @@ public class VentanaSimulador extends JFrame {
   
         				}
         				simuladorPane.remove(peaton.getLbl());
+        				listaObs.remove(peaton);
         	    		peaton.getLbl().setVisible(false);
         			}	
         		};
@@ -134,27 +135,27 @@ public class VentanaSimulador extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
         		//Hacer que aparezca la imagen coche.jpg en el simulador al presionar su bot�n
-        		JLabel label4 = new JLabel(cocheIcon);
-        		simuladorPane.add(label4);
-        		//Hacer que se mueva la imagen (objetivo:adelantarlo)
+				Coche otroCoche = new Coche(CARRIL_DCHO, 10);
+				simuladorPane.add(otroCoche.getLbl());
+				
+				//Hacer que se mueva la imagen (objetivo:adelantarlo)
         		Thread moverCoche= new Thread() {
         			public void run(){
-        				int y=y_obs-50;
-        				while (y<370) {
+        				
+        				while (otroCoche.getY()<375) {
         					try {
     							sleep(400);
     						} catch (InterruptedException e1) {
-    							// TODO Auto-generated catch block
     							e1.printStackTrace();
     						}
-                			y+=20;
-                			label4.setBounds(x_obs+180,y,515,513);
+                			otroCoche.mover(0, 20);
         				}
-        				simuladorPane.remove(label4);
-        	    		label4.setVisible(false);
+        				simuladorPane.remove(otroCoche.getLbl());
+        	    		otroCoche.getLbl().setVisible(false);
         			}
         				
         		};
+				
         		moverCoche.start();
 			}
         });
