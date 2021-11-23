@@ -1,15 +1,15 @@
 package simulador;
 
-public class Animal extends Obstaculo{
+public class Animal extends Obstaculo {
 
 	//constructor
-	public Animal(double x, double y, double a, double h, String img) {
-		super(x, y, a, h, img);
-		// TODO Auto-generated constructor stub
+	
+	public Animal(int x, int y, int a, int h) {
+		super(x, y, a, h);
 	}
+	
 	@Override
 	public void colocar() {
-		// TODO Auto-generated method stub
 		
 	}
 

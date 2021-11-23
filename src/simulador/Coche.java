@@ -1,6 +1,10 @@
 package simulador;
 
+import java.awt.Rectangle;
+
 public class Coche extends ObjetoSimulacion implements Movible, Chocable {
+	
+	public static final Rectangle TAMANYO = new Rectangle(100, 150);
 	
 	protected double velocidad; /*public double velocidad*/
 	protected final Sensor S_RECON = new Sensor(0.0, 0.0, 50.0);	/*Sensor de reconocimiento: Avisa de los obstáculos que hay alrededor*/
