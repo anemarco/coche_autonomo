@@ -1,13 +1,12 @@
 package simulador;
 
-public class Peaton extends Obstaculo implements Movible{
+public class Peaton extends Obstaculo implements Movible {
 	
-	private static final  String IMG_PEATON = "";
 	
 	/*Constructor*/
 	
-	public Peaton(double x, double y, double a, double h) {
-		super(x, y, a, h, IMG_PEATON);
+	public Peaton(int x, int y, int a, int h) {
+		super(x, y, a, h);
 	}
 	
 	/**Método que mover el objeto dentro de la ventana gráfica. En este caso,
@@ -22,7 +21,7 @@ public class Peaton extends Obstaculo implements Movible{
 	}
 
 	@Override
-	public void mover(double dx, double dy) {
+	public void mover(int dx, int dy) {
 		setX(getX() + dx);
 		setY(getY() + dy);
 		

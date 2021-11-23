@@ -2,8 +2,6 @@ package simulador;
 
 public class Semaforo extends Obstaculo {
 	
-	private static final String IMG_SEMAFORO = "";
-	
 	public static enum Color {VERDE, NARANJA, ROJO}
 	
 	/*Atributos*/
@@ -12,8 +10,8 @@ public class Semaforo extends Obstaculo {
 	
 	/*Constructor*/
 
-	public Semaforo(double x, double y, double a, double h, Color color) {
-		super(x, y, a, h, IMG_SEMAFORO);
+	public Semaforo(int x, int y, int a, int h, Color color) {
+		super(x, y, a, h);
 		this.color = color;
 	}
 	

@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import simulador.*;
@@ -25,6 +26,8 @@ public class VentanaSimulador extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static Rectangle TAM_VENT = new Rectangle(1150, 600);
+	
+	
 	private final int x_obs =100;
 	private final int y_obs=40;
 	
@@ -44,10 +47,6 @@ public class VentanaSimulador extends JFrame {
 		
 		VentanaSimulador ventana= new VentanaSimulador();
 		ventana.setVisible(true);
-		
-		while (ventana.isVisible()) {
-			
-		}
 	}
 	
 	/**Constructor de ventana*/
@@ -86,15 +85,54 @@ public class VentanaSimulador extends JFrame {
 		JPanel panelBotonero= new JPanel();
 		panelBotonero.setLayout(new BoxLayout(panelBotonero,BoxLayout.Y_AXIS));
 		
+		
 		//Crear botones de cada obstï¿½culo
-		b1=new JButton("         Peatón         ");
+		b1=new JButton("       PeatÃ³n        ");
 		b2= new JButton("      Otro Coche    ");
 		b3= new JButton("        Semaforo      ");
 		b4= new JButton("          STOP          ");
 		b5= new JButton("           Ceda           ");
 		b6= new JButton("Sentido Contrario");
 		b7= new JButton("          Animal          ");
-		panelBotonero.add(b1);
+		
+        //Action listener para el botï¿½n peatï¿½n: 
+        b1.addActionListener(new ActionListener() {
+      
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+        		//Hacer que aparezca la imagen recortePeato.png  en el simulador al presionar su botï¿½n
+        		JLabel label3 = new JLabel(peaton);
+        		simuladorPane.add(label3);
+        		//Movimiento del peatï¿½n: cruzar carretera
+        		Thread moverPeaton= new Thread() {
+        			public void run(){
+        				int x=x_obs;
+        				int y=y_obs+30;
+        				while (x<400) {
+        					try {
+    							sleep(400);
+    						} catch (InterruptedException e1) {
+    							// TODO Auto-generated catch block
+    							e1.printStackTrace();
+    						}
+        					x+=15;
+                			y+=4;
+                			label3.setBounds(x,y,515,513);
+        				}
+        				simuladorPane.remove(label3);
+        	    		label3.setVisible(false);
+        			}
+        				
+        		};
+        		moverPeaton.start();
+    		
+    		
+    		
+			}
+        });
+        
+        panelBotonero.add(b1);
 		panelBotonero.add(b2);
 		panelBotonero.add(b3);
 		panelBotonero.add(b4);
@@ -148,50 +186,13 @@ public class VentanaSimulador extends JFrame {
             }
         };
         time.start();
-		
-        //Action listener para el botón peatón: 
-        b1.addActionListener(new ActionListener() {
-      
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-        		//Hacer que aparezca la imagen recortePeato.png  en el simulador al presionar su botón
-        		JLabel label3 = new JLabel(peaton);
-        		simuladorPane.add(label3);
-        		//Movimiento del peatón: cruzar carretera
-        		Thread moverPeaton= new Thread() {
-        			public void run(){
-        				int x=x_obs;
-        				int y=y_obs+30;
-        				while (x<400) {
-        					try {
-    							sleep(400);
-    						} catch (InterruptedException e1) {
-    							// TODO Auto-generated catch block
-    							e1.printStackTrace();
-    						}
-        					x+=15;
-                			y+=4;
-                			label3.setBounds(x,y,515,513);
-        				}
-        				simuladorPane.remove(label3);
-        	    		label3.setVisible(false);
-        			}
-        				
-        		};
-        		moverPeaton.start();
-    		
-    		
-    		
-			}
-        });
-        //Action listener para el botón otroCoche: 
+        //Action listener para el botï¿½n otroCoche: 
         b2.addActionListener(new ActionListener() {
             
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-        		//Hacer que aparezca la imagen coche.jpg en el simulador al presionar su botón
+        		//Hacer que aparezca la imagen coche.jpg en el simulador al presionar su botï¿½n
         		JLabel label4 = new JLabel(coche);
         		simuladorPane.add(label4);
         		//Hacer que se mueva la imagen (objetivo:adelantarlo)

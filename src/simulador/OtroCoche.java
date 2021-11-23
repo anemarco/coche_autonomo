@@ -1,11 +1,9 @@
 package simulador;
 
 public class OtroCoche extends Obstaculo {
-	
-	private static final  String IMG_COCHE2 = "";
 
-	public OtroCoche(double x, double y, double a, double h) {
-			super(x, y, a, h, IMG_COCHE2);
+	public OtroCoche(int x, int y, int a, int h) {
+			super(x, y, a, h);
 		}
 	
 

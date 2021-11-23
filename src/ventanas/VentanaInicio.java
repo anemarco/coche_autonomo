@@ -24,6 +24,8 @@ import javax.swing.JOptionPane;
 
 public class VentanaInicio extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane, panelNorte, panelSur, panelCentral;
 	private JButton btnSalir, btnIniciarSesion, btnRegistrar; 
 	private JLabel lblNombreUsuario, lblDni, lblContrasenia;
@@ -52,9 +54,11 @@ public class VentanaInicio extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaInicio() {
+		
 		//Connection con = BD.initBD("iniciosesion.db");
 		//tmUsuarios = BD.obtenerMapaUsuarios(con);
 		//BD.closeBD(con);
+		
 		setTitle("INICIO DE SESIï¿½N");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -105,8 +109,9 @@ public class VentanaInicio extends JFrame {
 		
 		/*EVENTOS*/
 		/**
-		 * Botón que saldrá de la pantalla de inicio
+		 * Botï¿½n que saldrï¿½ de la pantalla de inicio
 		 */
+		
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -114,14 +119,14 @@ public class VentanaInicio extends JFrame {
 			}
 		});
 		/**
-		 * Botón que hará que el usuario inicie sesión una vez ya registrado y nos llevará a la pantalla de simulación
+		 * Botï¿½n que harï¿½ que el usuario inicie sesiï¿½n una vez ya registrado y nos llevarï¿½ a la pantalla de simulaciï¿½n
 		 */
 		btnIniciarSesion.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				String n = textNombre.getText();
 				String dni = textDni.getText();
 				if(tmUsuarios.get(dni) == null) {
-					JOptionPane.showMessageDialog(null, "No estás registrado!", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No estï¿½s registrado!", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
 				}else {
 					JOptionPane.showMessageDialog(null, "Bienvenido!","ACCESO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -129,7 +134,7 @@ public class VentanaInicio extends JFrame {
 		});
 		
 		/**
-		 * Botón que registrará un usuario si no está ya registrado y lo guardará en la base de datos
+		 * Botï¿½n que registrarï¿½ un usuario si no estï¿½ ya registrado y lo guardarï¿½ en la base de datos
 		 */
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,17 +154,17 @@ public class VentanaInicio extends JFrame {
 						JOptionPane.showMessageDialog(null, "Persona registrada correctamente","REGISTRO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
 						vaciarCampos();
 					}else {
-						JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese dni", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese dni", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
 					}
 				}else {
-					JOptionPane.showMessageDialog(null, "El dni no es correcto", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "El dni no es correcto", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 	}
 	
 	/**
-	 * Vaciará los campos cuando el usuario pulse un botón
+	 * Vaciarï¿½ los campos cuando el usuario pulse un botï¿½n
 	 */
 	private void vaciarCampos() {
 		textNombre.setText("");

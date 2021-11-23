@@ -2,24 +2,22 @@ package simulador;
 
 public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	
-	private static final  String IMG_COCHE = "/Coche_autonomo/src/simulador/img/coche.png";
-	
 	protected double velocidad; /*public double velocidad*/
 	protected final Sensor S_RECON = new Sensor(0.0, 0.0, 50.0);	/*Sensor de reconocimiento: Avisa de los obstÃ¡culos que hay alrededor*/
 	protected final Sensor S_PROX = new Sensor(0.0, 0.0, 15.0);	/*Sensor de proximidad: Asegura que el coche matiene una distancia de seguridad con los demÃ¡s vehÃ­culos*/
-	protected double dir;	/*Ángulo actual del coche*/
-	
+	protected double dir;	/*ï¿½ngulo actual del coche*/
 	
 	/*Constructor*/
 	
-	public Coche(double x, double y, double a, double h, double v, double dir) {
-		super(x, y, a, h, IMG_COCHE);
+	public Coche(int x, int y, int a, int h, double v, double dir) {
+		super(x, y, a, h);
 		this.velocidad = v;
+		this.dir= dir;
 		S_RECON.setX(x);
 		S_RECON.setY(y);
 		S_PROX.setX(x);
 		S_PROX.setY(y+h/2); 
-		this.dir= dir;
+		
 	}
 
 	/*Getters y setters*/
@@ -43,15 +41,15 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 		return dir;
 	}
 
-	public void setDir(double dir) {
-		this.dir = dir;
+	public void setDir(double d) {
+		this.dir = d;
 	}
 	
 	/*Se reescriben los setter de ObjetoSimulaciÃ³n, pues al cambiar las coordenadas
 	 * de el coche, tambiÃ©n cambiarÃ¡n las de su sensor*/
 	
 	@Override
-	public void setX(double x) {
+	public void setX(int x) {
 		this.x = x;
 		S_RECON.setX(x);
 		S_PROX.setX(x);
@@ -59,17 +57,15 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	
 	
 	@Override
-	public void setY(double y) {
+	public void setY(int y) {
 		this.y = y;
 		S_RECON.setY(y);
 		S_PROX.setY(y);
 	}
 	
-
-
-	/*Método que indica si el coche se ha chocado con un obstáculo
-	 * Recibe un objeto de la clase obstáculo
-	 * Si la distancia de las posición (x e y) del coche y obstáculo son menores que las proporciones de sus imagenes devuelve TRUE
+	/*Mï¿½todo que indica si el coche se ha chocado con un obstï¿½culo
+	 * Recibe un objeto de la clase obstï¿½culo
+	 * Si la distancia de las posiciï¿½n (x e y) del coche y obstï¿½culo son menores que las proporciones de sus imagenes devuelve TRUE
 	 */
 	@Override
 	public boolean choca(Obstaculo obst) {
@@ -78,14 +74,14 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	}
 
 	@Override
-	public void mover(double dx, double dy) {
+	public void mover(int dx, int dy) {
 		setX(getX() + dx);
 		setY(getY() + dy);
 	}
 
-	/*Método que indica los grados que el choche debe tomar para maniobrar o esquibar un obstáculo
-	 * Desde la ventana se le enviará la cantidad de grados que debe moverse por maniobra u objeto
-	 * Así reaccionara de manera autónoma
+	/*Mï¿½todo que indica los grados que el choche debe tomar para maniobrar o esquibar un obstï¿½culo
+	 * Desde la ventana se le enviarï¿½ la cantidad de grados que debe moverse por maniobra u objeto
+	 * Asï¿½ reaccionara de manera autï¿½noma
 	 */
 	
 
@@ -95,6 +91,14 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 		velocidad = velocidad + a;
 		
 	}
+
+	@Override
+	public void girar(double grados) {
+		
+		
+	}
+	
+	/*
 	@Override
 	public void girar(double grados) {
 		this.setDir(this.getDir()+grados);
@@ -102,6 +106,7 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 		this.setY(Math.sin(this.dir));
 		
 	}
+	*/
 	
 }
 

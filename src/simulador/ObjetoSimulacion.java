@@ -4,9 +4,8 @@ public abstract class ObjetoSimulacion {
 	
 	/*Atributos*/
 	
-	protected double x, y;
-	protected double a, h;	
-	protected String img;
+	protected int x, y;
+	protected int a, h;	
 	
 	/**Constructor
 	 * @param x Coordenada x del centro visual del objeto
@@ -15,54 +14,47 @@ public abstract class ObjetoSimulacion {
 	 * @param h Altura del objeto
 	 */
 	
-	public ObjetoSimulacion(double x, double y, double a, double h, String img) {
+	public ObjetoSimulacion(int x, int y, int a, int h) {
 		this.x = x;
 		this.y = y;
 		this.a = a;
 		this.h = h;
-		this.img = img;
 	}
 	
 	/*Getters y setters*/
 	
-	public double getX() {
+	public int getX() {
 		return x;
 	}
 
-	public void setX(double x) {
+	public void setX(int x) {
 		this.x = x;
 	}
 
-	public double getY() {
+	public int getY() {
 		return y;
 	}
 
-	public void setY(double y) {
+	public void setY(int y) {
 		this.y = y;
 	}
 	
-	public double getA() {
+	public int getA() {
 		return a;
 	}
 
-	public void setA(double a) {
+	public void setA(int a) {
 		this.a = a;
 	}
 
 
-	public double getH() {
+	public int getH() {
 		return h;
 	}
 
-	public void setH(double h) {
+	public void setH(int h) {
 		this.h = h;
 	}
 
-	public String getImg() {
-		return img;
-	}
 
-	public void setImg(String img) {
-		this.img = img;
-	}
 }

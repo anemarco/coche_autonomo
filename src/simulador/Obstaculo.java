@@ -4,8 +4,8 @@ public abstract class Obstaculo extends ObjetoSimulacion {
 	
 	/*Constructor*/
 
-	public Obstaculo(double x, double y, double a, double h, String img) {
-		super(x, y, a, h, img);
+	public Obstaculo(int x, int y, int a, int h) {
+		super(x, y, a, h);
 	}
 	
 	/**Método que permita seleccionar un obstáculo mediante un click con el ratón

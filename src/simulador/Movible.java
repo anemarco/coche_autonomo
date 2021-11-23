@@ -9,7 +9,7 @@ public interface Movible {
 		 * @param dy Desplazamiento en el eje y
 		 */
 		
-		public void mover(double dx, double dy);
+		public void mover(int dx, int dy);
 		
 		/**Método que permite cambiar la orientación del objeto
 		 * @param dir Dirección a la que desea girar
