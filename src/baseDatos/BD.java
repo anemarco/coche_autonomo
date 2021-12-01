@@ -1,6 +1,7 @@
 package baseDatos;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,9 +10,9 @@ import java.util.TreeMap;
 
 public class BD {
 	/**
-	 * Método que crea la conxión con la base de datos
+	 * Método que crea la conexión con la base de datos
 	 * @param nombreBD (he puesto nombreBD como variable para que el código se pueda utilizar con cualquier archivo de sqliteman)
-	 * @return
+	 * @return devuelve la conexión
 	 */
 	public static Connection initBD(String nombreBD) {
 		Connection con = null;
@@ -41,6 +42,32 @@ public class BD {
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 */
+	public static void crearTablas(Connection con) {
+		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(nom String, dni String, con String)";
+		Statement st= null;
+		
+		try {
+			st = con.createStatement();
+			st.executeUpdate(sent1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(st!=null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	/**
 	 * Insertará el usuario que se solicite
 	 * @param con

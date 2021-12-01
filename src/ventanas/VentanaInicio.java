@@ -59,6 +59,10 @@ public class VentanaInicio extends JFrame {
 		//tmUsuarios = BD.obtenerMapaUsuarios(con);
 		//BD.closeBD(con);
 		
+		Connection con = BD.initBD("iniciosesion.db");
+		BD.crearTablas(con);
+		BD.closeBD(con);
+		
 		setTitle("INICIO DE SESI�N");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
