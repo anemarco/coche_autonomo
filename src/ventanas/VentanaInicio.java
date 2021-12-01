@@ -55,12 +55,10 @@ public class VentanaInicio extends JFrame {
 	 */
 	public VentanaInicio() {
 		
-		//Connection con = BD.initBD("iniciosesion.db");
-		//tmUsuarios = BD.obtenerMapaUsuarios(con);
-		//BD.closeBD(con);
 		
 		Connection con = BD.initBD("iniciosesion.db");
 		BD.crearTablas(con);
+		tmUsuarios = BD.obtenerMapaUsuarios(con);
 		BD.closeBD(con);
 		
 		setTitle("INICIO DE SESIï¿½N");
@@ -113,7 +111,7 @@ public class VentanaInicio extends JFrame {
 		
 		/*EVENTOS*/
 		/**
-		 * Botï¿½n que saldrï¿½ de la pantalla de inicio
+		 * Boton que sale de la pantalla de inicio
 		 */
 		
 		btnSalir.addActionListener(new ActionListener() {
@@ -123,14 +121,14 @@ public class VentanaInicio extends JFrame {
 			}
 		});
 		/**
-		 * Botï¿½n que harï¿½ que el usuario inicie sesiï¿½n una vez ya registrado y nos llevarï¿½ a la pantalla de simulaciï¿½n
+		 * Boton que haria que el usuario inicie sesion una vez ya registrado y nos llevara a la pantalla de simulacion
 		 */
 		btnIniciarSesion.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				String n = textNombre.getText();
 				String dni = textDni.getText();
 				if(tmUsuarios.get(dni) == null) {
-					JOptionPane.showMessageDialog(null, "No estï¿½s registrado!", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No estas registrado!", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
 				}else {
 					JOptionPane.showMessageDialog(null, "Bienvenido!","ACCESO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -138,7 +136,7 @@ public class VentanaInicio extends JFrame {
 		});
 		
 		/**
-		 * Botï¿½n que registrarï¿½ un usuario si no estï¿½ ya registrado y lo guardarï¿½ en la base de datos
+		 * Boton que registra un usuario si no esta ya registrado y lo guardara en la base de datos
 		 */
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -158,21 +156,22 @@ public class VentanaInicio extends JFrame {
 						JOptionPane.showMessageDialog(null, "Persona registrada correctamente","REGISTRO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
 						vaciarCampos();
 					}else {
-						JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese dni", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese dni", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
 					}
 				}else {
-					JOptionPane.showMessageDialog(null, "El dni no es correcto", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "El dni no es correcto", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 	}
 	
 	/**
-	 * Vaciarï¿½ los campos cuando el usuario pulse un botï¿½n
+	 * Vaciaria los campos cuando el usuario pulse un boton
 	 */
 	private void vaciarCampos() {
 		textNombre.setText("");
 		textDni.setText("");
+		textContrasenia.setText("");
 	}
 	
 }

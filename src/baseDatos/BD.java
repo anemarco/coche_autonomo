@@ -10,9 +10,9 @@ import java.util.TreeMap;
 
 public class BD {
 	/**
-	 * Método que crea la conexión con la base de datos
-	 * @param nombreBD (he puesto nombreBD como variable para que el código se pueda utilizar con cualquier archivo de sqliteman)
-	 * @return devuelve la conexión
+	 * Método que crea la conexion con la base de datos
+	 * @param nombreBD nombre del archivo de sqliteman de la base de datos
+	 * @return devuelve la conexion
 	 */
 	public static Connection initBD(String nombreBD) {
 		Connection con = null;
@@ -29,8 +29,8 @@ public class BD {
 		return con;
 	}
 	/**
-	 * Método que hará que se cierre la base de datos
-	 * @param con
+	 * Metodo que hara que se cierre la base de datos
+	 * @param con parametro que establece la conexion con la base de datos
 	 */
 	public static void closeBD(Connection con) {
 		if(con!=null) {
@@ -44,10 +44,10 @@ public class BD {
 	}
 	
 	/**
-	 * 
+	 * Metodo que crea la tabla usuario en la base de datos
 	 */
 	public static void crearTablas(Connection con) {
-		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(nom String, dni String, con String)";
+		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(nombre String, dni String, contrasenia String)";
 		Statement st= null;
 		
 		try {
@@ -69,11 +69,11 @@ public class BD {
 	}
 	
 	/**
-	 * Insertará el usuario que se solicite
-	 * @param con
-	 * @param nombre
-	 * @param dni
-	 * @param contrasenia
+	 * Insertara el usuario que se solicite
+	 * @param con parametro que establece la conexion con la base de datos
+	 * @param nombre nombre del usuario que se desea insertar
+	 * @param dni dni del usuario que se desea insertar
+	 * @param contrasenia contrasenia del usuario que se desea insertar
 	 */
 	public static void insertarUsuario(Connection con, String nombre, String dni, String contrasenia) {
 		String sentSQL = "INSERT INTO usuario VALUES('"+nombre+"',"+dni+"',"+contrasenia+")";
@@ -89,9 +89,9 @@ public class BD {
 		
 	}
 	/**
-	 * Eliminará el usuario que se necesite
-	 * @param con
-	 * @param dni
+	 * Eliminara el usuario que se necesite
+	 * @param con parametro que establece la conexion con la base de datos
+	 * @param dni dni del usuario que se desea eliminar
 	 */
 	public static void eliminarUsuario(Connection con, String dni) {
 		String sentSQL = "DELETE FROM usuario WHERE dni="+dni+"'";
@@ -107,8 +107,8 @@ public class BD {
 	
 	/**
 	 * TreeMap que hará que los usuarios que se registren se guarden en el mismo.
-	 * @param con
-	 * @return
+	 * @param con parametro que crea la conexion con la base de datos
+	 * @return devuelve el treemap de usuarios
 	 */
 	public static TreeMap<String, Usuario> obtenerMapaUsuarios(Connection con){
 		TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
