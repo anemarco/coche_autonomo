@@ -32,7 +32,8 @@ public class VentanaSimulador extends JFrame {
 	
 	/*Atributos*/
 	
-	JPanel simuladorPane;
+	static JPanel simuladorPane;
+	static VentanaSimulador vent;
 	
 	private ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
 	private Coche miCoche;
@@ -41,7 +42,7 @@ public class VentanaSimulador extends JFrame {
 	
 	public static void main(String[] args) {
 		
-		VentanaSimulador vent = new VentanaSimulador();
+		vent = new VentanaSimulador();
 		vent.setVisible(true);
 		
 		while (vent.isVisible()) {
@@ -166,12 +167,12 @@ public class VentanaSimulador extends JFrame {
 			}
         });
         
-        movimientoCarretera();
+        movimientoCarretera(true);
 	}
 	
 	/*Método que contiene el hilo de movimiento del fondo (carretera) */
 	
-	public void movimientoCarretera() {
+	public void movimientoCarretera(boolean activo) {
 		
 		/*Escalar la imagen de fondo*/
 		
@@ -191,7 +192,7 @@ public class VentanaSimulador extends JFrame {
         		
         		int num=15;
         		
-        		 while(true){
+        		 while(activo){
         			 
              		try {
 							sleep(MS_SLEEP);
@@ -228,7 +229,18 @@ public class VentanaSimulador extends JFrame {
 	
 	public void cocheReaccion() {
 		
-		Obstaculo oDetectado = null;
+		Thread time = new Thread(){
+			
+			@Override
+            public void run(){
+				
+			}
+		};
+	}
+		
+		
+		
+		/*Obstaculo oDetectado = null;
 		OtroCoche cocheCerca = null;
 		
 		for (Obstaculo o: listaObs) {
@@ -269,6 +281,6 @@ public class VentanaSimulador extends JFrame {
 		if ((cocheCerca.getY() < miCoche.getY()) && (cocheCerca.getX() == miCoche.getX())) {
 			
 		}
-	}
+	}*/
 }
 
