@@ -18,6 +18,7 @@ import simulador.Senal.Tipo;
 public class VentanaSimulador extends JFrame {
 
 	/*Constantes*/
+
 	
 	private static final long serialVersionUID = 1L;
 	private static final int MS_SLEEP = 400;
