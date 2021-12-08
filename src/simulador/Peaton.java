@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class Peaton extends Obstaculo implements Movible {
+public class Peaton extends Obstaculo {
 	
 	/*Constantes*/
 	
@@ -15,6 +15,7 @@ public class Peaton extends Obstaculo implements Movible {
 	public static final Point COORD_DEFECT = new Point(310, 100); 
 	
 	public Peaton() {
+		
 		super(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
 		this.lbl = crearLabel();
 		this.lbl.setBounds(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
@@ -34,31 +35,6 @@ public class Peaton extends Obstaculo implements Movible {
 	 * @param dx Desplazamiento en el eje x
 	 */
 	
-
-	@Override
-	public void colocar() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void mover(int dx, int dy) {
-		setX(getX() + dx);
-		setY(getY() + dy);
-		
-	}
-
-	@Override
-	public void girar(double grados) {
-		// no se necesita
-		
-	}
-
-	@Override
-	public void acelerar(double a) {
-		// no se necesita
-		
-	}
-
 	@Override
 	public JLabel crearLabel() {
 		Image img = new ImageIcon(getClass().getResource("../simulador/img/recortePeaton.png")).getImage();

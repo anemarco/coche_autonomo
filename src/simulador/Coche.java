@@ -6,18 +6,20 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import ventanas.VentanaSimulador;
+
 public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	
 	/*Constantes*/
 	
 	public static final Rectangle TAMANYO = new Rectangle(100, 150);
-	public static final Point COORD_DEFECT = new Point(492, 375); 
+	public static final Point COORD_DEFECT = new Point(VentanaSimulador.CARRIL_DCHO, 375); 
 	
 	/*Atributos*/
 	
 	protected double velocidad; /*public double velocidad*/
 	protected final Sensor S_RECON = new Sensor(0.0, 0.0, 50.0);	/*Sensor de reconocimiento: Avisa de los obstáculos que hay alrededor*/
-	protected final Sensor S_PROX = new Sensor(0.0, 0.0, 15.0);	/*Sensor de proximidad: Asegura que el coche matiene una distancia de seguridad con los demás vehículos*/
+	protected final Sensor S_PROX = new Sensor(0.0, 0.0, 50.0);	/*Sensor de proximidad: Asegura que el coche matiene una distancia de seguridad con los demás vehículos*/
 	protected double dir;	/*�ngulo actual del coche*/
 	
 	/**Constructor por defecto*/

@@ -10,10 +10,6 @@ public class Animal extends Obstaculo {
 		super(x, y, a, h);
 	}
 	
-	@Override
-	public void colocar() {
-		
-	}
 
 	@Override
 	public JLabel crearLabel() {

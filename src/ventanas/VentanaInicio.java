@@ -2,6 +2,7 @@ package ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -33,37 +34,26 @@ public class VentanaInicio extends JFrame {
 	private JPasswordField textContrasenia;
 	public static TreeMap<String, Usuario> tmUsuarios;
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaInicio frame = new VentanaInicio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public static VentanaInicio ventInic;
 
 	/**
 	 * Create the frame.
 	 */
 	public VentanaInicio() {
 		
+		ventInic = this;
+		ventInic.setVisible(true);
 		
 		Connection con = BD.initBD("iniciosesion.db");
 		BD.crearTablas(con);
 		tmUsuarios = BD.obtenerMapaUsuarios(con);
 		BD.closeBD(con);
 		
-		setTitle("INICIO DE SESIï¿½N");
+		setTitle("INICIO DE SESIÃ“N");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setSize(450, 300);
+		setLocationRelativeTo(null);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -71,6 +61,10 @@ public class VentanaInicio extends JFrame {
 		
 		panelNorte = new JPanel();
 		contentPane.add(panelNorte, BorderLayout.NORTH);
+		
+		JLabel titulo = new JLabel("SIMULADOR DE COCHE AUTÃ“NOMO");
+		titulo.setFont(new Font("Agency FB", Font.PLAIN, 36));
+		panelNorte.add(titulo);
 		
 		panelSur = new JPanel();
 		contentPane.add(panelSur, BorderLayout.SOUTH);
@@ -127,11 +121,14 @@ public class VentanaInicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String n = textNombre.getText();
 				String dni = textDni.getText();
-				if(tmUsuarios.get(dni) == null) {
-					JOptionPane.showMessageDialog(null, "No estas registrado!", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+				
+				/*if(tmUsuarios.get(dni) == null) {
+					JOptionPane.showMessageDialog(null, "No estas registrado!", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
 				}else {
 					JOptionPane.showMessageDialog(null, "Bienvenido!","ACCESO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
-				}
+				}*/
+				
+				iniciarSimulador();
 			}
 		});
 		
@@ -156,10 +153,10 @@ public class VentanaInicio extends JFrame {
 						JOptionPane.showMessageDialog(null, "Persona registrada correctamente","REGISTRO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
 						vaciarCampos();
 					}else {
-						JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese dni", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese dni", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
 					}
 				}else {
-					JOptionPane.showMessageDialog(null, "El dni no es correcto", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "El dni no es correcto", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -172,6 +169,12 @@ public class VentanaInicio extends JFrame {
 		textNombre.setText("");
 		textDni.setText("");
 		textContrasenia.setText("");
+	}
+	
+	private void iniciarSimulador() {
+		ventInic.setVisible(false);
+		VentanaSimulador ventSim = new VentanaSimulador();
+		ventSim.setVisible(true);
 	}
 	
 }

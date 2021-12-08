@@ -7,18 +7,11 @@ public abstract class Obstaculo extends ObjetoSimulacion {
 	public Obstaculo(int x, int y, int a, int h) {
 		super(x, y, a, h);
 	}
+
 	
-	/**Método que permita seleccionar un obstáculo mediante un click con el ratón
-	 */
-	
-	public void seleccionar() {
-		//MouseEvent
+	public void mover(int dx, int dy) {
+		setX(getX() + dx);
+		setY(getY() + dy);
 		
 	}
-	
-	/**Método que haga que el obstáculo se coloque en la simulación una vez seleccionado
-	 */
-	
-	public abstract void colocar();
-	
 }

@@ -19,16 +19,17 @@ public class VentanaSimulador extends JFrame {
 
 	/*Constantes*/
 
-	
 	private static final long serialVersionUID = 1L;
 	private static final int MS_SLEEP = 400;
 	
-	private static final Rectangle TAM_VENT = new Rectangle(1150, 600);	
+	private static final Rectangle TAM_VENT = new Rectangle(1160, 600);	
 	private static final Rectangle TAM_FONDO = new Rectangle(966, 542);
 	private static final Point COORD_FONDO = new Point(10, 10);
 
-	private static final int CARRIL_DCHO = 492;
+	public static final int CARRIL_DCHO = 492;
 	private static final int CARRIL_IZQ = 390;
+	private static final int ARCEN_DCHO = 330;
+	private static final int ARCEN_IZQ = 552;
 	
 	/*Atributos*/
 	
@@ -42,17 +43,16 @@ public class VentanaSimulador extends JFrame {
 	
 	public static void main(String[] args) {
 		
-		vent = new VentanaSimulador();
-		vent.setVisible(true);
+		VentanaInicio ventInicio = new VentanaInicio();
+		ventInicio.setVisible(true);
 		
-		while (vent.isVisible()) {
-			vent.cocheReaccion();
-		}
 	}
 	
 	/**Constructor de ventana*/
 	
 	public VentanaSimulador() {
+		
+		vent = this;
 		
 		this.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		this.setTitle( "Coche Autonomo" );
@@ -72,15 +72,25 @@ public class VentanaSimulador extends JFrame {
 		JPanel panelBotonero= new JPanel();
 		panelBotonero.setLayout(new BoxLayout(panelBotonero,BoxLayout.Y_AXIS));
 		
-		//Crear botones de cada obstáculo y añadirlos al panel
-		JButton bPeaton = new JButton("       Peatón       ");
-		JButton bCoche = new JButton("    Otro Coche  ");
-		JButton bSemaf = new JButton("     Semáforo    ");
-		JButton bStop = new JButton("       STOP         ");
-		JButton bCeda = new JButton("       Ceda         ");
-		JButton bSentidoCon = new JButton("Sentido Contrario");
-		JButton bAnimal = new JButton("      Animal       ");
+		JLabel titulo = new JLabel("    OBSTÁCULOS ");
+		titulo.setFont(new Font("Agency FB", Font.PLAIN, 28));
+		panelBotonero.add(titulo);
 		
+		
+		/*Doble panel que contiene el panel y la lista anterior*/
+		
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,panelBotonero,simuladorPane);
+		cp.add(splitPane);
+		
+		//Crear botones de cada obstáculo y añadirlos al panel
+		JButton bPeaton	= new JButton("            Peatón          ");
+		JButton bCoche = new JButton("        Otro Coche      ");
+		JButton bSemaf = new JButton("          Semáforo       ");
+		JButton bStop = new JButton("             STOP           ");
+		JButton bCeda = new JButton("             Ceda            ");
+		JButton bSentidoCon = new JButton(" Sentido Contrario  ");
+		JButton bAnimal = new JButton("            Animal          ");
+		  
 		panelBotonero.add(bPeaton);
 		panelBotonero.add(bCoche );
 		panelBotonero.add(bSemaf );
@@ -88,11 +98,6 @@ public class VentanaSimulador extends JFrame {
 		panelBotonero.add(bCeda );
 		panelBotonero.add(bSentidoCon );
 		panelBotonero.add(bAnimal );
-		
-		/*Doble panel que contiene el panel y la lista anterior*/
-		
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,panelBotonero,simuladorPane);
-		cp.add(splitPane);
 		
 		/*Botón que cree un obtáculo peaton*/
 		
@@ -121,7 +126,7 @@ public class VentanaSimulador extends JFrame {
     							e1.printStackTrace();
     						}
         					
-        					peaton.mover(15, 4);
+        					peaton.mover(20, 20);
   
         				}
         				simuladorPane.remove(peaton.getLbl());
@@ -133,8 +138,7 @@ public class VentanaSimulador extends JFrame {
 			}
         });
 		
-		
-        //Action listener para el botón otroCoche: 
+		/*Botón que cree un obtáculo coche*/
 		
         bCoche.addActionListener(new ActionListener() {
             
@@ -142,7 +146,7 @@ public class VentanaSimulador extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
         		//Hacer que aparezca la imagen coche.jpg en el simulador al presionar su bot�n
-				Coche otroCoche = new Coche(CARRIL_DCHO, 10);
+				OtroCoche otroCoche = new OtroCoche(CARRIL_DCHO, 10);
 				simuladorPane.add(otroCoche.getLbl());
 				
 				//Hacer que se mueva la imagen (objetivo:adelantarlo)
@@ -167,8 +171,77 @@ public class VentanaSimulador extends JFrame {
 			}
         });
         
+        /*Botón que cree un obtáculo semáforo*/
+        
+        bSemaf.addActionListener(new ActionListener() {
+            
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Semaforo semaf = new Semaforo();
+				simuladorPane.add(semaf.getLbl());
+				listaObs.add(semaf);
+				
+        		Thread moverSemaf = new Thread() {
+        			public void run(){
+        				
+        				while (semaf.getY()<500) {
+        					try {
+    							sleep(MS_SLEEP);
+    						} catch (InterruptedException e1) {
+    							e1.printStackTrace();
+    						}
+                			semaf.mover(0, 20);
+        				}
+        				simuladorPane.remove(semaf.getLbl());
+        	    		semaf.getLbl().setVisible(false);
+        			}
+        				
+        		};
+				
+        		moverSemaf.start();
+			}
+        });
+        
+        /*Botón que cree un obtáculo señal tipo stop*/
+		
+        bStop.addActionListener(new ActionListener() {
+            
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Senal stop = new Senal(Tipo.STOP);
+				simuladorPane.add(stop.getLbl());
+				listaObs.add(stop);
+				
+        		Thread moverStop = new Thread() {
+        			
+        			public void run(){
+        				
+        				while (stop.getY()<500) {
+        					try {
+    							sleep(MS_SLEEP);
+    						} catch (InterruptedException e1) {
+    							e1.printStackTrace();
+    						}
+                			stop.mover(0, 20);
+        				}
+        				simuladorPane.remove(stop.getLbl());
+        				listaObs.remove(stop);
+        	    		stop.getLbl().setVisible(false);
+        			}
+        				
+        		};
+				
+        		moverStop.start();
+			}
+        });
+        
+        
+        
         movimientoCarretera(true);
 	}
+        
 	
 	/*Método que contiene el hilo de movimiento del fondo (carretera) */
 	
@@ -229,13 +302,36 @@ public class VentanaSimulador extends JFrame {
 	
 	public void cocheReaccion() {
 		
-		Thread time = new Thread(){
+		Thread reacion = new Thread(){
 			
 			@Override
             public void run(){
 				
+				while (true) {
+					
+					for (Obstaculo o: listaObs) {
+						
+						if (o instanceof OtroCoche) {
+							
+						}
+						
+						if (o instanceof Peaton) {
+							Peaton peaton = (Peaton)o;
+							if (peaton.getX()<ARCEN_DCHO && peaton.getX()>ARCEN_IZQ) {
+								//movimientoCarretera(true);
+							} else {
+								//movimientoCarretera(false);
+							}
+						}
+						
+					}
+					
+				}
+				
 			}
 		};
+		
+		reacion.start();
 	}
 		
 		
