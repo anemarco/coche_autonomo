@@ -5,7 +5,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -14,6 +17,9 @@ public class VentanaFin extends JFrame {
 
 	private JPanel contentPane, panelNorte, panelSur, panelCentral;
 	private JButton btnSalir, btnEliminar;
+	
+	private JTable tablaUsuarios;
+	private DefaultTableModel modeloTablaUsuarios;
 	
 
 	/**
@@ -55,10 +61,31 @@ public class VentanaFin extends JFrame {
 		btnSalir = new JButton("Salir");
 		panelSur.add(btnSalir);
 		
-		JPanel panelCentral = new JPanel();
+		panelCentral = new JPanel();
 		contentPane.add(panelCentral, BorderLayout.CENTER);
 		
 		
+		/*JTABLE*/
+		/**
+		 * Creamos una JTable que mostrará el TreeMap de usuarios que han usado
+		 * el simulador con su nombre, dni y la puntuación que han conseguido al 
+		 * sortear los diferentes obstáculos.
+		 */
+		modeloTablaUsuarios = new DefaultTableModel() {
+			public boolean isCellEditable(int row, int col) {
+				if(col == 0 && col == 1 && col == 2) {
+					return false;
+				}else {
+					return true;
+				}
+			}
+		};
+		
+		String [] columnas = {"NOMBRE", "DNI", "PUNTUACIÓN"};
+		modeloTablaUsuarios.setColumnIdentifiers(columnas);
+		
+		tablaUsuarios = new JTable(modeloTablaUsuarios);
+		JScrollPane scrollTabla = new JScrollPane(tablaUsuarios); //Falta añadir al panel
 		/**
 		 * Boton que sale de la pantalla
 		 */
