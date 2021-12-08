@@ -72,7 +72,7 @@ public class VentanaSimulador extends JFrame {
 		JPanel panelBotonero= new JPanel();
 		panelBotonero.setLayout(new BoxLayout(panelBotonero,BoxLayout.Y_AXIS));
 		
-		JLabel titulo = new JLabel("    OBSTÁCULOS ");
+		JLabel titulo = new JLabel("    OBSTÃ�CULOS ");
 		titulo.setFont(new Font("Agency FB", Font.PLAIN, 28));
 		panelBotonero.add(titulo);
 		
@@ -82,10 +82,10 @@ public class VentanaSimulador extends JFrame {
 		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,panelBotonero,simuladorPane);
 		cp.add(splitPane);
 		
-		//Crear botones de cada obstáculo y añadirlos al panel
-		JButton bPeaton	= new JButton("            Peatón          ");
+		//Crear botones de cada obstÃ¡culo y aÃ±adirlos al panel
+		JButton bPeaton	= new JButton("            PeatÃ³n          ");
 		JButton bCoche = new JButton("        Otro Coche      ");
-		JButton bSemaf = new JButton("          Semáforo       ");
+		JButton bSemaf = new JButton("          SemÃ¡foro       ");
 		JButton bStop = new JButton("             STOP           ");
 		JButton bCeda = new JButton("             Ceda            ");
 		JButton bSentidoCon = new JButton(" Sentido Contrario  ");
@@ -99,7 +99,7 @@ public class VentanaSimulador extends JFrame {
 		panelBotonero.add(bSentidoCon );
 		panelBotonero.add(bAnimal );
 		
-		/*Botón que cree un obtáculo peaton*/
+		/*BotÃ³n que cree un obtÃ¡culo peaton*/
 		
 		bPeaton.addActionListener(new ActionListener() {
 		      
@@ -112,7 +112,7 @@ public class VentanaSimulador extends JFrame {
 				listaObs.add(peaton);
 				
 				
-				/*Hilo de movimiento del peatón*/
+				/*Hilo de movimiento del peatÃ³n*/
 				Thread moverPeaton= new Thread() {
 					
 					@Override
@@ -138,14 +138,14 @@ public class VentanaSimulador extends JFrame {
 			}
         });
 		
-		/*Botón que cree un obtáculo coche*/
+		/*BotÃ³n que cree un obtÃ¡culo coche*/
 		
         bCoche.addActionListener(new ActionListener() {
             
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-        		//Hacer que aparezca la imagen coche.jpg en el simulador al presionar su bot�n
+        		//Hacer que aparezca la imagen coche.jpg en el simulador al presionar su botï¿½n
 				OtroCoche otroCoche = new OtroCoche(CARRIL_DCHO, 10);
 				simuladorPane.add(otroCoche.getLbl());
 				
@@ -171,7 +171,7 @@ public class VentanaSimulador extends JFrame {
 			}
         });
         
-        /*Botón que cree un obtáculo semáforo*/
+        /*BotÃ³n que cree un obtÃ¡culo semÃ¡foro*/
         
         bSemaf.addActionListener(new ActionListener() {
             
@@ -203,7 +203,7 @@ public class VentanaSimulador extends JFrame {
 			}
         });
         
-        /*Botón que cree un obtáculo señal tipo stop*/
+        /*BotÃ³n que cree un obtÃ¡culo seÃ±al tipo stop*/
 		
         bStop.addActionListener(new ActionListener() {
             
@@ -214,18 +214,36 @@ public class VentanaSimulador extends JFrame {
 				simuladorPane.add(stop.getLbl());
 				listaObs.add(stop);
 				
+				
         		Thread moverStop = new Thread() {
         			
         			public void run(){
-        				
+        				//int aceleracion = 100;
         				while (stop.getY()<500) {
         					try {
     							sleep(MS_SLEEP);
+    							 
+                    			if(stop.getY()%50==0 && stop.getY() < 370) {
+                    				//movimientoCarretera(true, aceleracion);
+                    				//aceleracion = aceleracion+100;               				
+                    			}
+    							   							
+    							//TODO: determinar coordenada a partir del panel del coche.
+    							if(stop.getY()==370) {
+    								movimientoCarretera(false, 0);
+    								System.out.println("El coche se detiene");
+    								sleep(3000);
+    								movimientoCarretera(true, 0);
+    							}
+    							
     						} catch (InterruptedException e1) {
     							e1.printStackTrace();
     						}
                 			stop.mover(0, 20);
+
+
         				}
+        				System.out.println("SALE");
         				simuladorPane.remove(stop.getLbl());
         				listaObs.remove(stop);
         	    		stop.getLbl().setVisible(false);
@@ -236,27 +254,26 @@ public class VentanaSimulador extends JFrame {
         		moverStop.start();
 			}
         });
-        
-        
-        
-        movimientoCarretera(true);
+               
+        movimientoCarretera(true, 0);
 	}
         
 	
-	/*Método que contiene el hilo de movimiento del fondo (carretera) */
+	/*MÃ©todo que contiene el hilo de movimiento del fondo (carretera) */
 	
-	public void movimientoCarretera(boolean activo) {
+	public void movimientoCarretera(boolean activo, int aceleracion) {
 		
 		/*Escalar la imagen de fondo*/
 		
 		Image fondoImg = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE (16).jpg")).getImage();
 		ImageIcon fondoIcon = new ImageIcon(fondoImg.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
-	
+		
 		Thread time = new Thread(){
 			
 			@Override
             public void run(){
-            	
+            	System.out.println("Aceleración:" + aceleracion);
+            	System.out.println("Activo:" + activo);
             	simuladorPane.setLayout(null);
         		//JPanel.add(image, BorderLayout.NORTH);
         		JLabel label = new JLabel(fondoIcon);
@@ -268,7 +285,10 @@ public class VentanaSimulador extends JFrame {
         		 while(activo){
         			 
              		try {
-							sleep(MS_SLEEP);
+							sleep(MS_SLEEP + aceleracion);
+							if(MS_SLEEP + aceleracion!=400) {
+								//System.out.println(MS_SLEEP + aceleracion);
+							}
 						} catch (InterruptedException e1) {
 							e1.printStackTrace();
 						}
