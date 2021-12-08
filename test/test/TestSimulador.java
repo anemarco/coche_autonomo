@@ -10,7 +10,7 @@ import simulador.Coche;
 import simulador.Obstaculo;
 import simulador.Sensor;
 
-class TestMetodos {
+class TestSimulador {
 	
 	Coche c1= new Coche(0, 0, 0, 0, 0, 0);
 	Sensor s1=new Sensor(0, 0, 0);
