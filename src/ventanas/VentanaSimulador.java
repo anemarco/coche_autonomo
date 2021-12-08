@@ -4,11 +4,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import simulador.*;
@@ -31,6 +35,8 @@ public class VentanaSimulador extends JFrame {
 	private static final int ARCEN_DCHO = 330;
 	private static final int ARCEN_IZQ = 552;
 	
+	private static Logger logger = Logger.getLogger("Simulador");
+	
 	/*Atributos*/
 	
 	static JPanel simuladorPane;
@@ -52,6 +58,7 @@ public class VentanaSimulador extends JFrame {
 	
 	public VentanaSimulador() {
 		
+		logger.log( Level.INFO, "Inicio de la simulación" );
 		vent = this;
 		
 		this.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
@@ -110,6 +117,7 @@ public class VentanaSimulador extends JFrame {
 				Peaton peaton = new Peaton();
 				simuladorPane.add(peaton.getLbl());
 				listaObs.add(peaton);
+				logger.log( Level.INFO, "Objeto Peaton añadido" );
 				
 				
 				/*Hilo de movimiento del peatÃ³n*/
@@ -132,6 +140,7 @@ public class VentanaSimulador extends JFrame {
         				simuladorPane.remove(peaton.getLbl());
         				listaObs.remove(peaton);
         	    		peaton.getLbl().setVisible(false);
+        	    		logger.log( Level.INFO, "Objeto Peaton eliminado");
         			}	
         		};
         		moverPeaton.start();
@@ -148,6 +157,8 @@ public class VentanaSimulador extends JFrame {
         		//Hacer que aparezca la imagen coche.jpg en el simulador al presionar su botï¿½n
 				OtroCoche otroCoche = new OtroCoche(CARRIL_DCHO, 10);
 				simuladorPane.add(otroCoche.getLbl());
+				listaObs.add(otroCoche);
+				logger.log( Level.INFO, "Objeto OtroCoche añadido");
 				
 				//Hacer que se mueva la imagen (objetivo:adelantarlo)
         		Thread moverCoche= new Thread() {
@@ -161,8 +172,11 @@ public class VentanaSimulador extends JFrame {
     						}
                 			otroCoche.mover(0, 20);
         				}
+        				
         				simuladorPane.remove(otroCoche.getLbl());
         	    		otroCoche.getLbl().setVisible(false);
+        	    		listaObs.remove(otroCoche);
+        	    		logger.log( Level.INFO, "Objeto OtroCoche eliminado");
         			}
         				
         		};
@@ -170,6 +184,7 @@ public class VentanaSimulador extends JFrame {
         		moverCoche.start();
 			}
         });
+        
         
         /*BotÃ³n que cree un obtÃ¡culo semÃ¡foro*/
         
@@ -181,6 +196,7 @@ public class VentanaSimulador extends JFrame {
 				Semaforo semaf = new Semaforo();
 				simuladorPane.add(semaf.getLbl());
 				listaObs.add(semaf);
+				logger.log( Level.INFO, "Objeto Semáforo añadido");
 				
         		Thread moverSemaf = new Thread() {
         			public void run(){
@@ -193,8 +209,10 @@ public class VentanaSimulador extends JFrame {
     						}
                 			semaf.mover(0, 20);
         				}
+        				
         				simuladorPane.remove(semaf.getLbl());
         	    		semaf.getLbl().setVisible(false);
+        	    		logger.log( Level.INFO, "Objeto Semáforo eliminado");
         			}
         				
         		};
@@ -213,6 +231,7 @@ public class VentanaSimulador extends JFrame {
 				Senal stop = new Senal(Tipo.STOP);
 				simuladorPane.add(stop.getLbl());
 				listaObs.add(stop);
+				logger.log( Level.INFO, "Objeto Señal tipo Stop añadido");
 				
 				
         		Thread moverStop = new Thread() {
@@ -247,6 +266,7 @@ public class VentanaSimulador extends JFrame {
         				simuladorPane.remove(stop.getLbl());
         				listaObs.remove(stop);
         	    		stop.getLbl().setVisible(false);
+        	    		logger.log( Level.INFO, "Objeto Señal tipo Stop eliminado");
         			}
         				
         		};
@@ -338,7 +358,7 @@ public class VentanaSimulador extends JFrame {
 						if (o instanceof Peaton) {
 							Peaton peaton = (Peaton)o;
 							if (peaton.getX()<ARCEN_DCHO && peaton.getX()>ARCEN_IZQ) {
-								//movimientoCarretera(true);
+								//movimientoCarretera(true, 0);
 							} else {
 								//movimientoCarretera(false);
 							}
@@ -352,9 +372,6 @@ public class VentanaSimulador extends JFrame {
 		};
 		
 		reacion.start();
-	}
-		
-		
 		
 		/*Obstaculo oDetectado = null;
 		OtroCoche cocheCerca = null;
@@ -398,5 +415,10 @@ public class VentanaSimulador extends JFrame {
 			
 		}
 	}*/
+	}
+		
+		
+		
+		
 }
 

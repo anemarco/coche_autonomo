@@ -19,7 +19,7 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	
 	protected double velocidad; /*public double velocidad*/
 	protected final Sensor S_RECON = new Sensor(0.0, 0.0, 50.0);	/*Sensor de reconocimiento: Avisa de los obstáculos que hay alrededor*/
-	protected final Sensor S_PROX = new Sensor(0.0, 0.0, 50.0);	/*Sensor de proximidad: Asegura que el coche matiene una distancia de seguridad con los demás vehículos*/
+	protected final Sensor S_PROX = new Sensor(0.0, 0.0, 100.0);	/*Sensor de proximidad: Asegura que el coche matiene una distancia de seguridad con los demás vehículos*/
 	protected double dir;	/*�ngulo actual del coche*/
 	
 	/**Constructor por defecto*/
@@ -32,7 +32,7 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 		S_RECON.setX(x);
 		S_RECON.setY(y);
 		S_PROX.setX(x);
-		S_PROX.setY(y+h/2); 
+		S_PROX.setY(y); 
 	}
 	
 	/*Constructor*/
@@ -111,7 +111,13 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	 */
 	@Override
 	public boolean choca(Obstaculo obst) {
-		if ((this.x-obst.getX() < this.h/2 + obst.getH()/2) && (Math.abs(y-obst.getY()) < Math.abs(a/2 + obst.getA()/2))) return true;	/*De frente y de cualquiera de los lados*/
+		//if ((this.x-obst.getX() < this.h/2 + obst.getH()/2) && (Math.abs(y-obst.getY()) < Math.abs(a/2 + obst.getA()/2))) return true;	/*De frente y de cualquiera de los lados*/
+		if (obst instanceof OtroCoche) {
+			OtroCoche oc = (OtroCoche) obst;
+			if ((oc.getX() == this.getX())) {
+				return true;
+			}
+		}
 		return false;
 	}
 
