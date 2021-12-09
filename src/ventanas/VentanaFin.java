@@ -20,23 +20,6 @@ public class VentanaFin extends JFrame {
 	
 	private JTable tablaUsuarios;
 	private DefaultTableModel modeloTablaUsuarios;
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaFin frame = new VentanaFin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -44,6 +27,8 @@ public class VentanaFin extends JFrame {
 	public VentanaFin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -67,9 +52,9 @@ public class VentanaFin extends JFrame {
 		
 		/*JTABLE*/
 		/**
-		 * Creamos una JTable que mostrará el TreeMap de usuarios que han usado
-		 * el simulador con su nombre, dni y la puntuación que han conseguido al 
-		 * sortear los diferentes obstáculos.
+		 * Creamos una JTable que mostrarï¿½ el TreeMap de usuarios que han usado
+		 * el simulador con su nombre, dni y la puntuaciï¿½n que han conseguido al 
+		 * sortear los diferentes obstï¿½culos.
 		 */
 		modeloTablaUsuarios = new DefaultTableModel() {
 			public boolean isCellEditable(int row, int col) {
@@ -81,11 +66,11 @@ public class VentanaFin extends JFrame {
 			}
 		};
 		
-		String [] columnas = {"NOMBRE", "DNI", "PUNTUACIÓN"};
+		String [] columnas = {"NOMBRE", "DNI", "PUNTUACIï¿½N"};
 		modeloTablaUsuarios.setColumnIdentifiers(columnas);
 		
 		tablaUsuarios = new JTable(modeloTablaUsuarios);
-		JScrollPane scrollTabla = new JScrollPane(tablaUsuarios); //Falta añadir al panel
+		JScrollPane scrollTabla = new JScrollPane(tablaUsuarios); //Falta aï¿½adir al panel
 		/**
 		 * Boton que sale de la pantalla
 		 */

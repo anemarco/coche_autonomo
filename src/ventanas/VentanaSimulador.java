@@ -274,6 +274,22 @@ public class VentanaSimulador extends JFrame {
         		moverStop.start();
 			}
         });
+        
+        JButton salir = new JButton("SALIR");
+        salir.setBackground(java.awt.Color.RED);
+        salir.setForeground(java.awt.Color.WHITE);
+        panelBotonero.add(salir);
+        
+        salir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vent.setVisible(false);
+				VentanaFin fin = new VentanaFin();
+				fin.setVisible(true);
+			}
+		});
+        
                
         movimientoCarretera(true, 0);
 	}
