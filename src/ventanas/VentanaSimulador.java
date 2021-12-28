@@ -31,7 +31,7 @@ public class VentanaSimulador extends JFrame {
 	private static final Point COORD_FONDO = new Point(10, 10);
 
 	public static final int CARRIL_DCHO = 492;
-	private static final int CARRIL_IZQ = 390;
+	public static final int CARRIL_IZQ = 390;
 	private static final int ARCEN_DCHO = 330;
 	private static final int ARCEN_IZQ = 552;
 	
@@ -92,10 +92,10 @@ public class VentanaSimulador extends JFrame {
 		//Crear botones de cada obstÃ¡culo y aÃ±adirlos al panel
 		JButton bPeaton	= new JButton("            PeatÃ³n          ");
 		JButton bCoche = new JButton("        Otro Coche      ");
-		JButton bSemaf = new JButton("          SemÃ¡foro       ");
+		JButton bSemaf = new JButton("         SemÃ¡foro       ");
 		JButton bStop = new JButton("             STOP           ");
 		JButton bCeda = new JButton("             Ceda            ");
-		JButton bSentidoCon = new JButton(" Sentido Contrario  ");
+		JButton bSentidoCon = new JButton(" Sentido Contrario ");
 		JButton bAnimal = new JButton("            Animal          ");
 		  
 		panelBotonero.add(bPeaton);
@@ -172,6 +172,7 @@ public class VentanaSimulador extends JFrame {
     						}
                 			otroCoche.mover(0, 20);
         				}
+        				
         				
         				simuladorPane.remove(otroCoche.getLbl());
         	    		otroCoche.getLbl().setVisible(false);
@@ -269,12 +270,51 @@ public class VentanaSimulador extends JFrame {
         	    		logger.log( Level.INFO, "Objeto Señal tipo Stop eliminado");
         			}
         				
+        			
         		};
 				
         		moverStop.start();
 			}
         });
         
+        bAnimal.addActionListener(new ActionListener() {
+        	@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Animal oveja = new Animal();
+				simuladorPane.add(oveja.getLbl());
+				listaObs.add(oveja);
+				logger.log( Level.INFO, "Objeto Animal añadido");
+				
+				
+        		Thread moverAnimal = new Thread() {
+        			
+        			public void run(){
+        				//int aceleracion = 100;
+        				while (oveja.getY()<500) {
+        					try {
+    							sleep(MS_SLEEP);
+    							
+    						} catch (InterruptedException e1) {
+    							e1.printStackTrace();
+    						}
+                			oveja.mover(0, 20);
+
+
+        				}
+        				System.out.println("SALE");
+        				simuladorPane.remove(oveja.getLbl());
+        				listaObs.remove(oveja);
+        	    		oveja.getLbl().setVisible(false);
+        	    		logger.log( Level.INFO, "Objeto Animal eliminado");
+        			}
+        				
+        			
+        		};
+				
+        		moverAnimal.start();
+			}
+        });
         JButton salir = new JButton("SALIR");
         salir.setBackground(java.awt.Color.RED);
         salir.setForeground(java.awt.Color.WHITE);
