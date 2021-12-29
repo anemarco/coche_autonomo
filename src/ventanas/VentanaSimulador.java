@@ -51,7 +51,6 @@ public class VentanaSimulador extends JFrame {
 		
 		VentanaInicio ventInicio = new VentanaInicio();
 		ventInicio.setVisible(true);
-		
 	}
 	
 	/**Constructor de ventana*/
