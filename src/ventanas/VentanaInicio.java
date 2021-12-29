@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
-
 import baseDatos.BD;
 import baseDatos.Usuario;
 
@@ -27,14 +26,13 @@ public class VentanaInicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private JPanel contentPane, panelNorte, panelSur, panelCentral;
-	private JButton btnSalir, btnIniciarSesion, btnRegistrar; 
-	private JLabel lblNombreUsuario, lblDni, lblContrasenia;
+
 	private JTextField textNombre, textDni;
-	private JPasswordField textContrasenia;
+	private JPasswordField textContrasenya;
 	public static TreeMap<String, Usuario> tmUsuarios;
 	
 	public static VentanaInicio ventInic;
+	
 
 	/**
 	 * Create the frame.
@@ -42,66 +40,61 @@ public class VentanaInicio extends JFrame {
 	public VentanaInicio() {
 		
 		ventInic = this;
-		ventInic.setVisible(true);
 		
-		Connection con = BD.initBD("iniciosesion.db");
+		/*Connection con = BD.initBD("iniciosesion.db");
 		BD.crearTablas(con);
 		tmUsuarios = BD.obtenerMapaUsuarios(con);
-		BD.closeBD(con);
+		BD.closeBD(con);*/
 		
-		setTitle("INICIO DE SESIÓN");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(450, 300);
-		setLocationRelativeTo(null);
-		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		
-		panelNorte = new JPanel();
-		contentPane.add(panelNorte, BorderLayout.NORTH);
+		this.setTitle("INICIO DE SESIÓN");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(600, 500);
+		this.setLocationRelativeTo(null);
+		getContentPane().setLayout(null);
+
 		
 		JLabel titulo = new JLabel("SIMULADOR DE COCHE AUTÓNOMO");
-		titulo.setFont(new Font("Agency FB", Font.PLAIN, 36));
-		panelNorte.add(titulo);
+		titulo.setFont(new Font("Agency FB", Font.PLAIN, 30));
+		titulo.setBounds(144, 82, 269, 33);
+		getContentPane().add(titulo);
 		
-		panelSur = new JPanel();
-		contentPane.add(panelSur, BorderLayout.SOUTH);
+		JButton btnSalir = new JButton("SALIR");
+		btnSalir.setBounds(10, 427, 104, 23);
+		getContentPane().add(btnSalir);
 		
-		btnSalir = new JButton("SALIR");
-		panelSur.add(btnSalir);
+		JButton btnIniciarSesion = new JButton("INICIAR SESION");
+		btnIniciarSesion.setBounds(227, 324, 140, 23);
+		getContentPane().add(btnIniciarSesion);
 		
-		btnIniciarSesion = new JButton("INICIAR SESION");
-		panelSur.add(btnIniciarSesion);
+		JButton btnRegistrar = new JButton("REGISTRAR");
+		btnRegistrar.setBounds(464, 427, 110, 23);
+		getContentPane().add(btnRegistrar);
+	
 		
-		btnRegistrar = new JButton("REGISTRAR");
-		panelSur.add(btnRegistrar);
-		
-		panelCentral = new JPanel();
-		contentPane.add(panelCentral, BorderLayout.CENTER);
-		panelCentral.setLayout(new GridLayout(0, 2, 0, 0));
-		
-		lblNombreUsuario = new JLabel("Introduce tu nombre:");
+		/*lblNombreUsuario = new JLabel("Introduce tu nombre:");
 		panelCentral.add(lblNombreUsuario);
 		
 		textNombre = new JTextField();
 		panelCentral.add(textNombre);
-		textNombre.setColumns(10);
+		textNombre.setColumns(10);*/
 		
-		lblDni = new JLabel("Introduce tu DNI:");
-		panelCentral.add(lblDni);
+		JLabel lblDni = new JLabel("Introduce tu DNI:");
+		lblDni.setBounds(129, 178, 118, 28);
+		getContentPane().add(lblDni);
 		
 		textDni = new JTextField();
-		panelCentral.add(textDni);
+		textDni.setBounds(311, 182, 118, 20);
+		getContentPane().add(textDni);
 		textDni.setColumns(10);
 		
-		lblContrasenia = new JLabel("Introduce tu contrase\u00F1a:");
-		panelCentral.add(lblContrasenia);
+		JLabel lblContrasenya = new JLabel("Introduce tu contrase\u00F1a:");
+		lblContrasenya.setBounds(129, 236, 158, 20);
+		getContentPane().add(lblContrasenya);
 		
-		textContrasenia = new JPasswordField();
-		panelCentral.add(textContrasenia);
-		textContrasenia.setColumns(10);
+		JTextField textContrasenya = new JPasswordField();
+		textContrasenya.setBounds(311, 236, 118, 20);
+		getContentPane().add(textContrasenya);
+		textContrasenya.setColumns(10); 
 		
 		/*EVENTOS*/
 		/**
@@ -110,13 +103,14 @@ public class VentanaInicio extends JFrame {
 		
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				System.exit(0);
 			}
 		});
+		
 		/**
 		 * Boton que haria que el usuario inicie sesion una vez ya registrado y nos llevara a la pantalla de simulacion
-		 */
+		 * */
+		
 		btnIniciarSesion.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				String n = textNombre.getText();
@@ -132,10 +126,13 @@ public class VentanaInicio extends JFrame {
 			}
 		});
 		
+	
+		
 		/**
 		 * Boton que registra un usuario si no esta ya registrado y lo guardara en la base de datos
 		 */
 		btnRegistrar.addActionListener(new ActionListener() {
+			/*
 			public void actionPerformed(ActionEvent e) {
 				String erdni = "[0-9]{8}[A-Z]";
 				String d = textDni.getText();
@@ -159,7 +156,17 @@ public class VentanaInicio extends JFrame {
 					JOptionPane.showMessageDialog(null, "El dni no es correcto", "��ERROR!!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
+			*/
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ventInic.setVisible(false);
+				VentanaRegistro ventReg = new VentanaRegistro();
+				ventReg.setVisible(true);
+			}
 		});
+		
+		
 	}
 	
 	/**
@@ -168,13 +175,21 @@ public class VentanaInicio extends JFrame {
 	private void vaciarCampos() {
 		textNombre.setText("");
 		textDni.setText("");
-		textContrasenia.setText("");
+		textContrasenya.setText("");
 	}
 	
 	private void iniciarSimulador() {
 		ventInic.setVisible(false);
-		VentanaSimulador ventSim = new VentanaSimulador();
-		ventSim.setVisible(true);
+		
+		Thread hilo = new Thread() {
+			
+			@Override
+			public void run() {
+				VentanaSimulador ventSim = new VentanaSimulador();
+				ventSim.setVisible(true);
+			}	
+		};
+		
+		hilo.start();	
 	}
-	
 }
