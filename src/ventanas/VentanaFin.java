@@ -77,6 +77,7 @@ public class VentanaFin extends JFrame {
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+				System.out.println("Fin de la simulacion.");
 			}
 		});
 	}
