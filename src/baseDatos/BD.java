@@ -7,13 +7,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.TreeMap;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class BD {
+	
 	/**
-	 * Método que crea la conexion con la base de datos
+	 * Mï¿½todo que crea la conexion con la base de datos
 	 * @param nombreBD nombre del archivo de sqliteman de la base de datos
 	 * @return devuelve la conexion
 	 */
+	
 	public static Connection initBD(String nombreBD) {
 		Connection con = null;
 		try {
@@ -53,6 +58,8 @@ public class BD {
 		try {
 			st = con.createStatement();
 			st.executeUpdate(sent1);
+			guardarLog(sent1);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,6 +88,7 @@ public class BD {
 		try {
 			stmt = con.createStatement();
 			stmt.executeUpdate(sentSQL);
+			guardarLog(sentSQL);
 			stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -98,6 +106,7 @@ public class BD {
 		try {
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate(sentSQL);
+			guardarLog(sentSQL);
 			stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -106,7 +115,7 @@ public class BD {
 	}
 	
 	/**
-	 * TreeMap que hará que los usuarios que se registren se guarden en el mismo.
+	 * TreeMap que harï¿½ que los usuarios que se registren se guarden en el mismo.
 	 * @param con parametro que crea la conexion con la base de datos
 	 * @return devuelve el treemap de usuarios
 	 */
@@ -117,6 +126,7 @@ public class BD {
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sentSQL);
+			guardarLog(sentSQL);
 			while(rs.next()) {
 				String nombre = rs.getString("nombre");
 				String dni = rs.getString("dni");
@@ -131,5 +141,23 @@ public class BD {
 		}
 		return tmUsuario;
 	}
-
+	
+	
+	/*Guardar logs en fichero*/
+	
+	public static void guardarLog (String mensaje) {
+		
+		Logger logger = Logger.getLogger("BD");
+		FileHandler fh;
+		
+		try {
+			fh = new FileHandler("info.log");
+			logger.addHandler(fh);
+			fh.setFormatter(new SimpleFormatter());
+			logger.info(mensaje);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+	}
 }

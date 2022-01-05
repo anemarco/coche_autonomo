@@ -1,26 +1,16 @@
 package ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 import java.awt.Font;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.border.EmptyBorder;
-import baseDatos.BD;
 import baseDatos.Usuario;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.util.TreeMap;
-import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
-import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 public class VentanaInicio extends JFrame {
 
@@ -113,10 +103,10 @@ public class VentanaInicio extends JFrame {
 		
 		btnIniciarSesion.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				String n = textNombre.getText();
+				/*String n = textNombre.getText();
 				String dni = textDni.getText();
 				
-				/*if(tmUsuarios.get(dni) == null) {
+				if(tmUsuarios.get(dni) == null) {
 					JOptionPane.showMessageDialog(null, "No estas registrado!", "��ERROR!!", JOptionPane.ERROR_MESSAGE);
 				}else {
 					JOptionPane.showMessageDialog(null, "Bienvenido!","ACCESO CORRECTO", JOptionPane.INFORMATION_MESSAGE);

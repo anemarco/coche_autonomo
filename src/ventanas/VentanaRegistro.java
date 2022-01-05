@@ -39,6 +39,8 @@ public class VentanaRegistro extends JFrame {
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
+		/*Crar JLabels*/
+		
 		JLabel lblNombre = new JLabel("Nombre: ");
 		lblNombre.setBounds(27, 44, 85, 14);
 		getContentPane().add(lblNombre);
@@ -54,6 +56,8 @@ public class VentanaRegistro extends JFrame {
 		JLabel lblContrasenya = new JLabel("Contraseña: ");
 		lblContrasenya.setBounds(27, 132, 85, 14);
 		getContentPane().add(lblContrasenya);
+		
+		/*Crara JTextFields*/
 		
 		tfNombre = new JTextField();
 		tfNombre.setBounds(103, 35, 86, 20);
@@ -75,6 +79,8 @@ public class VentanaRegistro extends JFrame {
 		getContentPane().add(tfContrasenya);
 		tfContrasenya.setColumns(10);
 		
+		/*Crear Botones*/
+		
 		JButton btnRegistrar = new JButton("REGISTRAR");
 		btnRegistrar.setBounds(59, 181, 105, 23);
 		getContentPane().add(btnRegistrar);
@@ -88,11 +94,12 @@ public class VentanaRegistro extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ventReg.setVisible(false);
-				VentanaInicio ventInicio = new VentanaInicio();
-				ventInicio.setVisible(true);
+				//VentanaInicio ventInicio = new VentanaInicio();
+				//ventInicio.setVisible(true);
 			}
 		});
 		
+		/*Panel de la tabla*/
 		
 		JPanel panelTabla = new JPanel();
 		panelTabla.setBounds(199, 11, 475, 439);
@@ -101,6 +108,8 @@ public class VentanaRegistro extends JFrame {
 		table = new JTable();
 		panelTabla.add(new JScrollPane(table), BorderLayout.CENTER);
 		
+		/*Crear las cabeceras de la tabla*/
+		
 		Vector<String> cabeceras = new Vector<String>(Arrays.asList("Nombre", "Apellido", "Dni", "Puntuación"));
 		mTable = new DefaultTableModel(
 				new Vector<Vector<Object>>(),
@@ -108,9 +117,6 @@ public class VentanaRegistro extends JFrame {
 		);
 		
 		table.setModel(mTable);
-	
-		
-	
 		
 	}
 }
