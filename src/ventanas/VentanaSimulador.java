@@ -40,8 +40,8 @@ public class VentanaSimulador extends JFrame {
 	static JPanel simuladorPane;
 	static VentanaSimulador vent;
 	
-	private ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
-	private Coche miCoche;
+	private static  ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
+	public Coche miCoche;
 
 	/*Main*/
 	
@@ -49,6 +49,7 @@ public class VentanaSimulador extends JFrame {
 		
 		VentanaInicio ventInicio = new VentanaInicio();
 		ventInicio.setVisible(true);
+		
 	}
 	
 	/**Constructor de ventana*/
@@ -156,6 +157,7 @@ public class VentanaSimulador extends JFrame {
 				simuladorPane.add(otroCoche.getLbl());
 				listaObs.add(otroCoche);
 				logger.log( Level.INFO, "Objeto OtroCoche añadido");
+				cocheReaccion(otroCoche, miCoche);
 				
 				//Hacer que se mueva la imagen (objetivo:adelantarlo)
         		Thread moverCoche= new Thread() {
@@ -282,7 +284,7 @@ public class VentanaSimulador extends JFrame {
 				simuladorPane.add(oveja.getLbl());
 				listaObs.add(oveja);
 				logger.log( Level.INFO, "Objeto Animal añadido");
-				
+				cocheReaccion(oveja,miCoche);
 				
         		Thread moverAnimal = new Thread() {
         			
@@ -301,9 +303,9 @@ public class VentanaSimulador extends JFrame {
         				}
         				System.out.println("SALE");
         				simuladorPane.remove(oveja.getLbl());
-        				listaObs.remove(oveja);
+        				logger.log( Level.INFO, "Objeto Animal eliminado");
         	    		oveja.getLbl().setVisible(false);
-        	    		logger.log( Level.INFO, "Objeto Animal eliminado");
+        	    		
         			}
         				
         			
@@ -334,14 +336,14 @@ public class VentanaSimulador extends JFrame {
 	
 	/*MÃ©todo que contiene el hilo de movimiento del fondo (carretera) */
 	
-	public void movimientoCarretera(boolean activo, int aceleracion) {
+	public  void movimientoCarretera(boolean activo, int aceleracion) {
 		
 		/*Escalar la imagen de fondo*/
 		
 		Image fondoImg = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE (16).jpg")).getImage();
 		ImageIcon fondoIcon = new ImageIcon(fondoImg.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
 		
-		Thread time = new Thread(){
+		Thread tiempo = new Thread(){
 			
 			@Override
             public void run(){
@@ -389,43 +391,69 @@ public class VentanaSimulador extends JFrame {
             }
         };
         
-        time.start();
+        tiempo.start();
 
 	}
 	
-	public void cocheReaccion() {
+	public static void cocheReaccion(Obstaculo o, Coche miCoche) {
 		
-		Thread reacion = new Thread(){
-			
-			@Override
-            public void run(){
-				
-				while (true) {
-					
-					for (Obstaculo o: listaObs) {
-						
-						if (o instanceof OtroCoche) {
-							
-						}
-						
-						if (o instanceof Peaton) {
-							Peaton peaton = (Peaton)o;
-							if (peaton.getX()<ARCEN_DCHO && peaton.getX()>ARCEN_IZQ) {
-								//movimientoCarretera(true, 0);
-							} else {
-								//movimientoCarretera(false);
-							}
-						}
-						
-					}
-					
-				}
-				
+		if (o instanceof OtroCoche) {
+			listaObs.remove(o);
+			if(miCoche.getX()==CARRIL_DCHO) {
+				if(listaObs.isEmpty()) {
+					Thread movimientoOC= new Thread() {
+	        			public void run(){
+	        				while (miCoche.getX()>CARRIL_IZQ) {
+	        					try {
+	    							sleep(MS_SLEEP);
+	    						} catch (InterruptedException e1) {
+	    							e1.printStackTrace();
+	    						}
+	                			miCoche.mover(-20, 0);
+	        				}
+	        				miCoche.setX(CARRIL_IZQ);
+	        			}
+					};
+        		movimientoOC.start();
+			}else {
+				logger.log( Level.SEVERE, "COLISIÓN");
 			}
-		};
+			}
+			logger.log( Level.INFO, "OtroCoche superado con éxito" );
+			}
 		
-		reacion.start();
 		
+		if (o instanceof Peaton) {
+			listaObs.remove(o);
+			if (o.getX()<ARCEN_DCHO && o.getX()>ARCEN_IZQ) {
+				//movimientoCarretera(false, 0);
+			}
+		}
+		if (o instanceof Animal) {
+			listaObs.remove(o);
+			if(miCoche.getX()==CARRIL_IZQ) {
+				if(listaObs.isEmpty()) {
+					Thread movimientoA= new Thread() {
+	        			public void run(){
+	        				
+	        				while (miCoche.getX()<CARRIL_DCHO) {
+	        					try {
+	    							sleep(MS_SLEEP);
+	    						} catch (InterruptedException e1) {
+	    							e1.printStackTrace();
+	    						}
+	                			miCoche.mover(20, 0);
+	        				}
+	        				miCoche.setX(CARRIL_DCHO);
+	        			}
+					};
+        		movimientoA.start();
+			}else {
+				logger.log( Level.SEVERE, "COLISIÓN");
+			}
+			}
+			logger.log( Level.INFO, "Animal superado con éxito" );
+		}
 		/*Obstaculo oDetectado = null;
 		OtroCoche cocheCerca = null;
 		
@@ -469,6 +497,8 @@ public class VentanaSimulador extends JFrame {
 		}
 	}*/
 	}
+	
+	
 		
 		
 		
