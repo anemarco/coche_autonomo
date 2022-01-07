@@ -55,9 +55,9 @@ public class Semaforo extends Obstaculo {
 		Image img = null;
 		
 		if (color == Color.VERDE) {
-			img = new ImageIcon(getClass().getResource("../simulador/img/semafRojo.png")).getImage();
-		} else if (color == Color.ROJO) {
 			img = new ImageIcon(getClass().getResource("../simulador/img/semafVerde.png")).getImage();
+		} else if (color == Color.ROJO) {
+			img = new ImageIcon(getClass().getResource("../simulador/img/semafRojo.png")).getImage();
 		}
 		
 		ImageIcon icon = new ImageIcon(img.getScaledInstance(TAMANYO.width, TAMANYO.height, Image.SCALE_SMOOTH));

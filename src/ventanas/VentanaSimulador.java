@@ -16,12 +16,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import simulador.*;
+import simulador.Semaforo.Color;
 import simulador.Senal.Tipo;
+
+import java.awt.Point;
+import java.awt.Rectangle;
 
 public class VentanaSimulador extends JFrame {
 
 	/*Constantes*/
-
+	public static enum Color {VERDE, ROJO}
 	private static final long serialVersionUID = 1L;
 	private static final int MS_SLEEP = 400;
 	
@@ -33,6 +37,8 @@ public class VentanaSimulador extends JFrame {
 	public static final int CARRIL_IZQ = 390;
 	private static final int ARCEN_DCHO = 330;
 	private static final int ARCEN_IZQ = 552;
+	
+	
 	
 	private static Logger logger = Logger.getLogger("Simulador");
 	
@@ -210,6 +216,17 @@ public class VentanaSimulador extends JFrame {
         				while (semaf.getY()<500) {
         					try {
     							sleep(MS_SLEEP);
+    							if(semaf.getY()==370) {    								
+    								if (semaf.getColor().toString()==Color.ROJO.toString()) {
+        								sleep(3000);
+    									Image imgVerde = new ImageIcon(getClass().getResource("../simulador/img/semafVerde.png")).getImage();
+    									ImageIcon iconVerde = new ImageIcon(imgVerde.getScaledInstance(55, 82, Image.SCALE_SMOOTH));
+    									JLabel labelVerde = new JLabel(iconVerde);
+    									semaf.setLbl(labelVerde);
+    									System.out.println("Verde");
+    								}
+    								
+    							}
     						} catch (InterruptedException e1) {
     							e1.printStackTrace();
     						}
@@ -261,7 +278,7 @@ public class VentanaSimulador extends JFrame {
                 			stop.mover(0, 20);
 
         				}
-        				System.out.println("SALE");
+
         				simuladorPane.remove(stop.getLbl());
         				listaObs.remove(stop);
         	    		stop.getLbl().setVisible(false);
@@ -358,7 +375,6 @@ public class VentanaSimulador extends JFrame {
              		catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
-             		System.out.println(num);
                 	Image fondoImg2 = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE ("+ num +").jpg")).getImage();
             		ImageIcon fondo2 = new ImageIcon(fondoImg2.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
             		simuladorPane.setLayout(null);
@@ -376,7 +392,6 @@ public class VentanaSimulador extends JFrame {
             		            		
             		num = num-1;
             		if (num==0){
-            			System.out.println(num);
             			num = 16;  		
                     }
        			 }
