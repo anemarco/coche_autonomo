@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
@@ -13,11 +15,15 @@ import java.util.logging.SimpleFormatter;
 
 public class BD {
 	
+	private static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" ); 
+	private static SimpleDateFormat sdf2 = new SimpleDateFormat( "dd/MM/yyyy" ); 
+	
 	/**
 	 * M�todo que crea la conexion con la base de datos
 	 * @param nombreBD nombre del archivo de sqliteman de la base de datos
 	 * @return devuelve la conexion
 	 */
+
 	
 	public static Connection initBD(String nombreBD) {
 		Connection con = null;
@@ -47,13 +53,17 @@ public class BD {
 	}
 	
 	/**
-	 * Metodo que crea las tablas de la base de datos
+	 * Metodo que crea las tablas de la base de datos y algunos datos
 	 */
 	public static void crearTablas(Connection con) {
-		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String)";
-		String sent2 = "CREATE TABLE IF NOT EXISTS simulacion(cod_sim String, fecha bigint, hora String, duracion float)";
-		String sent3 = "CREATE TABLE IF NOT EXISTS obstaculo(cod_obs String, nombre String)";
-		String sent4 = "CREATE TABLE IF NOT EXISTS obstaculo_simulacion(cod_obs String, cod_sim String)";
+		
+		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);";
+		String sent2 = "CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);";
+		String sent3 = "CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);";
+		String sent4 = "CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);";
+		
+		String sent5 = "INSERT INTO usuario VALUES ('87623453Y', 'Pepe', 'Rodrigez', 'gdx75');";
+		String sent6 = "INSERT INTO usuario VALUES ('79172639G', 'Alba', 'Perez', '12345');";
 		
 		Statement st= null;
 		
@@ -64,6 +74,8 @@ public class BD {
 			st.executeUpdate(sent2);
 			st.executeUpdate(sent3);
 			st.executeUpdate(sent4);
+			st.executeUpdate(sent5);
+			st.executeUpdate(sent6);
 			
 			guardarLog(sent1);
 			
@@ -82,6 +94,59 @@ public class BD {
 	}
 	
 	/**
+	 * Método que lee todos los usuarios de la base de datos, los convierte en objetos 
+	 * y los guarda en una lista
+	 * @return	Lista de usuarios de la BD
+	 */
+	 public static ArrayList<Usuario>  getUsuarios(Connection con) {
+		 try (Statement st = con.createStatement()) {
+			 ArrayList<Usuario> lUsuarios = new ArrayList<>();
+			 String sent = "SELECT * FROM usuarios;";
+			 ResultSet rs = st.executeQuery(sent);
+			 
+			 while (rs.next()) {
+				 String dni = rs.getString("dni");
+				 String nombre = rs.getString("nombre");
+				 String apellido = rs.getString("apellido");
+				 String contrasenia = rs.getString("contrasenia");
+				 
+				 lUsuarios.add(new Usuario(dni, nombre, apellido, contrasenia));
+			 }
+			 
+			 return lUsuarios;
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+			 return null;
+		 }
+	 }
+	 
+	 /**
+	  * Método que lee todas las simulaciones de la base de datos, las convierte a objetos
+	  * y las guarda en una lista
+	  * @param con
+	  * @return Lista de todas las simulaciones de la BD
+	  */
+	 
+	 public static ArrayList<Simulacion> getSimulaciones(Connection con) {
+		 try (Statement st = con.createStatement()) {
+			 ArrayList<Simulacion> lSimulaciones = new ArrayList<>();
+			 String sent = "SELECT * FROM simulacion;";
+			 ResultSet rs = st.executeQuery(sent);
+			 
+			 while (rs.next()) {
+				 String cod = rs.getString("cod");
+				 
+			 }
+			 
+			 return lSimulaciones;
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+			 return null;
+		 }
+	 }
+	
+	
+	/**
 	 * Insertara el usuario que se solicite
 	 * @param con parametro que establece la conexion con la base de datos
 	 * @param nombre nombre del usuario que se desea insertar
@@ -89,7 +154,7 @@ public class BD {
 	 * @param contrasenia contrasenia del usuario que se desea insertar
 	 */
 	public static void insertarUsuario(Connection con, String dni, String nombre, String apellido, String contrasenia) {
-		String sentSQL = "INSERT INTO usuario VALUES('"+dni+"','"+nombre+"','"+apellido+"',"+contrasenia+")";
+		String sentSQL = "INSERT INTO usuario VALUES('"+dni+"','"+nombre+"','"+apellido+"',"+contrasenia+");";
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
@@ -107,7 +172,7 @@ public class BD {
 	 * @param dni dni del usuario que se desea eliminar
 	 */
 	public static void eliminarUsuario(Connection con, String dni) {
-		String sentSQL = "DELETE FROM usuario WHERE dni="+dni+"'";
+		String sentSQL = "DELETE FROM usuario WHERE dni="+dni+"';";
 		try {
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate(sentSQL);
@@ -126,7 +191,7 @@ public class BD {
 	public static TreeMap<String, Usuario> obtenerMapaUsuarios(Connection con){
 		TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
 		
-		String sentSQL = " SELECT * FROM usuario";
+		String sentSQL = " SELECT * FROM usuario;";
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sentSQL);
@@ -135,8 +200,8 @@ public class BD {
 				String nombre = rs.getString("nombre");
 				String dni = rs.getString("dni");
 				String contrasenia = rs.getString("contrasenia");
-				Usuario u = new Usuario(nombre, dni, contrasenia);
-				tmUsuario.put(dni, u);
+				//Usuario u = new Usuario(nombre, dni, contrasenia);
+				//tmUsuario.put(dni, u);
 			}
 			rs.close();
 			stmt.close();

@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
 
@@ -15,6 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import baseDatos.*;
 
 
 public class VentanaRegistro extends JFrame {
@@ -28,6 +31,8 @@ public class VentanaRegistro extends JFrame {
 	public static VentanaRegistro ventReg;
 	private JTable table;
 	private DefaultTableModel mTable;
+	
+	private ArrayList<Usuario> lUsuarios;
 	
 	public VentanaRegistro() {
 		

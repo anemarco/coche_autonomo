@@ -12,6 +12,5 @@ public abstract class Obstaculo extends ObjetoSimulacion {
 	public void mover(int dx, int dy) {
 		setX(getX() + dx);
 		setY(getY() + dy);
-		
 	}
 }
