@@ -31,6 +31,7 @@ public class BD {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:"+nombreBD);
+			generarLog("Conexión abierta con " + nombreBD);
 		}catch (ClassNotFoundException e){
 			e.printStackTrace();
 		}catch (SQLException e) {
@@ -45,6 +46,7 @@ public class BD {
 		if(con!=null) {
 			try {
 				con.close();
+				generarLog("Conexión cerrada");
 			}catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -62,23 +64,20 @@ public class BD {
 		String sent3 = "CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);";
 		String sent4 = "CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);";
 		
-		String sent5 = "INSERT INTO usuario VALUES ('87623453Y', 'Pepe', 'Rodrigez', 'gdx75');";
-		String sent6 = "INSERT INTO usuario VALUES ('79172639G', 'Alba', 'Perez', '12345');";
-		
 		Statement st= null;
 		
 		try {
 			st = con.createStatement();
 			
 			st.executeUpdate(sent1);
+			generarLog(sent1);
 			st.executeUpdate(sent2);
+			generarLog(sent2);
 			st.executeUpdate(sent3);
+			generarLog(sent3);
 			st.executeUpdate(sent4);
-			st.executeUpdate(sent5);
-			st.executeUpdate(sent6);
-			
-			guardarLog(sent1);
-			
+			generarLog(sent4);
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
@@ -103,6 +102,7 @@ public class BD {
 			 ArrayList<Usuario> lUsuarios = new ArrayList<>();
 			 String sent = "SELECT * FROM usuario;";
 			 ResultSet rs = st.executeQuery(sent);
+			 generarLog(sent);
 			 
 			 while (rs.next()) {
 				 String dni = rs.getString("dni");
@@ -132,6 +132,7 @@ public class BD {
 			 ArrayList<Simulacion> lSimulaciones = new ArrayList<>();
 			 String sent = "SELECT * FROM simulacion;";
 			 ResultSet rs = st.executeQuery(sent);
+			 generarLog(sent);
 			 
 			 while (rs.next()) {
 				 String cod = rs.getString("cod");
@@ -154,12 +155,12 @@ public class BD {
 	 * @param contrasenia contrasenia del usuario que se desea insertar
 	 */
 	public static void insertarUsuario(String dni, String nombre, String apellido, String contrasenia) {
-		String sentSQL = "INSERT INTO usuario VALUES('"+dni+"','"+nombre+"','"+apellido+"',"+contrasenia+");";
-		Statement stmt;
+		String sent = "INSERT INTO usuario VALUES('"+dni+"','"+nombre+"','"+apellido+"',"+contrasenia+");";
+		
 		try {
-			stmt = con.createStatement();
-			stmt.executeUpdate(sentSQL);
-			guardarLog(sentSQL);
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate(sent);
+			generarLog(sent);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -172,11 +173,11 @@ public class BD {
 	 * @param dni dni del usuario que se desea eliminar
 	 */
 	public static void eliminarUsuario(String dni) {
-		String sentSQL = "DELETE FROM usuario WHERE dni="+dni+"';";
+		String sent = "DELETE FROM usuario WHERE dni="+dni+"';";
 		try {
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate(sentSQL);
-			guardarLog(sentSQL);
+			stmt.executeUpdate(sent);
+			generarLog(sent);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -191,11 +192,11 @@ public class BD {
 	public static TreeMap<String, Usuario> obtenerMapaUsuarios(){
 		TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
 		
-		String sentSQL = " SELECT * FROM usuario;";
+		String sent = " SELECT * FROM usuario;";
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sentSQL);
-			guardarLog(sentSQL);
+			ResultSet rs = stmt.executeQuery(sent);
+			generarLog(sent);
 			while(rs.next()) {
 				String nombre = rs.getString("nombre");
 				String dni = rs.getString("dni");
@@ -212,20 +213,23 @@ public class BD {
 	}
 	
 	
-	/*Guardar logs en fichero*/
+	/**
+	 * Método que genera loggers y los guarda en un fichero
+	 * @param info Información a guardar
+	 */
 	
-	public static void guardarLog (String mensaje) {
-		
+	public static void generarLog (String info) {
 		Logger logger = Logger.getLogger("BD");
 		FileHandler fh;
 		
 		try {
-			fh = new FileHandler("info.log");
+			fh = new FileHandler("infoBD.log", true);
 			logger.addHandler(fh);
 			fh.setFormatter(new SimpleFormatter());
-			logger.info(mensaje);
-		} catch (Exception e) {
+			logger.info(info);
+			fh.close();
 			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
