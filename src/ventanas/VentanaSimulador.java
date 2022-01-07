@@ -166,7 +166,7 @@ public class VentanaSimulador extends JFrame {
         		Thread moverCoche= new Thread() {
         			public void run(){
         				
-        				while (otroCoche.getY()<375) {
+        				while (otroCoche.getY()<430) {
         					try {
     							sleep(MS_SLEEP);
     						} catch (InterruptedException e1) {
@@ -403,7 +403,7 @@ public class VentanaSimulador extends JFrame {
 	
 	public static void cocheReaccion(Obstaculo o, Coche miCoche) {
 		listaObs.remove(o);
-		if (listaObs.isEmpty()|| o==null) {
+		if (listaObs.isEmpty()|| o==null || (listaObs.get(0) instanceof Animal && o instanceof Animal)) {
 			if (o instanceof OtroCoche) {
 				if(miCoche.getX()==CARRIL_DCHO) {
 					listaObs.add(o);
@@ -418,6 +418,7 @@ public class VentanaSimulador extends JFrame {
 	                			miCoche.mover(-20, 0);
 	        				}
 	        				miCoche.setX(CARRIL_IZQ);
+	        				listaObs.add(null);
 	        				cocheReaccion(null,miCoche);
 	        			}
 					};
@@ -426,9 +427,8 @@ public class VentanaSimulador extends JFrame {
 				logger.log( Level.INFO, "OtroCoche superado con éxito" );
 			}		
 			if (o instanceof Animal || o==null) {
-			
+				listaObs.add(o);
 				if(miCoche.getX()==CARRIL_IZQ) {
-					listaObs.add(o);
 					Thread movimientoA= new Thread() {
 	        			public void run(){
 	        				
