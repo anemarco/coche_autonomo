@@ -25,10 +25,8 @@ public class BD {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:"+nombreBD);
 		}catch (ClassNotFoundException e){
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return con;
@@ -49,26 +47,34 @@ public class BD {
 	}
 	
 	/**
-	 * Metodo que crea la tabla usuario en la base de datos
+	 * Metodo que crea las tablas de la base de datos
 	 */
 	public static void crearTablas(Connection con) {
-		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(nombre String, dni String, contrasenia String)";
+		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String)";
+		String sent2 = "CREATE TABLE IF NOT EXISTS simulacion(cod_sim String, fecha bigint, hora String, duracion float)";
+		String sent3 = "CREATE TABLE IF NOT EXISTS obstaculo(cod_obs String, nombre String)";
+		String sent4 = "CREATE TABLE IF NOT EXISTS obstaculo_simulacion(cod_obs String, cod_sim String)";
+		
 		Statement st= null;
 		
 		try {
 			st = con.createStatement();
+			
 			st.executeUpdate(sent1);
+			st.executeUpdate(sent2);
+			st.executeUpdate(sent3);
+			st.executeUpdate(sent4);
+			
 			guardarLog(sent1);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		} finally {
 			if(st!=null) {
 				try {
 					st.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -82,8 +88,8 @@ public class BD {
 	 * @param dni dni del usuario que se desea insertar
 	 * @param contrasenia contrasenia del usuario que se desea insertar
 	 */
-	public static void insertarUsuario(Connection con, String nombre, String dni, String contrasenia) {
-		String sentSQL = "INSERT INTO usuario VALUES('"+nombre+"',"+dni+"',"+contrasenia+")";
+	public static void insertarUsuario(Connection con, String dni, String nombre, String apellido, String contrasenia) {
+		String sentSQL = "INSERT INTO usuario VALUES('"+dni+"','"+nombre+"','"+apellido+"',"+contrasenia+")";
 		Statement stmt;
 		try {
 			stmt = con.createStatement();
@@ -91,7 +97,6 @@ public class BD {
 			guardarLog(sentSQL);
 			stmt.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -109,7 +114,6 @@ public class BD {
 			guardarLog(sentSQL);
 			stmt.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
