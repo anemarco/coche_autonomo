@@ -1,12 +1,15 @@
 package ventanas;
 
-
 import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
+
+import baseDatos.BD;
 import baseDatos.Usuario;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.TreeMap;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -30,6 +33,17 @@ public class VentanaInicio extends JFrame {
 	public VentanaInicio() {
 		
 		ventInic = this;
+		
+		/*Conectar con la base de datos*/
+		
+		addWindowListener(new WindowAdapter() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				BD.initBD("simulacion.bd");
+				BD.crearTablas();
+			}
+		});
 		
 		/*Connection con = BD.initBD("iniciosesion.db");
 		BD.crearTablas(con);

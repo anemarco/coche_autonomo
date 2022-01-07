@@ -18,6 +18,8 @@ public class BD {
 	private static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" ); 
 	private static SimpleDateFormat sdf2 = new SimpleDateFormat( "dd/MM/yyyy" ); 
 	
+	static Connection con;
+	
 	/**
 	 * M�todo que crea la conexion con la base de datos
 	 * @param nombreBD nombre del archivo de sqliteman de la base de datos
@@ -25,8 +27,7 @@ public class BD {
 	 */
 
 	
-	public static Connection initBD(String nombreBD) {
-		Connection con = null;
+	public static void  initBD(String nombreBD) {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:"+nombreBD);
@@ -35,13 +36,12 @@ public class BD {
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return con;
 	}
 	/**
 	 * Metodo que hara que se cierre la base de datos
 	 * @param con parametro que establece la conexion con la base de datos
 	 */
-	public static void closeBD(Connection con) {
+	public static void closeBD() {
 		if(con!=null) {
 			try {
 				con.close();
@@ -55,7 +55,7 @@ public class BD {
 	/**
 	 * Metodo que crea las tablas de la base de datos y algunos datos
 	 */
-	public static void crearTablas(Connection con) {
+	public static void crearTablas() {
 		
 		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);";
 		String sent2 = "CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);";
@@ -98,10 +98,10 @@ public class BD {
 	 * y los guarda en una lista
 	 * @return	Lista de usuarios de la BD
 	 */
-	 public static ArrayList<Usuario>  getUsuarios(Connection con) {
+	 public static ArrayList<Usuario>  getUsuarios() {
 		 try (Statement st = con.createStatement()) {
 			 ArrayList<Usuario> lUsuarios = new ArrayList<>();
-			 String sent = "SELECT * FROM usuarios;";
+			 String sent = "SELECT * FROM usuario;";
 			 ResultSet rs = st.executeQuery(sent);
 			 
 			 while (rs.next()) {
@@ -127,7 +127,7 @@ public class BD {
 	  * @return Lista de todas las simulaciones de la BD
 	  */
 	 
-	 public static ArrayList<Simulacion> getSimulaciones(Connection con) {
+	 public static ArrayList<Simulacion> getSimulaciones() {
 		 try (Statement st = con.createStatement()) {
 			 ArrayList<Simulacion> lSimulaciones = new ArrayList<>();
 			 String sent = "SELECT * FROM simulacion;";
@@ -153,7 +153,7 @@ public class BD {
 	 * @param dni dni del usuario que se desea insertar
 	 * @param contrasenia contrasenia del usuario que se desea insertar
 	 */
-	public static void insertarUsuario(Connection con, String dni, String nombre, String apellido, String contrasenia) {
+	public static void insertarUsuario(String dni, String nombre, String apellido, String contrasenia) {
 		String sentSQL = "INSERT INTO usuario VALUES('"+dni+"','"+nombre+"','"+apellido+"',"+contrasenia+");";
 		Statement stmt;
 		try {
@@ -171,7 +171,7 @@ public class BD {
 	 * @param con parametro que establece la conexion con la base de datos
 	 * @param dni dni del usuario que se desea eliminar
 	 */
-	public static void eliminarUsuario(Connection con, String dni) {
+	public static void eliminarUsuario(String dni) {
 		String sentSQL = "DELETE FROM usuario WHERE dni="+dni+"';";
 		try {
 			Statement stmt = con.createStatement();
@@ -188,7 +188,7 @@ public class BD {
 	 * @param con parametro que crea la conexion con la base de datos
 	 * @return devuelve el treemap de usuarios
 	 */
-	public static TreeMap<String, Usuario> obtenerMapaUsuarios(Connection con){
+	public static TreeMap<String, Usuario> obtenerMapaUsuarios(){
 		TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
 		
 		String sentSQL = " SELECT * FROM usuario;";

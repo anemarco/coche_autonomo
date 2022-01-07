@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
@@ -113,7 +115,7 @@ public class VentanaRegistro extends JFrame {
 		table = new JTable();
 		panelTabla.add(new JScrollPane(table), BorderLayout.CENTER);
 		
-		/*Crear las cabeceras de la tabla*/
+		/*Crear Tabla*/
 		
 		Vector<String> cabeceras = new Vector<String>(Arrays.asList("Nombre", "Apellido", "Dni"));
 		mTable = new DefaultTableModel(
@@ -121,7 +123,40 @@ public class VentanaRegistro extends JFrame {
 				cabeceras
 		);
 		
+		lUsuarios = BD.getUsuarios();
+		for (Usuario u : lUsuarios) {
+			mTable.addRow(new Object[] {u.getDni(), u.getNombre(), u.getApellido()});
+		}
+		
 		table.setModel(mTable);
+		
+		addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+			
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
 		
 	}
 }
