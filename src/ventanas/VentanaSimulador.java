@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import simulador.*;
@@ -42,6 +43,7 @@ public class VentanaSimulador extends JFrame {
 	
 	private static  ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
 	public Coche miCoche;
+	public static OtroCoche otro;
 
 	/*Main*/
 	
@@ -158,7 +160,8 @@ public class VentanaSimulador extends JFrame {
 				listaObs.add(otroCoche);
 				logger.log( Level.INFO, "Objeto OtroCoche añadido");
 				cocheReaccion(otroCoche, miCoche);
-				
+				//Desabilitar el boton OtroCoche para que no haya colapso de imagenes
+				bCoche.setEnabled(false);
 				//Hacer que se mueva la imagen (objetivo:adelantarlo)
         		Thread moverCoche= new Thread() {
         			public void run(){
@@ -169,14 +172,16 @@ public class VentanaSimulador extends JFrame {
     						} catch (InterruptedException e1) {
     							e1.printStackTrace();
     						}
-                			otroCoche.mover(0, 20);
+                			otroCoche.mover(0, 50);
         				}
         				
-        				
+        				//eliminar a OtroCoche de la pantalla
         				simuladorPane.remove(otroCoche.getLbl());
         	    		otroCoche.getLbl().setVisible(false);
         	    		listaObs.remove(otroCoche);
         	    		logger.log( Level.INFO, "Objeto OtroCoche eliminado");
+        	    		//Abilitar de nuevo el botón
+        	    		bCoche.setEnabled(true);
         			}
         				
         		};
@@ -303,6 +308,7 @@ public class VentanaSimulador extends JFrame {
         				}
         				System.out.println("SALE");
         				simuladorPane.remove(oveja.getLbl());
+        				listaObs.remove(oveja);
         				logger.log( Level.INFO, "Objeto Animal eliminado");
         	    		oveja.getLbl().setVisible(false);
         	    		
@@ -396,11 +402,11 @@ public class VentanaSimulador extends JFrame {
 	}
 	
 	public static void cocheReaccion(Obstaculo o, Coche miCoche) {
-		
-		if (o instanceof OtroCoche) {
-			listaObs.remove(o);
-			if(miCoche.getX()==CARRIL_DCHO) {
-				if(listaObs.isEmpty()) {
+		listaObs.remove(o);
+		if (listaObs.isEmpty()|| o==null) {
+			if (o instanceof OtroCoche) {
+				if(miCoche.getX()==CARRIL_DCHO) {
+					listaObs.add(o);
 					Thread movimientoOC= new Thread() {
 	        			public void run(){
 	        				while (miCoche.getX()>CARRIL_IZQ) {
@@ -412,27 +418,17 @@ public class VentanaSimulador extends JFrame {
 	                			miCoche.mover(-20, 0);
 	        				}
 	        				miCoche.setX(CARRIL_IZQ);
+	        				cocheReaccion(null,miCoche);
 	        			}
 					};
         		movimientoOC.start();
-			}else {
-				logger.log( Level.SEVERE, "COLISIÓN");
 			}
-			}
-			logger.log( Level.INFO, "OtroCoche superado con éxito" );
-			}
-		
-		
-		if (o instanceof Peaton) {
-			listaObs.remove(o);
-			if (o.getX()<ARCEN_DCHO && o.getX()>ARCEN_IZQ) {
-				//movimientoCarretera(false, 0);
-			}
-		}
-		if (o instanceof Animal) {
-			listaObs.remove(o);
-			if(miCoche.getX()==CARRIL_IZQ) {
-				if(listaObs.isEmpty()) {
+				logger.log( Level.INFO, "OtroCoche superado con éxito" );
+			}		
+			if (o instanceof Animal || o==null) {
+			
+				if(miCoche.getX()==CARRIL_IZQ) {
+					listaObs.add(o);
 					Thread movimientoA= new Thread() {
 	        			public void run(){
 	        				
@@ -448,60 +444,22 @@ public class VentanaSimulador extends JFrame {
 	        			}
 					};
         		movimientoA.start();
-			}else {
+				}
+				if(o instanceof Animal) {
+					logger.log( Level.INFO, "Animal superado con éxito" );
+				}else {
+					listaObs.remove(o);
+					logger.log( Level.INFO, "miCoche vuelve a posición inicial" );
+				}
+			}
+		}else {
+				//cerra la simulación por colisión
 				logger.log( Level.SEVERE, "COLISIÓN");
-			}
-			}
-			logger.log( Level.INFO, "Animal superado con éxito" );
+				JOptionPane.showMessageDialog(null, "Se producirá una colisión. Debe mejorar el sistema", "ALERTA", JOptionPane.WARNING_MESSAGE);
+				vent.setVisible(false);
+				VentanaFin fin = new VentanaFin();
+				fin.setVisible(true);
 		}
-		/*Obstaculo oDetectado = null;
-		OtroCoche cocheCerca = null;
-		
-		for (Obstaculo o: listaObs) {
-			miCoche.getSR().detectaObs(o);
-			if (o instanceof OtroCoche) {
-				cocheCerca = (OtroCoche)o;
-			} else {
-				oDetectado = o;
-			}
-			
-		}
-		
-		if (oDetectado instanceof Semaforo) {
-			Semaforo semaf = (Semaforo) oDetectado;
-			if (semaf.getColor() == Color.VERDE) {
-				
-			} else if ((semaf.getColor() == Color.NARANJA) || (semaf.getColor() == Color.ROJO)) {
-				
-			}
-		}
-		
-		if (oDetectado instanceof Peaton) {
-			
-			
-		}
-		
-		if (oDetectado instanceof Senal) {
-			Senal senal = (Senal) oDetectado;
-			if (senal.getTipo() == Tipo.STOP) {
-
-			} else if (senal.getTipo() == Tipo.CEDA) {
-				
-			} else if (senal.getTipo() == Tipo.SENTIDO_OBLIGATORIO) {
-				
-			}
-		}
-		
-		if ((cocheCerca.getY() < miCoche.getY()) && (cocheCerca.getX() == miCoche.getX())) {
-			
-		}
-	}*/
-	}
-	
-	
-		
-		
-		
-		
+	}		
 }
 
