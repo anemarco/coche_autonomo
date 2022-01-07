@@ -44,6 +44,7 @@ public class VentanaSimulador extends JFrame {
 	private static  ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
 	public Coche miCoche;
 	public static OtroCoche otro;
+	public Thread movimientoCarr;
 
 	/*Main*/
 	
@@ -242,29 +243,22 @@ public class VentanaSimulador extends JFrame {
         		Thread moverStop = new Thread() {
         			
         			public void run(){
-        				//int aceleracion = 100;
         				while (stop.getY()<500) {
         					try {
-    							sleep(MS_SLEEP);
-    							 
-                    			if(stop.getY()%50==0 && stop.getY() < 370) {
-                    				//movimientoCarretera(true, aceleracion);
-                    				//aceleracion = aceleracion+100;               				
-                    			}
-    							   							
-    							//TODO: determinar coordenada a partir del panel del coche.
-    							if(stop.getY()==370) {
-    								movimientoCarretera(false, 0);
-    								System.out.println("El coche se detiene");
+    							sleep(MS_SLEEP);    							     						
+    							if(stop.getY()==370) {    								
+    								System.out.println("El coche se detiene");   
+    								movimientoCarr.suspend();
     								sleep(3000);
-    								movimientoCarretera(true, 0);
+    								movimientoCarr.resume();
+    								// movimientoCarretera(true);
+    								
     							}
     							
     						} catch (InterruptedException e1) {
     							e1.printStackTrace();
     						}
                 			stop.mover(0, 20);
-
 
         				}
         				System.out.println("SALE");
@@ -335,45 +329,36 @@ public class VentanaSimulador extends JFrame {
 			}
 		});
         
-               
-        movimientoCarretera(true, 0);
+        movimientoCarr = movimientoCarretera(true);
+        movimientoCarr.start();
+        // movimientoCarretera(true);
 	}
         
 	
 	/*MÃ©todo que contiene el hilo de movimiento del fondo (carretera) */
-	
-	public  void movimientoCarretera(boolean activo, int aceleracion) {
 		
-		/*Escalar la imagen de fondo*/
-		
-		Image fondoImg = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE (16).jpg")).getImage();
-		ImageIcon fondoIcon = new ImageIcon(fondoImg.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
-		
-		Thread tiempo = new Thread(){
+	public Thread movimientoCarretera(boolean activo){
+		return new Thread(){
+			Image fondoImg = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE (16).jpg")).getImage();
+			ImageIcon fondoIcon = new ImageIcon(fondoImg.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
 			
 			@Override
-            public void run(){
-            	System.out.println("Aceleración:" + aceleracion);
-            	System.out.println("Activo:" + activo);
+            public void run(){            	
             	simuladorPane.setLayout(null);
-        		//JPanel.add(image, BorderLayout.NORTH);
         		JLabel label = new JLabel(fondoIcon);
         		label.setBounds(COORD_FONDO.x, COORD_FONDO.y, TAM_FONDO.width, TAM_FONDO.height);
         		simuladorPane.add(label);
         		
         		int num=15;
         		
-        		 while(activo){
-        			 
+       			 while(activo) {
              		try {
-							sleep(MS_SLEEP + aceleracion);
-							if(MS_SLEEP + aceleracion!=400) {
-								//System.out.println(MS_SLEEP + aceleracion);
-							}
-						} catch (InterruptedException e1) {
-							e1.printStackTrace();
-						}
-             		
+             			sleep(MS_SLEEP);
+					} 
+             		catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+             		System.out.println(num);
                 	Image fondoImg2 = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE ("+ num +").jpg")).getImage();
             		ImageIcon fondo2 = new ImageIcon(fondoImg2.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
             		simuladorPane.setLayout(null);
@@ -391,14 +376,12 @@ public class VentanaSimulador extends JFrame {
             		            		
             		num = num-1;
             		if (num==0){
+            			System.out.println(num);
             			num = 16;  		
                     }
-                }
+       			 }
             }
         };
-        
-        tiempo.start();
-
 	}
 	
 	public static void cocheReaccion(Obstaculo o, Coche miCoche) {
