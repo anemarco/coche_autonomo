@@ -110,7 +110,7 @@ public class VentanaRegistro extends JFrame {
 		
 		/*Crear las cabeceras de la tabla*/
 		
-		Vector<String> cabeceras = new Vector<String>(Arrays.asList("Nombre", "Apellido", "Dni", "Puntuación"));
+		Vector<String> cabeceras = new Vector<String>(Arrays.asList("Nombre", "Apellido", "Dni"));
 		mTable = new DefaultTableModel(
 				new Vector<Vector<Object>>(),
 				cabeceras
