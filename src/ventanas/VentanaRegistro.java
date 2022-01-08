@@ -130,6 +130,17 @@ public class VentanaRegistro extends JFrame {
 		btnInicio.setBounds(10, 427, 105, 23);
 		getContentPane().add(btnInicio);
 		
+		btnInicio.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ventReg.setVisible(false);
+				VentanaInicio ventIni = new VentanaInicio();
+				ventIni.setVisible(true);
+				
+			}
+		});
+		
 		btnRegistrar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -160,7 +171,7 @@ public class VentanaRegistro extends JFrame {
 						}
 						
 					} else {
-						JOptionPane.showMessageDialog(null, "Dni no válido","ERROR", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Dni no valido","ERROR", JOptionPane.ERROR_MESSAGE);
 					}
 					
 				} else {

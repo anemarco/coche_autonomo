@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.awt.event.ActionEvent;
@@ -98,7 +99,7 @@ public class VentanaInicio extends JFrame {
 		getContentPane().add(textDni);
 		textDni.setColumns(10);
 		
-		JLabel lblContrasenya = new JLabel("Introduce tu contrase\u00F1a:");
+		JLabel lblContrasenya = new JLabel("Introduce tu contrasenya:");
 		lblContrasenya.setBounds(129, 236, 158, 20);
 		getContentPane().add(lblContrasenya);
 		
@@ -125,7 +126,46 @@ public class VentanaInicio extends JFrame {
 		btnIniciarSesion.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				iniciarSimulador();
+				String dni = textDni.getText();
+				String c = textContrasenya.getText();
+				if(!dni.equals("") && !c.equals("")) {
+					/*Connection con  = BD.initBD("iniciosesion.db");
+					int resul = BD.obtenerMapaUsuarios(dni, c);
+					if(resul == 0) {
+						JOptionPane.showMessageDialog(null, "No estás registrado, tienes que registrarte primero");
+					}else if(resul == 1) {
+						JOptionPane.showMessageDialog(null, "Contrasenya incorrecta");
+					}else {
+						JOptionPane.showMessageDialog(null, "Bienvenido");
+					}*/
+				}
 				
+				/*btnIniciarSesion.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						String nom = textNombre.getText();
+						String c = textContrasenia.getText();
+						if(!nom.equals("") && !c.equals("")) {
+							Connection con = BD.initBD("newton.db");
+							int resul = BD.obtenerUsuario(con, nom, c);
+							if(resul == 0) {
+								JOptionPane.showMessageDialog(null, "No estás registrado");
+								btnRegistro.setEnabled(true);
+							}else if(resul==1) {
+								JOptionPane.showMessageDialog(null, "La contraseña no es correcta");
+							}else {
+								JOptionPane.showMessageDialog(null, "Ongi etorri!");
+								activarBotones();
+							}
+						}
+						textNombre.setText("");
+						textContrasenia.setText("");
+					}
+				});*/
+				
+				//---------------------------------------------------------------------------------
 				/*
 				for (Usuario u : lUsuarios) {
 					if (u.getDni() == textDni.getText() || textDni.getText() == "admin") {
@@ -138,8 +178,8 @@ public class VentanaInicio extends JFrame {
 					} else {
 						JOptionPane.showMessageDialog(null, "Usuario no registrado","ERROR", JOptionPane.ERROR_MESSAGE);
 					}
-				}
-				*/
+				}*/
+				
 			}
 		});
 		
@@ -149,32 +189,7 @@ public class VentanaInicio extends JFrame {
 		 * Boton que registra un usuario si no esta ya registrado y lo guardara en la base de datos
 		 */
 		btnRegistrar.addActionListener(new ActionListener() {
-			/*
-			public void actionPerformed(ActionEvent e) {
-				String erdni = "[0-9]{8}[A-Z]";
-				String d = textDni.getText();
-				boolean correctoDni = Pattern.matches(erdni, d);
-				if(correctoDni) {
-					String n = textNombre.getText();
-					String dni = textDni.getText();
-					String c = textContrasenia.getText();
-					if(tmUsuarios.get(dni) == null) {
-						Usuario u = new Usuario (n, dni, c);
-						tmUsuarios.put(dni, u);
-						Connection con = BD.initBD("iniciosesion.db");
-						BD.insertarUsuario(con, n, dni, c);
-						BD.closeBD(con);
-						JOptionPane.showMessageDialog(null, "Persona registrada correctamente","REGISTRO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
-						vaciarCampos();
-					}else {
-						JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese dni", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
-					}
-				}else {
-					JOptionPane.showMessageDialog(null, "El dni no es correcto", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-			*/
-			
+					
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ventInic.setVisible(false);

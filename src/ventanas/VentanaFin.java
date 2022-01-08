@@ -16,7 +16,9 @@ import java.awt.event.ActionEvent;
 public class VentanaFin extends JFrame {
 
 	private JPanel contentPane, panelNorte, panelSur, panelCentral;
-	private JButton btnSalir, btnEliminar, btnEliminarTodosLosUsuarios;
+	private JButton btnSalir, btnEliminar, btnEliminarTodosLosUsuarios, btnIrAlInicio;
+	
+	public static VentanaFin ventFin;
 	
 	private JTable tablaUsuarios;
 	private DefaultTableModel modeloTablaUsuarios;
@@ -25,8 +27,9 @@ public class VentanaFin extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaFin() {
+		ventFin = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 300);
 		setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();
@@ -38,10 +41,14 @@ public class VentanaFin extends JFrame {
 		contentPane.add(panelNorte, BorderLayout.NORTH);
 		
 		panelSur = new JPanel();
+		
 		contentPane.add(panelSur, BorderLayout.SOUTH);
+		btnIrAlInicio = new JButton("Inicio");
+		panelSur.add(btnIrAlInicio);
 		
 		btnEliminar = new JButton("Eliminar usuario");
 		panelSur.add(btnEliminar);
+		
 		
 		btnEliminarTodosLosUsuarios = new JButton("Eliminar todos los Usuarios");
 		panelSur.add(btnEliminarTodosLosUsuarios);
@@ -75,6 +82,18 @@ public class VentanaFin extends JFrame {
 		tablaUsuarios = new JTable(modeloTablaUsuarios);
 		JScrollPane scrollTabla = new JScrollPane(tablaUsuarios); //Falta a�adir al panel
 		panelCentral.add(scrollTabla);
+		
+		
+		btnIrAlInicio.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ventFin.setVisible(false);
+				VentanaInicio ventReg = new VentanaInicio();
+				ventReg.setVisible(true);
+				
+			}
+		});
 		
 		btnEliminarTodosLosUsuarios.addActionListener(new ActionListener() {
 					

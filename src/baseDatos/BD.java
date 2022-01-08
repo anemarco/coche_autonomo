@@ -21,7 +21,7 @@ public class BD {
 	static Connection con;
 	
 	/**
-	 * M�todo que crea la conexion con la base de datos
+	 * Metodo que crea la conexion con la base de datos
 	 * @param nombreBD nombre del archivo de sqliteman de la base de datos
 	 * @return devuelve la conexion
 	 */
@@ -46,7 +46,7 @@ public class BD {
 		if(con!=null) {
 			try {
 				con.close();
-				generarLog("Conexión cerrada");
+				generarLog("Conexion cerrada");
 			}catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -192,24 +192,47 @@ public class BD {
 	public static TreeMap<String, Usuario> obtenerMapaUsuarios(){
 		TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
 		
-		String sent = " SELECT * FROM usuario;";
+		String sent = " SELECT * FROM usuario";
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sent);
-			generarLog(sent);
 			while(rs.next()) {
-				String nombre = rs.getString("nombre");
 				String dni = rs.getString("dni");
-				String contrasenia = rs.getString("contrasenia");
-				//Usuario u = new Usuario(nombre, dni, contrasenia);
-				//tmUsuario.put(dni, u);
+				String nom = rs.getString("nombre");
+				String ape = rs.getString("apellido");
+				String c = rs.getString("contrasenia");
+				Usuario u = new Usuario(dni, nom, ape, c);
+				tmUsuario.put(dni, u);
 			}
-			rs.close();
-			stmt.close();
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return tmUsuario;
+		
+		/*public static TreeMap<String, Persona> obtenerMapaPersonas(Connection con){
+		TreeMap<String, Persona> tmPersonas = new TreeMap<>();
+		
+		String sentSQL = "SELECT * FROM alumno";
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sentSQL);
+			while(rs.next()) { //Mientras no hayamos llegado al final del conjunto de resultados
+				String dni = rs.getString("dni");
+				String nom = rs.getString("nombre");
+				int edad = rs.getInt("edad");
+				Persona p = new Persona(dni,nom,edad);
+				tmPersonas.put(dni, p);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return tmPersonas;
+	}*/
+		
 	}
 	
 	
