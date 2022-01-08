@@ -216,15 +216,16 @@ public class VentanaSimulador extends JFrame {
         				while (semaf.getY()<500) {
         					try {
     							sleep(MS_SLEEP);
-    							if(semaf.getY()==370) {    								
-    								if (semaf.getColor().toString()==Color.ROJO.toString()) {
-        								sleep(3000);
-    									Image imgVerde = new ImageIcon(getClass().getResource("../simulador/img/semafVerde.png")).getImage();
-    									ImageIcon iconVerde = new ImageIcon(imgVerde.getScaledInstance(55, 82, Image.SCALE_SMOOTH));
-    									JLabel labelVerde = new JLabel(iconVerde);
-    									semaf.setLbl(labelVerde);
-    									System.out.println("Verde");
-    								}
+    							if (semaf.getColor().toString()==Color.ROJO.toString() && semaf.getY()==370) {
+    								
+									System.out.println("El coche se detiene");   
+									logger.log( Level.INFO, "Semáforo está en rojo");   							
+									movimientoCarr.suspend();
+									sleep(2500);
+									simuladorPane.remove(semaf.getLbl());
+    								cambiarSemaforo();
+									logger.log( Level.INFO, "Semáforo se ha cambiado a verde");
+    								movimientoCarr.resume();
     								
     							}
     						} catch (InterruptedException e1) {
@@ -401,7 +402,7 @@ public class VentanaSimulador extends JFrame {
 	
 	public static void cocheReaccion(Obstaculo o, Coche miCoche) {
 		listaObs.remove(o);
-		if (listaObs.isEmpty()|| o==null || (listaObs.get(0) instanceof Animal && o instanceof Animal)) {
+		if (listaObs.isEmpty()|| o==null || (listaObs.get(0) instanceof Animal && o instanceof Animal) ||(o instanceof Animal && (listaObs.get(0) instanceof Peaton||listaObs.get(0) instanceof Senal ||listaObs.get(0) instanceof Semaforo))) {
 			if (o instanceof OtroCoche) {
 				if(miCoche.getX()==CARRIL_DCHO) {
 					listaObs.add(o);
@@ -458,6 +459,37 @@ public class VentanaSimulador extends JFrame {
 				VentanaFin fin = new VentanaFin();
 				fin.setVisible(true);
 		}
-	}		
+	}
+	public void cambiarSemaforo() {
+		Semaforo semafVerde= new Semaforo();
+		System.out.println("Color del semáforo:"+semafVerde.getColor().toString());
+		if(semafVerde.getColor()==Semaforo.Color.ROJO) {
+			cambiarSemaforo();
+			
+		}else {
+			semafVerde.setY(370);
+			VentanaSimulador.simuladorPane.add(semafVerde.getLbl());
+			semafVerde.getLbl().setVisible(true);
+			Thread moverVerde= new Thread() {
+				
+				@Override
+    			public void run(){
+    				
+    				while (semafVerde.getY()<500) {
+    					
+    					try {
+							sleep(MS_SLEEP);
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						}
+    					semafVerde.mover(0, 20);
+    				}
+				simuladorPane.remove(semafVerde.getLbl());
+				semafVerde.getLbl().setVisible(false);
+				}	
+			};
+			moverVerde.start();
+		}
+	}
 }
 

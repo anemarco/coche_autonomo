@@ -49,6 +49,7 @@ public class Semaforo extends Obstaculo {
 	public void setColor(Color color) {
 		this.color = color;
 	}
+	
 
 	@Override
 	public JLabel crearLabel() {
