@@ -2,14 +2,15 @@ package ventanas;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
@@ -45,6 +46,39 @@ public class VentanaRegistro extends JFrame {
 		this.setSize(700, 500);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
+		
+		/*Panel de la tabla*/
+		
+		JPanel panelTabla = new JPanel();
+		panelTabla.setBounds(199, 11, 475, 439);
+		getContentPane().add(panelTabla);
+		
+		table = new JTable();
+		panelTabla.add(new JScrollPane(table), BorderLayout.CENTER);
+		
+		/*Crear Tabla*/
+		
+		Vector<String> cabeceras = new Vector<String>(Arrays.asList("Dni", "Nombre", "Apellido"));
+		mTable = new DefaultTableModel(
+				new Vector<Vector<Object>>(),
+				cabeceras
+		);
+		
+		lUsuarios = BD.getUsuarios();
+		for (Usuario u : lUsuarios) {
+			mTable.addRow(new Object[] {u.getDni(), u.getNombre(), u.getApellido()});
+		}
+		
+		table.setModel(mTable);
+		
+		addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+			
+		});
 		
 		/*Crar JLabels*/
 		
@@ -96,67 +130,43 @@ public class VentanaRegistro extends JFrame {
 		btnInicio.setBounds(10, 427, 105, 23);
 		getContentPane().add(btnInicio);
 		
-		btnInicio.addActionListener(new ActionListener() {
+		btnRegistrar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ventReg.setVisible(false);
-				//VentanaInicio ventInicio = new VentanaInicio();
-				//ventInicio.setVisible(true);
+				if (tfNombre.getText() != null &&
+					tfApellido.getText() != null &&
+					tfDni.getText() != null &&
+					tfContrasenya.getText() != null) {
+					
+					if (tfDni.getText().length() == 9 &&
+						Character.isDigit(tfDni.getText().indexOf(0)) &&
+						Character.isDigit(tfDni.getText().indexOf(1)) &&
+						Character.isDigit(tfDni.getText().indexOf(2)) &&
+						Character.isDigit(tfDni.getText().indexOf(3)) &&
+						Character.isDigit(tfDni.getText().indexOf(4)) &&
+						Character.isDigit(tfDni.getText().indexOf(5)) &&
+						Character.isDigit(tfDni.getText().indexOf(6)) &&
+						Character.isDigit(tfDni.getText().indexOf(7)) &&
+						Character.isUpperCase(tfDni.getText().indexOf(8))) {
+						
+						for (Usuario u : lUsuarios) {
+							if (u.getDni() == tfDni.getText()) {
+								JOptionPane.showMessageDialog(null, "Usuario ya registrado","ERROR", JOptionPane.ERROR_MESSAGE);
+								break;
+							} else {
+								BD.insertarUsuario(tfDni.getText(), tfNombre.getText(), tfApellido.getText(), tfContrasenya.getText());
+							}
+						}
+						
+					} else {
+						JOptionPane.showMessageDialog(null, "Dni no válido","ERROR", JOptionPane.ERROR_MESSAGE);
+					}
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Campo sin rellernar","ERROR", JOptionPane.ERROR_MESSAGE);
+				}	
 			}
 		});
-		
-		/*Panel de la tabla*/
-		
-		JPanel panelTabla = new JPanel();
-		panelTabla.setBounds(199, 11, 475, 439);
-		getContentPane().add(panelTabla);
-		
-		table = new JTable();
-		panelTabla.add(new JScrollPane(table), BorderLayout.CENTER);
-		
-		/*Crear Tabla*/
-		
-		Vector<String> cabeceras = new Vector<String>(Arrays.asList("Nombre", "Apellido", "Dni"));
-		mTable = new DefaultTableModel(
-				new Vector<Vector<Object>>(),
-				cabeceras
-		);
-		
-		lUsuarios = BD.getUsuarios();
-		for (Usuario u : lUsuarios) {
-			mTable.addRow(new Object[] {u.getDni(), u.getNombre(), u.getApellido()});
-		}
-		
-		table.setModel(mTable);
-		
-		addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-			
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});
-		
 	}
 }

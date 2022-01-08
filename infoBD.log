@@ -362,3 +362,75 @@ ene 08, 2022 11:26:32 A. M. baseDatos.BD generarLog
 INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
 ene 08, 2022 11:26:32 A. M. baseDatos.BD generarLog
 INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 08, 2022 1:53:05 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 08, 2022 1:53:05 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 08, 2022 1:53:05 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 08, 2022 1:53:05 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 08, 2022 1:53:05 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 08, 2022 1:53:07 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 08, 2022 2:16:15 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 08, 2022 2:16:15 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 08, 2022 2:16:15 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 08, 2022 2:16:15 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 08, 2022 2:16:15 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 08, 2022 2:16:16 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 08, 2022 2:20:02 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 08, 2022 2:20:02 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 08, 2022 2:20:02 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 08, 2022 2:20:02 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 08, 2022 2:20:02 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 08, 2022 2:20:04 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 08, 2022 2:21:16 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 08, 2022 2:21:16 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 08, 2022 2:21:16 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 08, 2022 2:21:16 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 08, 2022 2:21:16 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 08, 2022 2:21:17 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 08, 2022 2:32:02 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 08, 2022 2:32:02 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 08, 2022 2:32:02 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 08, 2022 2:32:02 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 08, 2022 2:32:02 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 08, 2022 2:32:02 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 08, 2022 2:32:54 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 08, 2022 2:32:54 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 08, 2022 2:32:54 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 08, 2022 2:32:54 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 08, 2022 2:32:54 P. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 08, 2022 2:32:54 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;

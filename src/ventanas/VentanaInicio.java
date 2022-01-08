@@ -10,10 +10,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.TreeMap;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class VentanaInicio extends JFrame {
 
@@ -25,6 +27,8 @@ public class VentanaInicio extends JFrame {
 	public static TreeMap<String, Usuario> tmUsuarios;
 	
 	public static VentanaInicio ventInic;
+	
+	private ArrayList<Usuario> lUsuarios;
 	
 
 	/**
@@ -42,8 +46,11 @@ public class VentanaInicio extends JFrame {
 			public void windowOpened(WindowEvent e) {
 				BD.initBD("simulacion.bd");
 				BD.crearTablas();
+				lUsuarios = BD.getUsuarios();
 			}
 		});
+		
+	
 		
 		/*Connection con = BD.initBD("iniciosesion.db");
 		BD.crearTablas(con);
@@ -117,16 +124,22 @@ public class VentanaInicio extends JFrame {
 		
 		btnIniciarSesion.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				/*String n = textNombre.getText();
-				String dni = textDni.getText();
-				
-				if(tmUsuarios.get(dni) == null) {
-					JOptionPane.showMessageDialog(null, "No estas registrado!", "��ERROR!!", JOptionPane.ERROR_MESSAGE);
-				}else {
-					JOptionPane.showMessageDialog(null, "Bienvenido!","ACCESO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
-				}*/
-				
 				iniciarSimulador();
+				
+				/*
+				for (Usuario u : lUsuarios) {
+					if (u.getDni() == textDni.getText() || textDni.getText() == "admin") {
+						if (u.getContrasenia() == textContrasenya.getText() || textContrasenya.getText() == "admin") {
+							iniciarSimulador();
+						} else {
+							JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR", JOptionPane.ERROR_MESSAGE);
+						}
+						
+					} else {
+						JOptionPane.showMessageDialog(null, "Usuario no registrado","ERROR", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				*/
 			}
 		});
 		
