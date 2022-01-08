@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 public class VentanaFin extends JFrame {
 
 	private JPanel contentPane, panelNorte, panelSur, panelCentral;
-	private JButton btnSalir, btnEliminar;
+	private JButton btnSalir, btnEliminar, btnEliminarTodosLosUsuarios;
 	
 	private JTable tablaUsuarios;
 	private DefaultTableModel modeloTablaUsuarios;
@@ -42,6 +42,9 @@ public class VentanaFin extends JFrame {
 		
 		btnEliminar = new JButton("Eliminar usuario");
 		panelSur.add(btnEliminar);
+		
+		btnEliminarTodosLosUsuarios = new JButton("Eliminar todos los Usuarios");
+		panelSur.add(btnEliminarTodosLosUsuarios);
 		
 		btnSalir = new JButton("Salir");
 		panelSur.add(btnSalir);
@@ -71,6 +74,19 @@ public class VentanaFin extends JFrame {
 		
 		tablaUsuarios = new JTable(modeloTablaUsuarios);
 		JScrollPane scrollTabla = new JScrollPane(tablaUsuarios); //Falta a�adir al panel
+		panelCentral.add(scrollTabla);
+		
+		btnEliminarTodosLosUsuarios.addActionListener(new ActionListener() {
+					
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				while(tablaUsuarios.getRowCount() > 0) {
+					modeloTablaUsuarios.removeRow(0);
+				}
+			}
+		});
+		
+		
 		/**
 		 * Boton que sale de la pantalla
 		 */
