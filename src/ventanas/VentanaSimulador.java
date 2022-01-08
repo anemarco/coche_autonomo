@@ -97,20 +97,20 @@ public class VentanaSimulador extends JFrame {
 		cp.add(splitPane);
 		
 		//Crear botones de cada obstÃ¡culo y aÃ±adirlos al panel
-		JButton bPeaton	= new JButton("            PeatÃ³n          ");
+		JButton bPeaton	= new JButton("           Peatón         ");
 		JButton bCoche = new JButton("        Otro Coche      ");
-		JButton bSemaf = new JButton("         SemÃ¡foro       ");
+		JButton bSemaf = new JButton("         Semáforo       ");
 		JButton bStop = new JButton("             STOP           ");
-		JButton bCeda = new JButton("             Ceda            ");
-		JButton bSentidoCon = new JButton(" Sentido Contrario ");
+		/*JButton bCeda = new JButton("             Ceda            ");
+		JButton bSentidoCon = new JButton(" Sentido Contrario ");		Para el futuro*/
 		JButton bAnimal = new JButton("            Animal          ");
 		  
 		panelBotonero.add(bPeaton);
 		panelBotonero.add(bCoche );
 		panelBotonero.add(bSemaf );
 		panelBotonero.add(bStop );
-		panelBotonero.add(bCeda );
-		panelBotonero.add(bSentidoCon );
+		//panelBotonero.add(bCeda );
+		//panelBotonero.add(bSentidoCon );
 		panelBotonero.add(bAnimal );
 		
 		/*BotÃ³n que cree un obtÃ¡culo peaton*/
@@ -144,6 +144,7 @@ public class VentanaSimulador extends JFrame {
         					peaton.mover(20, 20);
   
         				}
+        				//eliminar peatón de la pantalla y de la listaObs
         				simuladorPane.remove(peaton.getLbl());
         				listaObs.remove(peaton);
         	    		peaton.getLbl().setVisible(false);
@@ -166,6 +167,7 @@ public class VentanaSimulador extends JFrame {
 				simuladorPane.add(otroCoche.getLbl());
 				listaObs.add(otroCoche);
 				logger.log( Level.INFO, "Objeto OtroCoche añadido");
+				//llamar al metodo cocheReaccion para que el miCoche actue en base a la situación
 				cocheReaccion(otroCoche, miCoche);
 				//Desabilitar el boton OtroCoche para que no haya colapso de imagenes
 				bCoche.setEnabled(false);
@@ -173,7 +175,7 @@ public class VentanaSimulador extends JFrame {
         		Thread moverCoche= new Thread() {
         			public void run(){
         				
-        				while (otroCoche.getY()<430) {
+        				while (otroCoche.getY()<480) {
         					try {
     							sleep(MS_SLEEP);
     						} catch (InterruptedException e1) {
@@ -204,24 +206,26 @@ public class VentanaSimulador extends JFrame {
             
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				//Hacer aparecer un semaforo por pantalla
 				Semaforo semaf = new Semaforo();
 				simuladorPane.add(semaf.getLbl());
 				listaObs.add(semaf);
 				logger.log( Level.INFO, "Objeto Semáforo añadido");
-				
+				//Movimiento del semáforo
         		Thread moverSemaf = new Thread() {
         			public void run(){
         				
         				while (semaf.getY()<500) {
         					try {
     							sleep(MS_SLEEP);
+    							//Si es rojo el coche debe parar
     							if (semaf.getColor().toString()==Color.ROJO.toString() && semaf.getY()==370) {
     								
 									System.out.println("El coche se detiene");   
 									logger.log( Level.INFO, "Semáforo está en rojo");   							
 									movimientoCarr.suspend();
-									sleep(2500);
+									sleep(2000);
+									//Llamar al metodo cambiarSemaforo para que se ponga verde
 									simuladorPane.remove(semaf.getLbl());
     								cambiarSemaforo();
 									logger.log( Level.INFO, "Semáforo se ha cambiado a verde");
@@ -233,9 +237,10 @@ public class VentanaSimulador extends JFrame {
     						}
                 			semaf.mover(0, 20);
         				}
-        				
+        				//eliminar semáforo de la pantalla y de la listaObs
         				simuladorPane.remove(semaf.getLbl());
         	    		semaf.getLbl().setVisible(false);
+        	    		listaObs.remove(semaf);
         	    		logger.log( Level.INFO, "Objeto Semáforo eliminado");
         			}
         				
@@ -251,25 +256,25 @@ public class VentanaSimulador extends JFrame {
             
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				//Hacer aparecer un STOP en pantalla
 				Senal stop = new Senal(Tipo.STOP);
 				simuladorPane.add(stop.getLbl());
 				listaObs.add(stop);
 				logger.log( Level.INFO, "Objeto Señal tipo Stop añadido");
 				
-				
+				//Movimiento del STOP
         		Thread moverStop = new Thread() {
         			
         			public void run(){
         				while (stop.getY()<500) {
         					try {
     							sleep(MS_SLEEP);    							     						
-    							if(stop.getY()==370) {    								
+    							if(stop.getY()==370) {    				
+    								//Reacción del coche
     								System.out.println("El coche se detiene");   
     								movimientoCarr.suspend();
     								sleep(3000);
     								movimientoCarr.resume();
-    								// movimientoCarretera(true);
     								
     							}
     							
@@ -279,7 +284,7 @@ public class VentanaSimulador extends JFrame {
                 			stop.mover(0, 20);
 
         				}
-
+        				//eliminar STOP de la pantalla y de la listaObs
         				simuladorPane.remove(stop.getLbl());
         				listaObs.remove(stop);
         	    		stop.getLbl().setVisible(false);
@@ -292,17 +297,17 @@ public class VentanaSimulador extends JFrame {
         		moverStop.start();
 			}
         });
-        
+        /*BotÃ³n que cree un obstaculo Animal*/
         bAnimal.addActionListener(new ActionListener() {
         	@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				//Hacer aparecer un rebaño por pantalla
 				Animal oveja = new Animal();
 				simuladorPane.add(oveja.getLbl());
 				listaObs.add(oveja);
 				logger.log( Level.INFO, "Objeto Animal añadido");
+				//movimiento del animal y reacción del coche
 				cocheReaccion(oveja,miCoche);
-				
         		Thread moverAnimal = new Thread() {
         			
         			public void run(){
@@ -318,6 +323,7 @@ public class VentanaSimulador extends JFrame {
 
 
         				}
+        				//eliminar semáforo de la pantalla y de la listaObs
         				System.out.println("SALE");
         				simuladorPane.remove(oveja.getLbl());
         				listaObs.remove(oveja);
@@ -332,6 +338,7 @@ public class VentanaSimulador extends JFrame {
         		moverAnimal.start();
 			}
         });
+        //Al pusar el boton salir de la simulación y que aparezca la VentanaFin
         JButton salir = new JButton("SALIR");
         salir.setBackground(java.awt.Color.RED);
         salir.setForeground(java.awt.Color.WHITE);
@@ -349,7 +356,6 @@ public class VentanaSimulador extends JFrame {
         
         movimientoCarr = movimientoCarretera(true);
         movimientoCarr.start();
-        // movimientoCarretera(true);
 	}
         
 	
@@ -399,13 +405,16 @@ public class VentanaSimulador extends JFrame {
             }
         };
 	}
-	
+	/*La reacción que debe tener el coche contemplando todas las situaciones posibles */
 	public static void cocheReaccion(Obstaculo o, Coche miCoche) {
 		listaObs.remove(o);
+		//Para saber si hay obstaculos con peligro de colisión en la circulación 
 		if (listaObs.isEmpty()|| o==null || (listaObs.get(0) instanceof Animal && o instanceof Animal) ||(o instanceof Animal && (listaObs.get(0) instanceof Peaton||listaObs.get(0) instanceof Senal ||listaObs.get(0) instanceof Semaforo))) {
+			//Reacción ante un otroCoche
 			if (o instanceof OtroCoche) {
 				if(miCoche.getX()==CARRIL_DCHO) {
 					listaObs.add(o);
+					//movimiento de miCoche
 					Thread movimientoOC= new Thread() {
 	        			public void run(){
 	        				while (miCoche.getX()>CARRIL_IZQ) {
@@ -418,6 +427,7 @@ public class VentanaSimulador extends JFrame {
 	        				}
 	        				miCoche.setX(CARRIL_IZQ);
 	        				listaObs.add(null);
+	        				//RECURSIVIDAD para volver a su carril
 	        				cocheReaccion(null,miCoche);
 	        			}
 					};
@@ -425,12 +435,19 @@ public class VentanaSimulador extends JFrame {
 			}
 				logger.log( Level.INFO, "OtroCoche superado con éxito" );
 			}		
+			//Reacción ante un animal o en general para volver a su carril
 			if (o instanceof Animal || o==null) {
 				listaObs.add(o);
 				if(miCoche.getX()==CARRIL_IZQ) {
+					//movimiento de miCoche
 					Thread movimientoA= new Thread() {
 	        			public void run(){
-	        				
+	        				try {
+								Thread.sleep(500);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 	        				while (miCoche.getX()<CARRIL_DCHO) {
 	        					try {
 	    							sleep(MS_SLEEP);
@@ -452,7 +469,8 @@ public class VentanaSimulador extends JFrame {
 				}
 			}
 		}else {
-				//cerra la simulación por colisión
+				//cerra la simulación por colisión y enseñar VentanaFin
+				System.out.println("Colisión entre:"+listaObs);
 				logger.log( Level.SEVERE, "COLISIÓN");
 				JOptionPane.showMessageDialog(null, "Se producirá una colisión. Debe mejorar el sistema", "ALERTA", JOptionPane.WARNING_MESSAGE);
 				vent.setVisible(false);
@@ -460,16 +478,20 @@ public class VentanaSimulador extends JFrame {
 				fin.setVisible(true);
 		}
 	}
+	//Crea un semaforo y aplica recursividad hasta que el semáforo creado tenga el Jlabel VERDE
 	public void cambiarSemaforo() {
 		Semaforo semafVerde= new Semaforo();
 		System.out.println("Color del semáforo:"+semafVerde.getColor().toString());
+		//Si el semaforo creado es rojo aplicar recursividad
 		if(semafVerde.getColor()==Semaforo.Color.ROJO) {
 			cambiarSemaforo();
 			
 		}else {
+			//Hacer aparecer el semáforo verde en pantalla
 			semafVerde.setY(370);
 			VentanaSimulador.simuladorPane.add(semafVerde.getLbl());
 			semafVerde.getLbl().setVisible(true);
+			//Movimiento del semáforo
 			Thread moverVerde= new Thread() {
 				
 				@Override
