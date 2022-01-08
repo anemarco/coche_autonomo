@@ -363,11 +363,13 @@ public class VentanaSimulador extends JFrame {
 		
 	public Thread movimientoCarretera(boolean activo){
 		return new Thread(){
+			//Crear la imagen del ultimo fondo
 			Image fondoImg = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE (16).jpg")).getImage();
 			ImageIcon fondoIcon = new ImageIcon(fondoImg.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
 			
 			@Override
-            public void run(){            	
+            public void run(){            
+				//añadir la imagen a la pantalla
             	simuladorPane.setLayout(null);
         		JLabel label = new JLabel(fondoIcon);
         		label.setBounds(COORD_FONDO.x, COORD_FONDO.y, TAM_FONDO.width, TAM_FONDO.height);
@@ -382,6 +384,7 @@ public class VentanaSimulador extends JFrame {
              		catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
+             		//poner la imagen del numero correspondiente en pantalla
                 	Image fondoImg2 = new ImageIcon(getClass().getResource("../simulador/img/FONDO COCHE ("+ num +").jpg")).getImage();
             		ImageIcon fondo2 = new ImageIcon(fondoImg2.getScaledInstance(TAM_VENT.width,TAM_VENT.height, Image.SCALE_SMOOTH));
             		simuladorPane.setLayout(null);
@@ -398,6 +401,7 @@ public class VentanaSimulador extends JFrame {
             		label = picSecond;
             		            		
             		num = num-1;
+            		//si el numero llega a 0 volver a empezar (sensación obtica de movimiento continuo)
             		if (num==0){
             			num = 16;  		
                     }
@@ -443,7 +447,7 @@ public class VentanaSimulador extends JFrame {
 					Thread movimientoA= new Thread() {
 	        			public void run(){
 	        				try {
-								Thread.sleep(500);
+								Thread.sleep(700);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
