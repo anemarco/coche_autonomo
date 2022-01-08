@@ -96,7 +96,7 @@ public class VentanaRegistro extends JFrame {
 		lblDni.setBounds(27, 94, 46, 14);
 		getContentPane().add(lblDni);
 		
-		JLabel lblContrasenya = new JLabel("Contraseña: ");
+		JLabel lblContrasenya = new JLabel("Contrasenya: ");
 		lblContrasenya.setBounds(27, 132, 85, 14);
 		getContentPane().add(lblContrasenya);
 		

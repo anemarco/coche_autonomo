@@ -124,61 +124,26 @@ public class VentanaInicio extends JFrame {
 		 * */
 		
 		btnIniciarSesion.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {				
-				iniciarSimulador();
+			
+			public void actionPerformed(ActionEvent e) {
 				String dni = textDni.getText();
 				String c = textContrasenya.getText();
-				if(!dni.equals("") && !c.equals("")) {
+				/*if(!dni.equals("") && !c.equals("")) {
 					BD.initBD("iniciosesion.db");
-					/*int resul = BD.obtenerMapaUsuarios(dni, null, null, c);
+					int resul = BD.obtenerMapaUsuarios();
 					if(resul == 0) {
 						JOptionPane.showMessageDialog(null, "No estás registrado, tienes que registrarte primero");
 					}else if(resul == 1) {
 						JOptionPane.showMessageDialog(null, "Contrasenya incorrecta");
 					}else {
 						JOptionPane.showMessageDialog(null, "Bienvenido");
-					}*/
-				}
-				
-				/*btnIniciarSesion.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						String nom = textNombre.getText();
-						String c = textContrasenia.getText();
-						if(!nom.equals("") && !c.equals("")) {
-							Connection con = BD.initBD("newton.db");
-							int resul = BD.obtenerUsuario(con, nom, c);
-							if(resul == 0) {
-								JOptionPane.showMessageDialog(null, "No estás registrado");
-								btnRegistro.setEnabled(true);
-							}else if(resul==1) {
-								JOptionPane.showMessageDialog(null, "La contraseña no es correcta");
-							}else {
-								JOptionPane.showMessageDialog(null, "Ongi etorri!");
-								activarBotones();
-							}
-						}
-						textNombre.setText("");
-						textContrasenia.setText("");
-					}
-				});*/
-				
-				//---------------------------------------------------------------------------------
-				/*
-				for (Usuario u : lUsuarios) {
-					if (u.getDni() == textDni.getText() || textDni.getText() == "admin") {
-						if (u.getContrasenia() == textContrasenya.getText() || textContrasenya.getText() == "admin") {
-							iniciarSimulador();
-						} else {
-							JOptionPane.showMessageDialog(null, "ContraseÃ±a incorrecta","ERROR", JOptionPane.ERROR_MESSAGE);
-						}
-						
-					} else {
-						JOptionPane.showMessageDialog(null, "Usuario no registrado","ERROR", JOptionPane.ERROR_MESSAGE);
 					}
 				}*/
+				if(textDni.getText().trim().equals("") || textContrasenya.getText().trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Por favor rellena todas los datos");
+				}else {
+					iniciarSimulador();
+				}
 				
 			}
 		});
