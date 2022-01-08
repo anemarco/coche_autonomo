@@ -124,13 +124,13 @@ public class VentanaInicio extends JFrame {
 		 * */
 		
 		btnIniciarSesion.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {				
 				iniciarSimulador();
 				String dni = textDni.getText();
 				String c = textContrasenya.getText();
 				if(!dni.equals("") && !c.equals("")) {
-					/*Connection con  = BD.initBD("iniciosesion.db");
-					int resul = BD.obtenerMapaUsuarios(dni, c);
+					BD.initBD("iniciosesion.db");
+					/*int resul = BD.obtenerMapaUsuarios(dni, null, null, c);
 					if(resul == 0) {
 						JOptionPane.showMessageDialog(null, "No estás registrado, tienes que registrarte primero");
 					}else if(resul == 1) {

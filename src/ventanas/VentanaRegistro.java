@@ -14,9 +14,11 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -115,7 +117,7 @@ public class VentanaRegistro extends JFrame {
 		getContentPane().add(tfDni);
 		tfDni.setColumns(10);
 		
-		tfContrasenya = new JTextField();
+		tfContrasenya = new JPasswordField();
 		tfContrasenya.setBounds(103, 129, 86, 20);
 		getContentPane().add(tfContrasenya);
 		tfContrasenya.setColumns(10);
@@ -145,39 +147,31 @@ public class VentanaRegistro extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (tfNombre.getText() != null &&
-					tfApellido.getText() != null &&
-					tfDni.getText() != null &&
-					tfContrasenya.getText() != null) {
-					
-					if (tfDni.getText().length() == 9 &&
-						Character.isDigit(tfDni.getText().indexOf(0)) &&
-						Character.isDigit(tfDni.getText().indexOf(1)) &&
-						Character.isDigit(tfDni.getText().indexOf(2)) &&
-						Character.isDigit(tfDni.getText().indexOf(3)) &&
-						Character.isDigit(tfDni.getText().indexOf(4)) &&
-						Character.isDigit(tfDni.getText().indexOf(5)) &&
-						Character.isDigit(tfDni.getText().indexOf(6)) &&
-						Character.isDigit(tfDni.getText().indexOf(7)) &&
-						Character.isUpperCase(tfDni.getText().indexOf(8))) {
-						
-						for (Usuario u : lUsuarios) {
-							if (u.getDni() == tfDni.getText()) {
-								JOptionPane.showMessageDialog(null, "Usuario ya registrado","ERROR", JOptionPane.ERROR_MESSAGE);
-								break;
-							} else {
-								BD.insertarUsuario(tfDni.getText(), tfNombre.getText(), tfApellido.getText(), tfContrasenya.getText());
-							}
-						}
-						
-					} else {
-						JOptionPane.showMessageDialog(null, "Dni no valido","ERROR", JOptionPane.ERROR_MESSAGE);
-					}
-					
-				} else {
-					JOptionPane.showMessageDialog(null, "Campo sin rellernar","ERROR", JOptionPane.ERROR_MESSAGE);
-				}	
+				String erdni = "[0-9]{8}[A-Z]";
+				String d = tfDni.getText();
+				boolean correctoDni = Pattern.matches(erdni, d);
+				if(correctoDni) {
+					String n = tfNombre.getText();
+					String a = tfApellido.getText();
+					String c = tfContrasenya.getText();
+					Usuario u = new Usuario(d, n, a, c);
+					VentanaInicio.tmUsuarios .put(u.getDni(), u);
+					JOptionPane.showMessageDialog(null, "Usuario regristrado correctamente", "REGISTRO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
+					vaciarCampos();
+				}else {
+					JOptionPane.showMessageDialog(null, "El dni no es correcto", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+				}
+				
 			}
 		});
+	}
+	/**
+	 * Vaciaria los campos cuando el usuario pulse un boton
+	 */
+	private void vaciarCampos() {
+		tfNombre.setText("");
+		tfApellido.setText("");
+		tfDni.setText("");
+		tfContrasenya.setText("");
 	}
 }
