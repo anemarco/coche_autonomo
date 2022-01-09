@@ -1,6 +1,5 @@
 package ventanas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -9,18 +8,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import baseDatos.BD;
 import baseDatos.Simulacion;
-
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 
 
@@ -28,13 +26,14 @@ public class VentanaFin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private JPanel contentPane, panelNorte, panelSur, panelCentral;
 	private JButton btnSalir, btnEliminar, btnEliminarTodosLosUsuarios, btnIrAlInicio;
 	
 	public static VentanaFin ventFin;
 	
 	private JTable tablaUsuarios;
 	private DefaultTableModel modeloTablaUsuarios;
+	private JTable tablaObstaculos;
+	private DefaultTableModel modeloTablaObstaculos;
 	
 	public static ArrayList<Simulacion> lSimulaciones;
 	
@@ -45,50 +44,58 @@ public class VentanaFin extends JFrame {
 	 */
 	public VentanaFin() {
 		ventFin = this;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(150, 100, 753, 500);
-		setLocationRelativeTo(null);
-		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(150, 100, 865, 530);
+		this.setLocationRelativeTo(null);
+		getContentPane().setLayout(null);
 		
 		lSimulaciones = BD.getSimulacionesDeUnaPersona(VentanaInicio.usuarioActivo.getDni());
 		
-		panelNorte = new JPanel();
-		contentPane.add(panelNorte, BorderLayout.NORTH);
+		/*Paneles*/
+		
+		JPanel pIzq = new JPanel();
+		pIzq.setBounds(10, 49, 475, 377);
+		getContentPane().add(pIzq);
+		
+		JPanel pDer = new JPanel();
+		pDer.setBounds(512, 87, 309, 339);
+		getContentPane().add(pDer);
+		
+		JPanel pBotones = new JPanel();
+		pBotones.setBounds(10, 437, 811, 43);
+		getContentPane().add(pBotones);
+		
+		JPanel pInfo = new JPanel();
+		pInfo.setBounds(10, 11, 811, 27);
+		getContentPane().add(pInfo);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(512, 49, 309, 27);
+		getContentPane().add(panel);
+		
+		
+		/*Componentes*/
 		
 		JLabel nomUsuario = new JLabel(VentanaInicio.usuarioActivo.getNombre());
-		panelNorte.add(nomUsuario);
+		pInfo.add(nomUsuario);
 		
-		panelSur = new JPanel();
+		JLabel info = new JLabel("Seleccione una simulación para más detalles");
+		panel.add(info);
 		
-		contentPane.add(panelSur, BorderLayout.SOUTH);
 		btnIrAlInicio = new JButton("Inicio");
-		panelSur.add(btnIrAlInicio);
+		pBotones.add(btnIrAlInicio);
 		
 		btnEliminar = new JButton("Eliminar usuario");
-		panelSur.add(btnEliminar);
-		
+		pBotones.add(btnEliminar);
 		
 		btnEliminarTodosLosUsuarios = new JButton("Eliminar todos los Usuarios");
-		panelSur.add(btnEliminarTodosLosUsuarios);
+		pBotones.add(btnEliminarTodosLosUsuarios);
 		
 		btnSalir = new JButton("Salir");
-		panelSur.add(btnSalir);
+		pBotones.add(btnSalir);
 		
-		panelCentral = new JPanel();
-		contentPane.add(panelCentral, BorderLayout.EAST);
+		/*TABLA USUARIOS*/
 		
-		JPanel panelInfo= new JPanel();
-		contentPane.add(panelInfo,BoxLayout.Y_AXIS);
-		
-		JLabel lblNewLabel = new JLabel("Resumen de la simulación");
-		panelInfo.add(lblNewLabel);
-		
-		
-		/*JTABLE*/
 		/**
 		 * Creamos una JTable que mostrar� el TreeMap de usuarios que han usado
 		 * el simulador con su nombre, dni y la puntuaci�n que han conseguido al 
@@ -112,8 +119,8 @@ public class VentanaFin extends JFrame {
 		modeloTablaUsuarios.setColumnIdentifiers(columnas);
 		
 		tablaUsuarios = new JTable(modeloTablaUsuarios);
-		JScrollPane scrollTabla = new JScrollPane(tablaUsuarios); //Falta a�adir al panel
-		panelCentral.add(scrollTabla);
+		JScrollPane scrollTabla = new JScrollPane(tablaUsuarios); 
+		pIzq.add(scrollTabla);
 		
 		for (Simulacion s : lSimulaciones) {
 			modeloTablaUsuarios.addRow(new Object[] {s.getFecha(), s.getDuracion(), s.getEstado(),1});
@@ -150,6 +157,15 @@ public class VentanaFin extends JFrame {
 			}
 		});
 		
+		/*TABLA OBSTACULOS*/
+		
+		Vector<String> cabeceras = new Vector<String>(Arrays.asList("Hora", "Nombre"));
+		modeloTablaObstaculos = new DefaultTableModel(
+				new Vector<Vector<Object>>(),
+				cabeceras
+		);
+		
+		/*BOTONES*/
 		
 		btnIrAlInicio.addActionListener(new ActionListener() {
 			
@@ -182,6 +198,4 @@ public class VentanaFin extends JFrame {
 			}
 		});
 	}
-	
-
 }

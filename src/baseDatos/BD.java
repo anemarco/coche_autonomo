@@ -121,7 +121,7 @@ public class BD {
 	 }
 	 
 	 /**
-	  * Método que lee todas las simulaciones de la base de datos
+	  * Método que lee todas las simulaciones ejecutadas por un usuario de la base de datos
 	  * @param con
 	  * @return Lista de las simulaciones
 	  */
@@ -145,6 +145,33 @@ public class BD {
 			 return null;
 		 }
 	 }
+	 
+	 /**
+	  * Método que lee todas los obstáculos creados en una simulación de la base de datos
+	  * @param fecha
+	  * @return
+	  */
+	 
+	 public static ArrayList<ObstaculoBD> getObstaculosDeUnaSimulacion(String fecha) {
+		 try (Statement st = con.createStatement()) {
+			 ArrayList<ObstaculoBD> lObstaculos = new ArrayList<>();
+			 String sent = "SELECT * FROM obstaculo WHERE fecha ='"+fecha+"';";
+			 ResultSet rs = st.executeQuery(sent);
+			 generarLog(sent);
+			 
+			 while (rs.next()) {
+				 String hora = rs.getString("hora");
+				 String nombre = rs.getString("nombre");
+				 lObstaculos.add(new ObstaculoBD(hora, nombre, fecha));
+			 }
+			 return lObstaculos;
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+			 return null;
+		 }
+	 }
+	 
+	
 	 
 	 /**
 	  * Insertar un obstaculo en la base de datos

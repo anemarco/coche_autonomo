@@ -19,12 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import baseDatos.BD;
+import baseDatos.Simulacion;
 import simulador.*;
 import simulador.Semaforo.Color;
 import simulador.Senal.Tipo;
-
-import java.awt.Point;
-import java.awt.Rectangle;
 
 public class VentanaSimulador extends JFrame {
 
@@ -92,36 +90,50 @@ public class VentanaSimulador extends JFrame {
 		miCoche = new Coche();
 		simuladorPane.add(miCoche.getLbl());
 		
-		//Crear panel para botones 
-		JPanel panelBotonero= new JPanel();
-		panelBotonero.setLayout(new BoxLayout(panelBotonero,BoxLayout.Y_AXIS));
-		
-		JLabel titulo = new JLabel("    OBSTÃ�CULOS ");
-		titulo.setFont(new Font("Agency FB", Font.PLAIN, 28));
-		panelBotonero.add(titulo);
-		
-		
+		JPanel panel = new JPanel();
+	    panel.setLayout(new BorderLayout());
+
 		/*Doble panel que contiene el panel y la lista anterior*/
 		
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,panelBotonero,simuladorPane);
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,panel ,simuladorPane);
 		cp.add(splitPane);
 		
+		JPanel panelBotonero = new JPanel();
+		panelBotonero .setLayout(new BoxLayout(panelBotonero ,BoxLayout.PAGE_AXIS));
+		panel.add(panelBotonero, BorderLayout.CENTER);
+	        
+	     JLabel titulo = new JLabel(" OBSTACULOS  ");
+	     panel.add(titulo, BorderLayout.NORTH);
+	     titulo.setFont(new Font("Agency FB", Font.PLAIN, 28));
+	        
+	     //Al pusar el boton salir de la simulación y que aparezca la VentanaFin
+	     JButton salir = new JButton("FINALIZAR");
+	     panel.add(salir, BorderLayout.SOUTH);
+	     //salir.setBackground(java.awt.Color.RED);
+	     //salir.setForeground(java.awt.Color.WHITE);
+		
 		//Crear botones de cada obstÃ¡culo y aÃ±adirlos al panel
-		JButton bPeaton	= new JButton("           Peatón         ");
-		JButton bCoche = new JButton("        Otro Coche      ");
-		JButton bSemaf = new JButton("         Semáforo       ");
-		JButton bStop = new JButton("             STOP           ");
+		
+	    JButton bPeaton	= new JButton("  Peatón  ");
+		bPeaton.setMaximumSize(new Dimension(Integer.MAX_VALUE, bPeaton.getMinimumSize().height));
+		JButton bCoche = new JButton("  Otro Coche  ");
+		bCoche.setMaximumSize(new Dimension(Integer.MAX_VALUE, bCoche.getMinimumSize().height));
+		JButton bSemaf = new JButton("  Semáforo  ");
+		bSemaf.setMaximumSize(new Dimension(Integer.MAX_VALUE, bSemaf.getMinimumSize().height));
+		JButton bStop = new JButton("  STOP  ");
+		bStop.setMaximumSize(new Dimension(Integer.MAX_VALUE, bStop.getMinimumSize().height));
 		/*JButton bCeda = new JButton("             Ceda            ");
 		JButton bSentidoCon = new JButton(" Sentido Contrario ");		Para el futuro*/
-		JButton bAnimal = new JButton("            Animal          ");
+		JButton bAnimal = new JButton("  Animal  ");
+		bAnimal.setMaximumSize(new Dimension(Integer.MAX_VALUE, bAnimal.getMinimumSize().height));
 		  
-		panelBotonero.add(bPeaton);
-		panelBotonero.add(bCoche );
-		panelBotonero.add(bSemaf );
-		panelBotonero.add(bStop );
+		panelBotonero .add(bPeaton);
+		panelBotonero .add(bCoche );
+		panelBotonero .add(bSemaf );
+		panelBotonero .add(bStop );
 		//panelBotonero.add(bCeda );
 		//panelBotonero.add(bSentidoCon );
-		panelBotonero.add(bAnimal );
+		panelBotonero .add(bAnimal );
 		
 		/*BotÃ³n que cree un obtÃ¡culo peaton*/
 		
@@ -364,11 +376,6 @@ public class VentanaSimulador extends JFrame {
         		moverAnimal.start();
 			}
         });
-        //Al pusar el boton salir de la simulación y que aparezca la VentanaFin
-        JButton salir = new JButton("SALIR");
-        salir.setBackground(java.awt.Color.RED);
-        salir.setForeground(java.awt.Color.WHITE);
-        panelBotonero.add(salir);
         
         salir.addActionListener(new ActionListener() {
 			

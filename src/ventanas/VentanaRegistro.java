@@ -42,14 +42,14 @@ public class VentanaRegistro extends JFrame {
 		
 		this.setTitle("REGISTRO");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(700, 500);
+		this.setSize(727, 529);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
 		/*Panel de la tabla*/
 		
 		JPanel panelTabla = new JPanel();
-		panelTabla.setBounds(199, 11, 475, 439);
+		panelTabla.setBounds(226, 40, 475, 439);
 		getContentPane().add(panelTabla);
 		
 		table = new JTable();
@@ -88,52 +88,60 @@ public class VentanaRegistro extends JFrame {
 		/*Crar JLabels*/
 		
 		JLabel lblNombre = new JLabel("Nombre: ");
-		lblNombre.setBounds(27, 44, 85, 14);
+		lblNombre.setBounds(20, 93, 85, 14);
 		getContentPane().add(lblNombre);
 		
 		JLabel lblApellido = new JLabel("Apellido: ");
-		lblApellido.setBounds(27, 69, 65, 14);
+		lblApellido.setBounds(20, 118, 65, 14);
 		getContentPane().add(lblApellido);
 		
 		JLabel lblDni = new JLabel("DNI:");
-		lblDni.setBounds(27, 94, 46, 14);
+		lblDni.setBounds(20, 142, 46, 14);
 		getContentPane().add(lblDni);
 		
 		JLabel lblContrasenya = new JLabel("Contrasenya: ");
-		lblContrasenya.setBounds(27, 132, 85, 14);
+		lblContrasenya.setBounds(20, 167, 85, 14);
 		getContentPane().add(lblContrasenya);
 		
 		/*Crara JTextFields*/
 		
 		tfNombre = new JTextField();
-		tfNombre.setBounds(103, 35, 86, 20);
+		tfNombre.setBounds(103, 90, 86, 20);
 		getContentPane().add(tfNombre);
 		tfNombre.setColumns(10);
 		
 		tfApellido = new JTextField();
-		tfApellido.setBounds(102, 66, 86, 20);
+		tfApellido.setBounds(103, 115, 86, 20);
 		getContentPane().add(tfApellido);
 		tfApellido.setColumns(10);
 		
 		tfDni = new JTextField();
-		tfDni.setBounds(103, 97, 86, 20);
+		tfDni.setBounds(103, 139, 86, 20);
 		getContentPane().add(tfDni);
 		tfDni.setColumns(10);
 		
 		tfContrasenya = new JPasswordField();
-		tfContrasenya.setBounds(103, 129, 86, 20);
+		tfContrasenya.setBounds(105, 164, 86, 20);
 		getContentPane().add(tfContrasenya);
 		tfContrasenya.setColumns(10);
 		
 		/*Crear Botones*/
 		
 		JButton btnRegistrar = new JButton("REGISTRAR");
-		btnRegistrar.setBounds(59, 181, 105, 23);
+		btnRegistrar.setBounds(50, 209, 105, 23);
 		getContentPane().add(btnRegistrar);
 		
 		JButton btnInicio = new JButton("INICIO");
-		btnInicio.setBounds(10, 427, 105, 23);
+		btnInicio.setBounds(20, 456, 105, 23);
 		getContentPane().add(btnInicio);
+		
+		JLabel lblNewLabel = new JLabel("Introduzca sus datos");
+		lblNewLabel.setBounds(50, 53, 142, 14);
+		getContentPane().add(lblNewLabel);
+		
+		JLabel lblUsuarios = new JLabel("Usuarios");
+		lblUsuarios.setBounds(432, 15, 115, 14);
+		getContentPane().add(lblUsuarios);
 		
 		btnInicio.addActionListener(new ActionListener() {
 			
