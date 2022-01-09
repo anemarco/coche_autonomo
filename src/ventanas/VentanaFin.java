@@ -29,6 +29,8 @@ import javax.swing.JTextArea;
 
 public class VentanaFin extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane, panelNorte, panelSur, panelCentral;
 	private JButton btnSalir, btnEliminar, btnEliminarTodosLosUsuarios, btnIrAlInicio;
 	
