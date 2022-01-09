@@ -3,6 +3,8 @@ package ventanas;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+
+import baseDatos.BD;
 import simulador.*;
 import simulador.Semaforo.Color;
 import simulador.Senal.Tipo;
@@ -52,7 +56,9 @@ public class VentanaSimulador extends JFrame {
 	public static OtroCoche otro;
 	public Thread movimientoCarr;
 	
-	static Date fecha;
+	static String fecha;
+	static long tiempoInicial;
+	static long tiempoFinal;
 
 	/*Main*/
 	
@@ -68,8 +74,19 @@ public class VentanaSimulador extends JFrame {
 		
 		logger.log( Level.INFO, "Inicio de la simulación" );
 		vent = this;
+		fecha = VentanaFin.sdf.format(new Date());
+		System.out.println(fecha);
+		tiempoInicial = System.currentTimeMillis();
+		System.out.println(tiempoInicial);
 		
-		fecha = new Date();
+		this.addWindowListener(new WindowAdapter() {
+			
+			@Override
+			public void windowClosing (WindowEvent e) {
+				tiempoFinal = System.currentTimeMillis();
+				BD.insertarSimulacion(fecha, tiempoFinal-tiempoInicial, listaObs);
+			}
+		});
 		
 		this.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		this.setTitle( "Coche Autonomo" );
@@ -149,7 +166,6 @@ public class VentanaSimulador extends JFrame {
         				}
         				//eliminar peatón de la pantalla y de la listaObs
         				simuladorPane.remove(peaton.getLbl());
-        				listaObs.remove(peaton);
         	    		peaton.getLbl().setVisible(false);
         	    		logger.log( Level.INFO, "Objeto Peaton eliminado");
         			}	
@@ -190,7 +206,6 @@ public class VentanaSimulador extends JFrame {
         				//eliminar a OtroCoche de la pantalla
         				simuladorPane.remove(otroCoche.getLbl());
         	    		otroCoche.getLbl().setVisible(false);
-        	    		listaObs.remove(otroCoche);
         	    		logger.log( Level.INFO, "Objeto OtroCoche eliminado");
         	    		//Abilitar de nuevo el botón
         	    		bCoche.setEnabled(true);
@@ -212,7 +227,6 @@ public class VentanaSimulador extends JFrame {
 				//Hacer aparecer un semaforo por pantalla
 				Semaforo semaf = new Semaforo();
 				simuladorPane.add(semaf.getLbl());
-				listaObs.add(semaf);
 				logger.log( Level.INFO, "Objeto Semáforo añadido");
 				//Movimiento del semáforo
         		Thread moverSemaf = new Thread() {
@@ -243,7 +257,6 @@ public class VentanaSimulador extends JFrame {
         				//eliminar semáforo de la pantalla y de la listaObs
         				simuladorPane.remove(semaf.getLbl());
         	    		semaf.getLbl().setVisible(false);
-        	    		listaObs.remove(semaf);
         	    		logger.log( Level.INFO, "Objeto Semáforo eliminado");
         			}
         				
@@ -289,7 +302,6 @@ public class VentanaSimulador extends JFrame {
         				}
         				//eliminar STOP de la pantalla y de la listaObs
         				simuladorPane.remove(stop.getLbl());
-        				listaObs.remove(stop);
         	    		stop.getLbl().setVisible(false);
         	    		logger.log( Level.INFO, "Objeto Señal tipo Stop eliminado");
         			}
@@ -329,7 +341,6 @@ public class VentanaSimulador extends JFrame {
         				//eliminar semáforo de la pantalla y de la listaObs
         				System.out.println("SALE");
         				simuladorPane.remove(oveja.getLbl());
-        				listaObs.remove(oveja);
         				logger.log( Level.INFO, "Objeto Animal eliminado");
         	    		oveja.getLbl().setVisible(false);
         	    		
@@ -356,6 +367,8 @@ public class VentanaSimulador extends JFrame {
 				fin.setVisible(true);
 			}
 		});
+        
+        
         
         movimientoCarr = movimientoCarretera(true);
         movimientoCarr.start();

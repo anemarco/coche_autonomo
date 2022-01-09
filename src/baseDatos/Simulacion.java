@@ -2,48 +2,40 @@ package baseDatos;
 
 public class Simulacion {
 	
-	private String cod;
-	private long fecha;
-	private String hora;
-	private float duracion;
+	private String fecha;
+	private long duracion;
+	private String dni;
 	
-	public Simulacion(String cod, long fecha, String hora, float duracion) {
+	public Simulacion(String fecha, long duracion, String dni) {
 		super();
-		this.cod = cod;
 		this.fecha = fecha;
-		this.hora = hora;
 		this.duracion = duracion;
+		this.dni = dni;
 	}
 
-	public String getCod() {
-		return cod;
-	}
-
-	public void setCod(String cod) {
-		this.cod = cod;
-	}
-
-	public long getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(long fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
-	public String getHora() {
-		return hora;
-	}
-
-	public void setHora(String hora) {
-		this.hora = hora;
-	}
-
-	public float getDuracion() {
+	public long getDuracion() {
 		return duracion;
 	}
 
-	public void setDuracion(float duracion) {
+	public void setDuracion(long duracion) {
 		this.duracion = duracion;
 	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	
+	
 }

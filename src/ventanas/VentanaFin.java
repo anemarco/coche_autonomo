@@ -10,9 +10,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import baseDatos.BD;
+import baseDatos.Simulacion;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class VentanaFin extends JFrame {
@@ -25,7 +31,9 @@ public class VentanaFin extends JFrame {
 	private JTable tablaUsuarios;
 	private DefaultTableModel modeloTablaUsuarios;
 	
-	private static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" ); 
+	public static ArrayList<Simulacion> lSimulaciones;
+	
+	public static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" ); 
 
 	/**
 	 * Create the frame.
@@ -40,6 +48,8 @@ public class VentanaFin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		lSimulaciones = BD.getSimulacionesDeUnaPersona(VentanaInicio.usuarioActivo.getDni());
 		
 		panelNorte = new JPanel();
 		contentPane.add(panelNorte, BorderLayout.NORTH);
@@ -83,12 +93,18 @@ public class VentanaFin extends JFrame {
 			}
 		};
 		
-		String [] columnas = {"Fecha", "Hora", "Duración", "Obstáculos"};
+		String [] columnas = {"Fecha", "Duración", "Obstáculos"};
 		modeloTablaUsuarios.setColumnIdentifiers(columnas);
 		
 		tablaUsuarios = new JTable(modeloTablaUsuarios);
 		JScrollPane scrollTabla = new JScrollPane(tablaUsuarios); //Falta a�adir al panel
 		panelCentral.add(scrollTabla);
+		
+		for (Simulacion s : lSimulaciones) {
+			modeloTablaUsuarios.addRow(new Object[] {s.getFecha(), s.getDuracion(), 1});
+		}
+		
+		tablaUsuarios.setModel(modeloTablaUsuarios);
 		
 		
 		btnIrAlInicio.addActionListener(new ActionListener() {

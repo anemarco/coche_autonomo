@@ -122,24 +122,23 @@ public class BD {
 	 }
 	 
 	 /**
-	  * Método que lee todas las simulaciones de la base de datos, las convierte a objetos
-	  * y las guarda en una lista
+	  * Método que lee todas las simulaciones de la base de datos
 	  * @param con
-	  * @return Lista de todas las simulaciones de la BD
+	  * @return Lista de las simulaciones
 	  */
 	 
-	 public static ArrayList<Simulacion> getSimulaciones() {
+	 public static ArrayList<Simulacion> getSimulacionesDeUnaPersona(String dni) {
 		 try (Statement st = con.createStatement()) {
 			 ArrayList<Simulacion> lSimulaciones = new ArrayList<>();
-			 String sent = "SELECT * FROM simulacion;";
+			 String sent = "SELECT * FROM simulacion WHERE dni ='"+dni+"';";
 			 ResultSet rs = st.executeQuery(sent);
 			 generarLog(sent);
 			 
 			 while (rs.next()) {
-				 String cod = rs.getString("cod");
-				 
+				 String fecha = rs.getString("fecha");
+				 long duracion = rs.getLong("duracion");
+				 lSimulaciones.add(new Simulacion(fecha, duracion, dni));
 			 }
-			 
 			 return lSimulaciones;
 		 } catch (SQLException e) {
 			 e.printStackTrace();
@@ -154,8 +153,7 @@ public class BD {
 	  * @param lObstaculos Lista de óbstáculos ejecutados en la simulación
 	  */
 	 
-	 public static void insertarSimulacion(Date fecha, float duracion, ArrayList<Obstaculo> lObstaculos) {
-		
+	 public static void insertarSimulacion(String fecha, long duracion, ArrayList<Obstaculo> lObstaculos) {
 		 String sent = "INSERT INTO usuario VALUES("+fecha+","+duracion+"," + VentanaInicio.usuarioActivo.getDni() +");";
 		 
 		 try {

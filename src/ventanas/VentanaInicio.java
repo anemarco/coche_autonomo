@@ -122,8 +122,7 @@ public class VentanaInicio extends JFrame {
 							usuarioActivo = u;
 							iniciarSimulador();
 						} else {
-							JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
-							break;
+							
 						}
 					}
 				}
