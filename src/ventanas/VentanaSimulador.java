@@ -157,13 +157,27 @@ public class VentanaSimulador extends JFrame {
         					
         					try {
     							sleep(MS_SLEEP);
+    							if(peaton.getX()<560 && peaton.getX()>350) {    				
+    								//Reacción del coche
+    								movimientoCarr.suspend();
+    								peaton.mover(20, 0);
+    							}
+    							else if(peaton.getX()==570) {
+    								movimientoCarr.resume();
+    								peaton.mover(20, 20);
+    							}
+    							else {
+    								peaton.mover(20, 20);
+    							}
+    								
+    								
     						} catch (InterruptedException e1) {
     							e1.printStackTrace();
     						}
         					
-        					peaton.mover(20, 20);
-  
+        					
         				}
+        				
         				//eliminar peatón de la pantalla y de la listaObs
         				simuladorPane.remove(peaton.getLbl());
         	    		peaton.getLbl().setVisible(false);

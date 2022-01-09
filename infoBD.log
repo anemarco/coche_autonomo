@@ -1112,3 +1112,129 @@ ene. 09, 2022 2:55:22 A. M. baseDatos.BD generarLog
 INFO: SELECT * FROM usuario;
 ene. 09, 2022 2:55:36 A. M. baseDatos.BD generarLog
 INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene. 09, 2022 12:19:00 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:19:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:20:14 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:20:14 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:20:40 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:20:40 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:21:16 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:21:16 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:23:48 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:23:48 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:24:19 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene. 09, 2022 12:26:02 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:26:02 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:27:12 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:27:13 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:27:42 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:27:42 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:28:25 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:28:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:28:54 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene. 09, 2022 12:31:18 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:31:18 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:34:38 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:34:38 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:35:26 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:35:26 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:40:10 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:40:10 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:42:09 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:42:09 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:42:43 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:42:43 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:44:05 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:44:05 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:46:57 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:46:57 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 12:48:26 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 12:48:26 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:17:41 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:17:41 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:18:08 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:18:08 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:21:13 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:21:13 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:24:33 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:24:33 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:25:30 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:25:30 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:26:41 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:26:41 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:28:00 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:28:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:29:19 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:29:19 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:30:14 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:30:14 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:31:37 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:31:37 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:32:44 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:32:44 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 1:33:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene. 09, 2022 1:34:30 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 09, 2022 1:34:30 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;

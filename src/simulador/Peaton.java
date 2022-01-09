@@ -12,7 +12,7 @@ public class Peaton extends Obstaculo {
 	/*Constantes*/
 	
 	public static final Rectangle TAMANYO = new Rectangle(40, 60);
-	public static final Point COORD_DEFECT = new Point(310, 100); 
+	public static final Point COORD_DEFECT = new Point(110, 20); 
 	
 	public Peaton() {
 		
