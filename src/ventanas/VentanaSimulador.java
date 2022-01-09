@@ -3,7 +3,9 @@ package ventanas;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,8 +40,6 @@ public class VentanaSimulador extends JFrame {
 	private static final int ARCEN_DCHO = 330;
 	private static final int ARCEN_IZQ = 552;
 	
-	
-	
 	private static Logger logger = Logger.getLogger("Simulador");
 	
 	/*Atributos*/
@@ -51,14 +51,15 @@ public class VentanaSimulador extends JFrame {
 	public Coche miCoche;
 	public static OtroCoche otro;
 	public Thread movimientoCarr;
+	
+	static Date fecha;
 
 	/*Main*/
 	
 	public static void main(String[] args) {
 		
 		VentanaInicio ventInicio = new VentanaInicio();
-		ventInicio.setVisible(true);
-		
+		ventInicio.setVisible(true);	
 	}
 	
 	/**Constructor de ventana*/
@@ -67,6 +68,8 @@ public class VentanaSimulador extends JFrame {
 		
 		logger.log( Level.INFO, "Inicio de la simulación" );
 		vent = this;
+		
+		fecha = new Date();
 		
 		this.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		this.setTitle( "Coche Autonomo" );

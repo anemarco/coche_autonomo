@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -11,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 
 public class VentanaFin extends JFrame {
@@ -22,6 +24,8 @@ public class VentanaFin extends JFrame {
 	
 	private JTable tablaUsuarios;
 	private DefaultTableModel modeloTablaUsuarios;
+	
+	private static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" ); 
 
 	/**
 	 * Create the frame.
@@ -39,6 +43,9 @@ public class VentanaFin extends JFrame {
 		
 		panelNorte = new JPanel();
 		contentPane.add(panelNorte, BorderLayout.NORTH);
+		
+		JLabel nomUsuario = new JLabel(VentanaInicio.usuarioActivo.getNombre());
+		panelNorte.add(nomUsuario);
 		
 		panelSur = new JPanel();
 		
@@ -76,7 +83,7 @@ public class VentanaFin extends JFrame {
 			}
 		};
 		
-		String [] columnas = {"NOMBRE", "DNI", "PUNTUACI�N"};
+		String [] columnas = {"Fecha", "Hora", "Duración", "Obstáculos"};
 		modeloTablaUsuarios.setColumnIdentifiers(columnas);
 		
 		tablaUsuarios = new JTable(modeloTablaUsuarios);

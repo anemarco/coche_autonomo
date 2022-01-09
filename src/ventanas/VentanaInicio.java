@@ -11,7 +11,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.TreeMap;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -29,7 +31,8 @@ public class VentanaInicio extends JFrame {
 	
 	public static VentanaInicio ventInic;
 	
-	private ArrayList<Usuario> lUsuarios;
+	public static ArrayList<Usuario> lUsuarios;
+	public static Usuario usuarioActivo;
 	
 
 	/**
@@ -39,19 +42,8 @@ public class VentanaInicio extends JFrame {
 		
 		ventInic = this;
 		
-		/*Conectar con la base de datos*/
-		
-		addWindowListener(new WindowAdapter() {
-			
-			@Override
-			public void windowOpened(WindowEvent e) {
-				BD.initBD("simulacion.bd");
-				BD.crearTablas();
-				lUsuarios = BD.getUsuarios();
-			}
-		});
-		
-	
+		BD.initBD("simulacion.bd");
+		lUsuarios = BD.getUsuarios();
 		
 		/*Connection con = BD.initBD("iniciosesion.db");
 		BD.crearTablas(con);
@@ -81,14 +73,6 @@ public class VentanaInicio extends JFrame {
 		JButton btnRegistrar = new JButton("REGISTRAR");
 		btnRegistrar.setBounds(464, 427, 110, 23);
 		getContentPane().add(btnRegistrar);
-	
-		
-		/*lblNombreUsuario = new JLabel("Introduce tu nombre:");
-		panelCentral.add(lblNombreUsuario);
-		
-		textNombre = new JTextField();
-		panelCentral.add(textNombre);
-		textNombre.setColumns(10);*/
 		
 		JLabel lblDni = new JLabel("Introduce tu DNI:");
 		lblDni.setBounds(129, 178, 118, 28);
@@ -127,25 +111,37 @@ public class VentanaInicio extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				String dni = textDni.getText();
-				String c = textContrasenya.getText();
+				String cont = textContrasenya.getText();
+				
+				if(textDni.getText().trim().equals("") || textContrasenya.getText().trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Por favor rellena todas los datos");
+					
+				} else {
+					for (Usuario u : lUsuarios) {
+						if ((u.getDni().equals(dni)) && (u.getContrasenia().equals(cont))) {
+							usuarioActivo = u;
+							iniciarSimulador();
+						} else {
+							JOptionPane.showMessageDialog(null, "Usuario o contraseÃ±a incorrectos");
+							break;
+						}
+					}
+				}
+				
 				/*if(!dni.equals("") && !c.equals("")) {
 					BD.initBD("iniciosesion.db");
 					int resul = BD.obtenerMapaUsuarios();
 					if(resul == 0) {
-						JOptionPane.showMessageDialog(null, "No estás registrado, tienes que registrarte primero");
+						JOptionPane.showMessageDialog(null, "No estï¿½s registrado, tienes que registrarte primero");
 					}else if(resul == 1) {
 						JOptionPane.showMessageDialog(null, "Contrasenya incorrecta");
 					}else {
 						JOptionPane.showMessageDialog(null, "Bienvenido");
 					}
 				}*/
-				if(textDni.getText().trim().equals("") || textContrasenya.getText().trim().equals("")) {
-					JOptionPane.showMessageDialog(null, "Por favor rellena todas los datos");
-				}else {
-					iniciarSimulador();
-				}
 				
 			}
+			
 		});
 		
 	

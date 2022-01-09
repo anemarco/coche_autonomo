@@ -66,19 +66,25 @@ public class VentanaRegistro extends JFrame {
 				cabeceras
 		);
 		
-		lUsuarios = BD.getUsuarios();
-		for (Usuario u : lUsuarios) {
+		for (Usuario u : VentanaInicio.lUsuarios) {
 			mTable.addRow(new Object[] {u.getDni(), u.getNombre(), u.getApellido()});
 		}
 		
 		table.setModel(mTable);
 		
+		
 		addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-			}
+				if (e.isAltDown()) {
+					
+					int selectRow = table.rowAtPoint(e.getPoint());
+					if (selectRow >= 0) {
+						
+					}
+				}
+			} 
 			
 		});
 		
@@ -159,12 +165,13 @@ public class VentanaRegistro extends JFrame {
 					JOptionPane.showMessageDialog(null, "Usuario regristrado correctamente", "REGISTRO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
 					vaciarCampos();
 				}else {
-					JOptionPane.showMessageDialog(null, "El dni no es correcto", "��ERROR!!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "El dni no es correcto", "��ERROR!!", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
 		});
 	}
+	
 	/**
 	 * Vaciaria los campos cuando el usuario pulse un boton
 	 */
@@ -174,4 +181,28 @@ public class VentanaRegistro extends JFrame {
 		tfDni.setText("");
 		tfContrasenya.setText("");
 	}
+}
+
+/**
+ * Ventana de confirmación que pedirá una contraseña cuando se desee 
+ * borrar un usuario de la BD
+ * @author iness
+ */
+
+class VentanaConfirmacion extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	
+	public VentanaConfirmacion() {
+		this.setTitle("VENTANA DE CONFIRMACIÓN");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(100, 60);
+		this.setLocationRelativeTo(null);
+		getContentPane().setLayout(null);
+		
+		JLabel info = new JLabel("Para borrar el usuario X ha de introducir su contraseña");
+		getContentPane().add(info);
+		
+	}
+	
 }

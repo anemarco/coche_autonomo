@@ -8,15 +8,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.TreeMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import simulador.Obstaculo;
+import ventanas.VentanaInicio;
+
 public class BD {
-	
-	private static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" ); 
-	private static SimpleDateFormat sdf2 = new SimpleDateFormat( "dd/MM/yyyy" ); 
 	
 	static Connection con;
 	
@@ -145,7 +146,27 @@ public class BD {
 			 return null;
 		 }
 	 }
-	
+	 
+	 /**
+	  * Insertar un nueva lod datos de una simulación 
+	  * @param fecha y hora Fecha de ejecución
+	  * @param duracion Duración de la simulación
+	  * @param lObstaculos Lista de óbstáculos ejecutados en la simulación
+	  */
+	 
+	 public static void insertarSimulacion(Date fecha, float duracion, ArrayList<Obstaculo> lObstaculos) {
+		
+		 String sent = "INSERT INTO usuario VALUES("+fecha+","+duracion+"," + VentanaInicio.usuarioActivo.getDni() +");";
+		 
+		 try {
+				Statement stmt = con.createStatement();
+				stmt.executeUpdate(sent);
+				generarLog(sent);
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	 }
 	
 	/**
 	 * Insertara el usuario que se solicite
