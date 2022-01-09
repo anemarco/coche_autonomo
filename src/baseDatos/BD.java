@@ -6,9 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.TreeMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
@@ -16,6 +14,7 @@ import java.util.logging.SimpleFormatter;
 
 import simulador.Obstaculo;
 import ventanas.VentanaInicio;
+import ventanas.VentanaSimulador;
 
 public class BD {
 	
@@ -145,6 +144,26 @@ public class BD {
 			 e.printStackTrace();
 			 return null;
 		 }
+	 }
+	 
+	 /**
+	  * Insertar un obstaculo en la base de datos
+	  * @param hora
+	  * @param nombre
+	  * @param fecha
+	  */
+	 
+	 public static void insertarObstaculo(String hora, String nombre, String fecha) {
+		 String sent = "INSERT INTO obstaculo VALUES('"+hora+"','"+nombre+"','"+VentanaSimulador.fecha+"');";
+		 
+		 try {
+				Statement stmt = con.createStatement();
+				stmt.executeUpdate(sent);
+				generarLog(sent);
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 	 }
 	 
 	 /**

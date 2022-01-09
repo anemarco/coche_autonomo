@@ -3,7 +3,6 @@ package ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,16 +15,14 @@ import javax.swing.table.DefaultTableModel;
 
 import baseDatos.BD;
 import baseDatos.Simulacion;
-import ventanas.VentanaSimulador.Estado;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
+
 
 public class VentanaFin extends JFrame {
 
@@ -91,7 +88,6 @@ public class VentanaFin extends JFrame {
 		panelInfo.add(lblNewLabel);
 		
 		
-		
 		/*JTABLE*/
 		/**
 		 * Creamos una JTable que mostrar� el TreeMap de usuarios que han usado
@@ -100,6 +96,8 @@ public class VentanaFin extends JFrame {
 		 */
 		modeloTablaUsuarios = new DefaultTableModel() {
 			
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public boolean isCellEditable(int row, int col) {
 				if(col == 0 && col == 1 && col == 2) {

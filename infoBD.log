@@ -1518,3 +1518,25 @@ ene. 09, 2022 7:21:02 P. M. baseDatos.BD generarLog
 INFO: INSERT INTO simulacion VALUES('09/01/2022 19:20:54',6,'FRACASO','11111111A');
 ene. 09, 2022 7:21:02 P. M. baseDatos.BD generarLog
 INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene. 09, 2022 10:30:50 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 09, 2022 10:30:50 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 10:31:05 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('09/01/2022 22:30:59',3,'FRACASO','11111111A');
+ene. 09, 2022 10:31:05 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene. 09, 2022 10:32:06 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 09, 2022 10:32:06 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 10:32:40 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 09, 2022 10:32:40 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 09, 2022 10:32:54 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:32:54 p. m.','Coche','09/01/2022 22:32:50');
+ene. 09, 2022 10:32:59 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:32:59 p. m.','Peaton','09/01/2022 22:32:50');
+ene. 09, 2022 10:33:03 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:33:03 p. m.','Semaforo','09/01/2022 22:32:50');

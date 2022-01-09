@@ -3,10 +3,7 @@ package ventanas;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.text.DecimalFormat;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -44,8 +41,6 @@ public class VentanaSimulador extends JFrame {
 
 	public static final int CARRIL_DCHO = 492;
 	public static final int CARRIL_IZQ = 390;
-	private static final int ARCEN_DCHO = 330;
-	private static final int ARCEN_IZQ = 552;
 	
 	private static Logger logger = Logger.getLogger("Simulador");
 	
@@ -58,10 +53,11 @@ public class VentanaSimulador extends JFrame {
 	public Coche miCoche;
 	public static OtroCoche otro;
 	public Thread movimientoCarr;
-	
-	static String fecha;
+
+	public static String fecha;
 	static long tiempoInicial;
 	static long tiempoFinal;
+	static long tiempoActual;
 
 	/*Main*/
 	
@@ -138,12 +134,14 @@ public class VentanaSimulador extends JFrame {
 				Peaton peaton = new Peaton();
 				simuladorPane.add(peaton.getLbl());
 				listaObs.add(peaton);
+				guardarObjetoBD(peaton);
 				logger.log( Level.INFO, "Objeto Peaton añadido" );
 				
 				
 				/*Hilo de movimiento del peatÃ³n*/
 				Thread moverPeaton= new Thread() {
 					
+					@SuppressWarnings("removal")
 					@Override
         			public void run(){
         				
@@ -193,6 +191,7 @@ public class VentanaSimulador extends JFrame {
 				OtroCoche otroCoche = new OtroCoche(CARRIL_DCHO, 10);
 				simuladorPane.add(otroCoche.getLbl());
 				listaObs.add(otroCoche);
+				guardarObjetoBD(otroCoche);
 				logger.log( Level.INFO, "Objeto OtroCoche añadido");
 				//llamar al metodo cocheReaccion para que el miCoche actue en base a la situación
 				cocheReaccion(otroCoche, miCoche);
@@ -235,10 +234,12 @@ public class VentanaSimulador extends JFrame {
 				//Hacer aparecer un semaforo por pantalla
 				Semaforo semaf = new Semaforo();
 				simuladorPane.add(semaf.getLbl());
+				guardarObjetoBD(semaf);
 				logger.log( Level.INFO, "Objeto Semáforo añadido");
 				//Movimiento del semáforo
         		Thread moverSemaf = new Thread() {
-        			public void run(){
+        			@SuppressWarnings("removal")
+					public void run(){
         				
         				while (semaf.getY()<500) {
         					try {
@@ -284,12 +285,14 @@ public class VentanaSimulador extends JFrame {
 				Senal stop = new Senal(Tipo.STOP);
 				simuladorPane.add(stop.getLbl());
 				listaObs.add(stop);
+				guardarObjetoBD(stop);
 				logger.log( Level.INFO, "Objeto Señal tipo Stop añadido");
 				
 				//Movimiento del STOP
         		Thread moverStop = new Thread() {
         			
-        			public void run(){
+        			@SuppressWarnings("removal")
+					public void run(){
         				while (stop.getY()<500) {
         					try {
     							sleep(MS_SLEEP);    							     						
@@ -328,6 +331,7 @@ public class VentanaSimulador extends JFrame {
 				Animal oveja = new Animal();
 				simuladorPane.add(oveja.getLbl());
 				listaObs.add(oveja);
+				guardarObjetoBD(oveja);
 				logger.log( Level.INFO, "Objeto Animal añadido");
 				//movimiento del animal y reacción del coche
 				cocheReaccion(oveja,miCoche);
@@ -373,8 +377,6 @@ public class VentanaSimulador extends JFrame {
 				finSimulacion(Estado.EXITO);
 			}
 		});
-        
-        
         
         movimientoCarr = movimientoCarretera(true);
         movimientoCarr.start();
@@ -438,8 +440,8 @@ public class VentanaSimulador extends JFrame {
 	
 	/** 
 	 * La reacción que debe tener el coche contemplando todas las situaciones posibles 
-	 * @param o
-	 * @param miCoche
+	 * @param o Obstaclulo
+	 * @param miCoche Coche autónomo
 	 */
 	
 	public static void cocheReaccion(Obstaculo o, Coche miCoche) {
@@ -558,7 +560,7 @@ public class VentanaSimulador extends JFrame {
 		tiempoFinal = System.currentTimeMillis();
 		
 		if (e == Estado.EXITO) {
-			BD.insertarSimulacion(fecha, (tiempoFinal-tiempoInicial)/1000, "EXITO", listaObs);
+			BD.insertarSimulacion(fecha, (tiempoFinal-tiempoInicial), "EXITO", listaObs);
 			
 		} else if (e == Estado.FRACASO) {
 			System.out.println("Colisión entre:"+listaObs);
@@ -573,5 +575,31 @@ public class VentanaSimulador extends JFrame {
 		fin.setVisible(true);
 		
 	}
+	
+	/**
+	 * Asigna un nombre a cada obstaculo y llama al método insertarObstaculo de la BD
+	 * @param o Obstáculo
+	 */
+	
+	public static void guardarObjetoBD(Obstaculo o) {
+		String nombre = null;
+		
+		if (o instanceof Peaton) nombre = "Peaton";
+		else if (o instanceof OtroCoche) nombre = "Coche";
+		else if (o instanceof Semaforo) nombre = "Semaforo";
+		else if (o instanceof Senal) nombre = "Stop";
+		else if (o instanceof Animal) nombre = "Animal";
+		
+		BD.insertarObstaculo(hora(), nombre, fecha);
+	}
+	
+	/**
+	 * Formatear hora
+	 * @return
+	 */
+	
+	public static String hora(){
+        return new SimpleDateFormat("HH:mm:ss a").format(new Date());
+    }
 }
 

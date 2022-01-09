@@ -10,6 +10,14 @@ public class Usuario {
 	public Usuario() {
 		super();
 	}
+	
+	/**
+	 * Clase que representa la tabla usuario de la base de datos
+	 * @param dni DNI
+	 * @param nombre Nombre
+	 * @param apellido Apellido
+	 * @param contrasenia Contraseña para acceder al simulador
+	 */
 
 	public Usuario(String dni, String nombre, String apellido, String contrasenia) {
 		super();
