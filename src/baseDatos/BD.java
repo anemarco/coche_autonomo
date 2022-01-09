@@ -137,7 +137,8 @@ public class BD {
 			 while (rs.next()) {
 				 String fecha = rs.getString("fecha");
 				 long duracion = rs.getLong("duracion");
-				 lSimulaciones.add(new Simulacion(fecha, duracion, dni));
+				 String estado = rs.getString("estado");
+				 lSimulaciones.add(new Simulacion(fecha, duracion, estado, dni));
 			 }
 			 return lSimulaciones;
 		 } catch (SQLException e) {
@@ -153,8 +154,8 @@ public class BD {
 	  * @param lObstaculos Lista de óbstáculos ejecutados en la simulación
 	  */
 	 
-	 public static void insertarSimulacion(String fecha, long duracion, ArrayList<Obstaculo> lObstaculos) {
-		 String sent = "INSERT INTO usuario VALUES("+fecha+","+duracion+"," + VentanaInicio.usuarioActivo.getDni() +");";
+	 public static void insertarSimulacion(String fecha, long duracion, String estado, ArrayList<Obstaculo> lObstaculos) {
+		 String sent = "INSERT INTO simulacion VALUES('"+fecha+"',"+duracion+",'"+estado+"','"+ VentanaInicio.usuarioActivo.getDni() +"');";
 		 
 		 try {
 				Statement stmt = con.createStatement();

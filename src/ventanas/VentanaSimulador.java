@@ -31,7 +31,9 @@ import java.awt.Rectangle;
 public class VentanaSimulador extends JFrame {
 
 	/*Constantes*/
-	public static enum Color {VERDE, ROJO}
+	
+	public static enum Estado {EXITO, FRACASO};
+	
 	private static final long serialVersionUID = 1L;
 	private static final int MS_SLEEP = 400;
 	
@@ -78,15 +80,6 @@ public class VentanaSimulador extends JFrame {
 		System.out.println(fecha);
 		tiempoInicial = System.currentTimeMillis();
 		System.out.println(tiempoInicial);
-		
-		this.addWindowListener(new WindowAdapter() {
-			
-			@Override
-			public void windowClosing (WindowEvent e) {
-				tiempoFinal = System.currentTimeMillis();
-				BD.insertarSimulacion(fecha, tiempoFinal-tiempoInicial, listaObs);
-			}
-		});
 		
 		this.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
 		this.setTitle( "Coche Autonomo" );
@@ -376,9 +369,7 @@ public class VentanaSimulador extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				vent.setVisible(false);
-				VentanaFin fin = new VentanaFin();
-				fin.setVisible(true);
+				finSimulacion(Estado.EXITO);
 			}
 		});
         
@@ -387,9 +378,13 @@ public class VentanaSimulador extends JFrame {
         movimientoCarr = movimientoCarretera(true);
         movimientoCarr.start();
 	}
-        
+      
 	
-	/*MÃ©todo que contiene el hilo de movimiento del fondo (carretera) */
+	/**
+	 * Método que contiene el hilo de movimiento del condo (carretera)
+	 * @param activo
+	 * @return
+	 */
 		
 	public Thread movimientoCarretera(boolean activo){
 		return new Thread(){
@@ -439,7 +434,13 @@ public class VentanaSimulador extends JFrame {
             }
         };
 	}
-	/*La reacción que debe tener el coche contemplando todas las situaciones posibles */
+	
+	/** 
+	 * La reacción que debe tener el coche contemplando todas las situaciones posibles 
+	 * @param o
+	 * @param miCoche
+	 */
+	
 	public static void cocheReaccion(Obstaculo o, Coche miCoche) {
 		listaObs.remove(o);
 		//Para saber si hay obstaculos con peligro de colisión en la circulación 
@@ -503,16 +504,15 @@ public class VentanaSimulador extends JFrame {
 				}
 			}
 		}else {
-				//cerra la simulación por colisión y enseñar VentanaFin
-				System.out.println("Colisión entre:"+listaObs);
-				logger.log( Level.SEVERE, "COLISIÓN");
-				JOptionPane.showMessageDialog(null, "Se producirá una colisión. Debe mejorar el sistema", "ALERTA", JOptionPane.WARNING_MESSAGE);
-				vent.setVisible(false);
-				VentanaFin fin = new VentanaFin();
-				fin.setVisible(true);
+			finSimulacion(Estado.FRACASO);
 		}
 	}
-	//Crea un semaforo y aplica recursividad hasta que el semáforo creado tenga el Jlabel VERDE
+	
+	
+	/**
+	 * Crea un semáformo y aplica recursividad hasta que el semáforo creado tenga un JLabel VERDE
+	 */
+
 	public void cambiarSemaforo() {
 		Semaforo semafVerde= new Semaforo();
 		System.out.println("Color del semáforo:"+semafVerde.getColor().toString());
@@ -546,6 +546,31 @@ public class VentanaSimulador extends JFrame {
 			};
 			moverVerde.start();
 		}
+	}
+	
+	/**
+	 * Método que da por finalizada la simulación o bien por una colisión o por decisión del usuario mediante bontón salir
+	 * @param e Determina si la simulación ha sido exitosa (No ha habido colisiones) o no.
+	 */
+	
+	public static void finSimulacion(Estado e) {
+		tiempoFinal = System.currentTimeMillis();
+		
+		if (e == Estado.EXITO) {
+			BD.insertarSimulacion(fecha, (tiempoFinal-tiempoInicial)/1000, "EXITO", listaObs);
+			
+		} else if (e == Estado.FRACASO) {
+			System.out.println("Colisión entre:"+listaObs);
+			logger.log( Level.SEVERE, "COLISIÓN");
+			JOptionPane.showMessageDialog(null, "Se producirá una colisión. Debe mejorar el sistema", "ALERTA", JOptionPane.WARNING_MESSAGE);
+			
+			BD.insertarSimulacion(fecha, (tiempoFinal-tiempoInicial)/1000, "FRACASO", listaObs);
+		}
+		
+		vent.setVisible(false);
+		VentanaFin fin = new VentanaFin();
+		fin.setVisible(true);
+		
 	}
 }
 

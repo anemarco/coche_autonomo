@@ -5,12 +5,14 @@ public class Simulacion {
 	private String fecha;
 	private long duracion;
 	private String dni;
+	private String estado;
 	
-	public Simulacion(String fecha, long duracion, String dni) {
+	public Simulacion(String fecha, long duracion, String estado, String dni) {
 		super();
 		this.fecha = fecha;
 		this.duracion = duracion;
 		this.dni = dni;
+		this.estado = estado;
 	}
 
 	public String getFecha() {
@@ -36,6 +38,13 @@ public class Simulacion {
 	public void setDni(String dni) {
 		this.dni = dni;
 	}
-	
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 	
 }

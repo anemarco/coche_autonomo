@@ -1,6 +1,8 @@
 package ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,17 +11,21 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import baseDatos.BD;
 import baseDatos.Simulacion;
+import ventanas.VentanaSimulador.Estado;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class VentanaFin extends JFrame {
 
@@ -33,7 +39,7 @@ public class VentanaFin extends JFrame {
 	
 	public static ArrayList<Simulacion> lSimulaciones;
 	
-	public static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" ); 
+	public static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );
 
 	/**
 	 * Create the frame.
@@ -41,7 +47,7 @@ public class VentanaFin extends JFrame {
 	public VentanaFin() {
 		ventFin = this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 300);
+		setBounds(150, 100, 753, 500);
 		setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();
@@ -74,7 +80,14 @@ public class VentanaFin extends JFrame {
 		panelSur.add(btnSalir);
 		
 		panelCentral = new JPanel();
-		contentPane.add(panelCentral, BorderLayout.CENTER);
+		contentPane.add(panelCentral, BorderLayout.EAST);
+		
+		JPanel panelInfo= new JPanel();
+		contentPane.add(panelInfo,BoxLayout.Y_AXIS);
+		
+		JLabel lblNewLabel = new JLabel("Resumen de la simulación");
+		panelInfo.add(lblNewLabel);
+		
 		
 		
 		/*JTABLE*/
@@ -84,6 +97,8 @@ public class VentanaFin extends JFrame {
 		 * sortear los diferentes obst�culos.
 		 */
 		modeloTablaUsuarios = new DefaultTableModel() {
+			
+			@Override
 			public boolean isCellEditable(int row, int col) {
 				if(col == 0 && col == 1 && col == 2) {
 					return false;
@@ -93,7 +108,7 @@ public class VentanaFin extends JFrame {
 			}
 		};
 		
-		String [] columnas = {"Fecha", "Duración", "Obstáculos"};
+		String [] columnas = {"Fecha", "Duración", "Estado", "Obstáculos"};
 		modeloTablaUsuarios.setColumnIdentifiers(columnas);
 		
 		tablaUsuarios = new JTable(modeloTablaUsuarios);
@@ -101,10 +116,39 @@ public class VentanaFin extends JFrame {
 		panelCentral.add(scrollTabla);
 		
 		for (Simulacion s : lSimulaciones) {
-			modeloTablaUsuarios.addRow(new Object[] {s.getFecha(), s.getDuracion(), 1});
+			modeloTablaUsuarios.addRow(new Object[] {s.getFecha(), s.getDuracion(), s.getEstado(),1});
 		}
 		
 		tablaUsuarios.setModel(modeloTablaUsuarios);
+		
+		tablaUsuarios.getColumnModel().getColumn(0).setMinWidth(130);
+		tablaUsuarios.getColumnModel().getColumn(0).setMaxWidth(130);
+		
+		/*Renderizar tabla*/
+		
+		tablaUsuarios.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				JLabel ret = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				
+				if (column==0 || column==1 || column==2) {
+					ret.setHorizontalAlignment(JLabel.LEFT);
+				} else if (column==3) {
+					ret.setHorizontalAlignment(JLabel.RIGHT);
+				}
+				
+				if (row>=1 && column<=1) {
+					if (lSimulaciones.get(row).getEstado().equals("FRACASO")) {
+						ret.setForeground(Color.RED);
+					} else if (lSimulaciones.get(row).getEstado().equals("EXITO")) {
+						ret.setForeground(Color.BLACK);
+					}
+				}
+				return ret;
+			}
+		});
 		
 		
 		btnIrAlInicio.addActionListener(new ActionListener() {
