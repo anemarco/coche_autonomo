@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import baseDatos.BD;
+import baseDatos.ObstaculoBD;
 import baseDatos.Simulacion;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -115,7 +116,7 @@ public class VentanaFin extends JFrame {
 			}
 		};
 		
-		String [] columnas = {"Fecha", "Duración", "Estado", "Obstáculos"};
+		String [] columnas = {"Fecha", "Duración (seg)", "Estado", "Obstáculos"};
 		modeloTablaUsuarios.setColumnIdentifiers(columnas);
 		
 		tablaUsuarios = new JTable(modeloTablaUsuarios);
@@ -123,13 +124,14 @@ public class VentanaFin extends JFrame {
 		pIzq.add(scrollTabla);
 		
 		for (Simulacion s : lSimulaciones) {
-			modeloTablaUsuarios.addRow(new Object[] {s.getFecha(), s.getDuracion(), s.getEstado(),1});
+			ArrayList<ObstaculoBD> lObstaculos = BD.getObstaculosDeUnaSimulacion(s.getFecha());
+			modeloTablaUsuarios.addRow(new Object[] {s.getFecha(), s.getDuracion(), s.getEstado(),lObstaculos.size()});
 		}
 		
 		tablaUsuarios.setModel(modeloTablaUsuarios);
 		
-		tablaUsuarios.getColumnModel().getColumn(0).setMinWidth(130);
-		tablaUsuarios.getColumnModel().getColumn(0).setMaxWidth(130);
+		tablaUsuarios.getColumnModel().getColumn(0).setMinWidth(140);
+		tablaUsuarios.getColumnModel().getColumn(0).setMaxWidth(140);
 		
 		/*Renderizar tabla*/
 		

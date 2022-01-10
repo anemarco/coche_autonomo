@@ -57,7 +57,12 @@ public class BD {
 	/**
 	 * Metodo que crea las tablas de la base de datos y algunos datos
 	 */
-	public static void crearTablas() {
+	
+	
+	
+	
+	/*public static void crearTablas() {
+		
 		
 		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);";
 		String sent2 = "CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);";
@@ -91,6 +96,7 @@ public class BD {
 			}
 		}
 	}
+	*/
 	
 	/**
 	 * Método que lee todos los usuarios de la base de datos, los convierte en objetos 
@@ -171,8 +177,6 @@ public class BD {
 		 }
 	 }
 	 
-	
-	 
 	 /**
 	  * Insertar un obstaculo en la base de datos
 	  * @param hora
@@ -200,7 +204,7 @@ public class BD {
 	  * @param lObstaculos Lista de óbstáculos ejecutados en la simulación
 	  */
 	 
-	 public static void insertarSimulacion(String fecha, long duracion, String estado, ArrayList<Obstaculo> lObstaculos) {
+	 public static void insertarSimulacion(String fecha, double duracion, String estado, ArrayList<Obstaculo> lObstaculos) {
 		 String sent = "INSERT INTO simulacion VALUES('"+fecha+"',"+duracion+",'"+estado+"','"+ VentanaInicio.usuarioActivo.getDni() +"');";
 		 
 		 try {
