@@ -56,11 +56,10 @@ public class VentanaSimulador extends JFrame {
 	public static String fecha;
 	static long tiempoInicial;
 	static long tiempoFinal;
-<<<<<<< HEAD
 	protected long difTiempo;
-=======
 	static long tiempoActual;
->>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
+	
+
 
 	/*Main*/
 	
@@ -152,12 +151,12 @@ public class VentanaSimulador extends JFrame {
 				Peaton peaton = new Peaton();
 				simuladorPane.add(peaton.getLbl());
 				listaObs.add(peaton);
-<<<<<<< HEAD
+
 				difTiempo=System.currentTimeMillis()-difTiempo;
 				mapaObs.put(difTiempo, peaton);
-=======
+
 				guardarObjetoBD(peaton);
->>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
+
 				logger.log( Level.INFO, "Objeto Peaton añadido" );
 				
 				
@@ -215,12 +214,10 @@ public class VentanaSimulador extends JFrame {
 				OtroCoche otroCoche = new OtroCoche(CARRIL_DCHO, 10);
 				simuladorPane.add(otroCoche.getLbl());
 				listaObs.add(otroCoche);
-<<<<<<< HEAD
 				difTiempo=System.currentTimeMillis()-difTiempo;
 				mapaObs.put(difTiempo, otroCoche);
-=======
 				guardarObjetoBD(otroCoche);
->>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
+
 				logger.log( Level.INFO, "Objeto OtroCoche añadido");
 				//llamar al metodo cocheReaccion para que el miCoche actue en base a la situación
 				cocheReaccion(otroCoche, miCoche);
@@ -264,12 +261,10 @@ public class VentanaSimulador extends JFrame {
 				//Hacer aparecer un semaforo por pantalla
 				Semaforo semaf = new Semaforo();
 				simuladorPane.add(semaf.getLbl());
-<<<<<<< HEAD
 				difTiempo=System.currentTimeMillis()-difTiempo;
 				mapaObs.put(difTiempo, semaf);
-=======
 				guardarObjetoBD(semaf);
->>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
+
 				logger.log( Level.INFO, "Objeto Semáforo añadido");
 				//Movimiento del semáforo
         		Thread moverSemaf = new Thread() {
@@ -321,12 +316,9 @@ public class VentanaSimulador extends JFrame {
 				Senal stop = new Senal(Tipo.STOP);
 				simuladorPane.add(stop.getLbl());
 				listaObs.add(stop);
-<<<<<<< HEAD
 				difTiempo=System.currentTimeMillis()-difTiempo;
 				mapaObs.put(difTiempo, stop);
-=======
 				guardarObjetoBD(stop);
->>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
 				logger.log( Level.INFO, "Objeto Señal tipo Stop añadido");
 				
 				//Movimiento del STOP
@@ -370,18 +362,15 @@ public class VentanaSimulador extends JFrame {
         	@Override
 			public void actionPerformed(ActionEvent e) {
 				//Hacer aparecer un rebaño por pantalla
-<<<<<<< HEAD
 				Animal animal = new Animal();
 				simuladorPane.add(animal.getLbl());
 				listaObs.add(animal);
 				difTiempo=System.currentTimeMillis()-difTiempo;
 				mapaObs.put(difTiempo, animal);
-=======
 				Animal oveja = new Animal();
 				simuladorPane.add(oveja.getLbl());
 				listaObs.add(oveja);
 				guardarObjetoBD(oveja);
->>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
 				logger.log( Level.INFO, "Objeto Animal añadido");
 				//movimiento del animal y reacción del coche
 				cocheReaccion(animal,miCoche);

@@ -360,3 +360,7 @@ ene 10, 2022 11:37:05 A. M. baseDatos.BD generarLog
 INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
 =======
 >>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
+ene 10, 2022 5:46:37 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene 10, 2022 5:49:29 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
