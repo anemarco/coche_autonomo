@@ -49,14 +49,12 @@ public class VentanaSimulador extends JFrame {
 	static VentanaSimulador vent;
 	
 	private static  ArrayList<Obstaculo> listaObs = new ArrayList<Obstaculo>();
-	protected HashMap<Long,Obstaculo> mapaObs= new HashMap<Long,Obstaculo>();
 	public Coche miCoche;
 	public Thread movimientoCarr;
 
 	public static String fecha;
 	static long tiempoInicial;
 	static long tiempoFinal;
-	protected long difTiempo;
 	static long tiempoActual;
 	
 
@@ -78,7 +76,6 @@ public class VentanaSimulador extends JFrame {
 		fecha = VentanaFin.sdf.format(new Date());
 		System.out.println(fecha);
 		tiempoInicial = System.currentTimeMillis();
-		difTiempo=tiempoInicial;
 		System.out.println(tiempoInicial);
 		
 		this.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
@@ -151,14 +148,8 @@ public class VentanaSimulador extends JFrame {
 				Peaton peaton = new Peaton();
 				simuladorPane.add(peaton.getLbl());
 				listaObs.add(peaton);
-
-				difTiempo=System.currentTimeMillis()-difTiempo;
-				mapaObs.put(difTiempo, peaton);
-
 				guardarObjetoBD(peaton);
-
 				logger.log( Level.INFO, "Objeto Peaton añadido" );
-				
 				
 				/*Hilo de movimiento del peatÃ³n*/
 				Thread moverPeaton= new Thread() {
@@ -214,10 +205,7 @@ public class VentanaSimulador extends JFrame {
 				OtroCoche otroCoche = new OtroCoche(CARRIL_DCHO, 10);
 				simuladorPane.add(otroCoche.getLbl());
 				listaObs.add(otroCoche);
-				difTiempo=System.currentTimeMillis()-difTiempo;
-				mapaObs.put(difTiempo, otroCoche);
 				guardarObjetoBD(otroCoche);
-
 				logger.log( Level.INFO, "Objeto OtroCoche añadido");
 				//llamar al metodo cocheReaccion para que el miCoche actue en base a la situación
 				cocheReaccion(otroCoche, miCoche);
@@ -261,10 +249,7 @@ public class VentanaSimulador extends JFrame {
 				//Hacer aparecer un semaforo por pantalla
 				Semaforo semaf = new Semaforo();
 				simuladorPane.add(semaf.getLbl());
-				difTiempo=System.currentTimeMillis()-difTiempo;
-				mapaObs.put(difTiempo, semaf);
 				guardarObjetoBD(semaf);
-
 				logger.log( Level.INFO, "Objeto Semáforo añadido");
 				//Movimiento del semáforo
         		Thread moverSemaf = new Thread() {
@@ -316,8 +301,6 @@ public class VentanaSimulador extends JFrame {
 				Senal stop = new Senal(Tipo.STOP);
 				simuladorPane.add(stop.getLbl());
 				listaObs.add(stop);
-				difTiempo=System.currentTimeMillis()-difTiempo;
-				mapaObs.put(difTiempo, stop);
 				guardarObjetoBD(stop);
 				logger.log( Level.INFO, "Objeto Señal tipo Stop añadido");
 				
@@ -365,12 +348,7 @@ public class VentanaSimulador extends JFrame {
 				Animal animal = new Animal();
 				simuladorPane.add(animal.getLbl());
 				listaObs.add(animal);
-				difTiempo=System.currentTimeMillis()-difTiempo;
-				mapaObs.put(difTiempo, animal);
-				Animal oveja = new Animal();
-				simuladorPane.add(oveja.getLbl());
-				listaObs.add(oveja);
-				guardarObjetoBD(oveja);
+				guardarObjetoBD(animal);
 				logger.log( Level.INFO, "Objeto Animal añadido");
 				//movimiento del animal y reacción del coche
 				cocheReaccion(animal,miCoche);
