@@ -3,10 +3,7 @@ package ventanas;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.text.DecimalFormat;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,12 +20,10 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import baseDatos.BD;
+import baseDatos.Simulacion;
 import simulador.*;
 import simulador.Semaforo.Color;
 import simulador.Senal.Tipo;
-
-import java.awt.Point;
-import java.awt.Rectangle;
 
 public class VentanaSimulador extends JFrame {
 
@@ -45,8 +40,6 @@ public class VentanaSimulador extends JFrame {
 
 	public static final int CARRIL_DCHO = 492;
 	public static final int CARRIL_IZQ = 390;
-	private static final int ARCEN_DCHO = 330;
-	private static final int ARCEN_IZQ = 552;
 	
 	private static Logger logger = Logger.getLogger("Simulador");
 	
@@ -59,11 +52,15 @@ public class VentanaSimulador extends JFrame {
 	protected HashMap<Long,Obstaculo> mapaObs= new HashMap<Long,Obstaculo>();
 	public Coche miCoche;
 	public Thread movimientoCarr;
-	
-	static String fecha;
+
+	public static String fecha;
 	static long tiempoInicial;
 	static long tiempoFinal;
+<<<<<<< HEAD
 	protected long difTiempo;
+=======
+	static long tiempoActual;
+>>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
 
 	/*Main*/
 	
@@ -99,36 +96,50 @@ public class VentanaSimulador extends JFrame {
 		miCoche = new Coche();
 		simuladorPane.add(miCoche.getLbl());
 		
-		//Crear panel para botones 
-		JPanel panelBotonero= new JPanel();
-		panelBotonero.setLayout(new BoxLayout(panelBotonero,BoxLayout.Y_AXIS));
-		
-		JLabel titulo = new JLabel("    OBSTÃ�CULOS ");
-		titulo.setFont(new Font("Agency FB", Font.PLAIN, 28));
-		panelBotonero.add(titulo);
-		
-		
+		JPanel panel = new JPanel();
+	    panel.setLayout(new BorderLayout());
+
 		/*Doble panel que contiene el panel y la lista anterior*/
 		
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,panelBotonero,simuladorPane);
+		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,panel ,simuladorPane);
 		cp.add(splitPane);
 		
+		JPanel panelBotonero = new JPanel();
+		panelBotonero .setLayout(new BoxLayout(panelBotonero ,BoxLayout.PAGE_AXIS));
+		panel.add(panelBotonero, BorderLayout.CENTER);
+	        
+	     JLabel titulo = new JLabel(" OBSTACULOS  ");
+	     panel.add(titulo, BorderLayout.NORTH);
+	     titulo.setFont(new Font("Agency FB", Font.PLAIN, 28));
+	        
+	     //Al pusar el boton salir de la simulación y que aparezca la VentanaFin
+	     JButton salir = new JButton("FINALIZAR");
+	     panel.add(salir, BorderLayout.SOUTH);
+	     //salir.setBackground(java.awt.Color.RED);
+	     //salir.setForeground(java.awt.Color.WHITE);
+		
 		//Crear botones de cada obstÃ¡culo y aÃ±adirlos al panel
-		JButton bPeaton	= new JButton("           Peatón         ");
-		JButton bCoche = new JButton("        Otro Coche      ");
-		JButton bSemaf = new JButton("         Semáforo       ");
-		JButton bStop = new JButton("             STOP           ");
+		
+	    JButton bPeaton	= new JButton("  Peatón  ");
+		bPeaton.setMaximumSize(new Dimension(Integer.MAX_VALUE, bPeaton.getMinimumSize().height));
+		JButton bCoche = new JButton("  Otro Coche  ");
+		bCoche.setMaximumSize(new Dimension(Integer.MAX_VALUE, bCoche.getMinimumSize().height));
+		JButton bSemaf = new JButton("  Semáforo  ");
+		bSemaf.setMaximumSize(new Dimension(Integer.MAX_VALUE, bSemaf.getMinimumSize().height));
+		JButton bStop = new JButton("  STOP  ");
+		bStop.setMaximumSize(new Dimension(Integer.MAX_VALUE, bStop.getMinimumSize().height));
 		/*JButton bCeda = new JButton("             Ceda            ");
 		JButton bSentidoCon = new JButton(" Sentido Contrario ");		Para el futuro*/
-		JButton bAnimal = new JButton("            Animal          ");
+		JButton bAnimal = new JButton("  Animal  ");
+		bAnimal.setMaximumSize(new Dimension(Integer.MAX_VALUE, bAnimal.getMinimumSize().height));
 		  
-		panelBotonero.add(bPeaton);
-		panelBotonero.add(bCoche );
-		panelBotonero.add(bSemaf );
-		panelBotonero.add(bStop );
+		panelBotonero .add(bPeaton);
+		panelBotonero .add(bCoche );
+		panelBotonero .add(bSemaf );
+		panelBotonero .add(bStop );
 		//panelBotonero.add(bCeda );
 		//panelBotonero.add(bSentidoCon );
-		panelBotonero.add(bAnimal );
+		panelBotonero .add(bAnimal );
 		
 		/*BotÃ³n que cree un obtÃ¡culo peaton*/
 		
@@ -141,14 +152,19 @@ public class VentanaSimulador extends JFrame {
 				Peaton peaton = new Peaton();
 				simuladorPane.add(peaton.getLbl());
 				listaObs.add(peaton);
+<<<<<<< HEAD
 				difTiempo=System.currentTimeMillis()-difTiempo;
 				mapaObs.put(difTiempo, peaton);
+=======
+				guardarObjetoBD(peaton);
+>>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
 				logger.log( Level.INFO, "Objeto Peaton añadido" );
 				
 				
 				/*Hilo de movimiento del peatÃ³n*/
 				Thread moverPeaton= new Thread() {
 					
+					@SuppressWarnings("removal")
 					@Override
         			public void run(){
         				
@@ -199,8 +215,12 @@ public class VentanaSimulador extends JFrame {
 				OtroCoche otroCoche = new OtroCoche(CARRIL_DCHO, 10);
 				simuladorPane.add(otroCoche.getLbl());
 				listaObs.add(otroCoche);
+<<<<<<< HEAD
 				difTiempo=System.currentTimeMillis()-difTiempo;
 				mapaObs.put(difTiempo, otroCoche);
+=======
+				guardarObjetoBD(otroCoche);
+>>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
 				logger.log( Level.INFO, "Objeto OtroCoche añadido");
 				//llamar al metodo cocheReaccion para que el miCoche actue en base a la situación
 				cocheReaccion(otroCoche, miCoche);
@@ -244,12 +264,17 @@ public class VentanaSimulador extends JFrame {
 				//Hacer aparecer un semaforo por pantalla
 				Semaforo semaf = new Semaforo();
 				simuladorPane.add(semaf.getLbl());
+<<<<<<< HEAD
 				difTiempo=System.currentTimeMillis()-difTiempo;
 				mapaObs.put(difTiempo, semaf);
+=======
+				guardarObjetoBD(semaf);
+>>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
 				logger.log( Level.INFO, "Objeto Semáforo añadido");
 				//Movimiento del semáforo
         		Thread moverSemaf = new Thread() {
-        			public void run(){
+        			@SuppressWarnings("removal")
+					public void run(){
         				
         				while (semaf.getY()<500) {
         					try {
@@ -296,14 +321,19 @@ public class VentanaSimulador extends JFrame {
 				Senal stop = new Senal(Tipo.STOP);
 				simuladorPane.add(stop.getLbl());
 				listaObs.add(stop);
+<<<<<<< HEAD
 				difTiempo=System.currentTimeMillis()-difTiempo;
 				mapaObs.put(difTiempo, stop);
+=======
+				guardarObjetoBD(stop);
+>>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
 				logger.log( Level.INFO, "Objeto Señal tipo Stop añadido");
 				
 				//Movimiento del STOP
         		Thread moverStop = new Thread() {
         			
-        			public void run(){
+        			@SuppressWarnings("removal")
+					public void run(){
         				while (stop.getY()<500) {
         					try {
     							sleep(MS_SLEEP);    							     						
@@ -340,11 +370,18 @@ public class VentanaSimulador extends JFrame {
         	@Override
 			public void actionPerformed(ActionEvent e) {
 				//Hacer aparecer un rebaño por pantalla
+<<<<<<< HEAD
 				Animal animal = new Animal();
 				simuladorPane.add(animal.getLbl());
 				listaObs.add(animal);
 				difTiempo=System.currentTimeMillis()-difTiempo;
 				mapaObs.put(difTiempo, animal);
+=======
+				Animal oveja = new Animal();
+				simuladorPane.add(oveja.getLbl());
+				listaObs.add(oveja);
+				guardarObjetoBD(oveja);
+>>>>>>> branch 'main' of https://github.com/anemarco/coche_autonomo
 				logger.log( Level.INFO, "Objeto Animal añadido");
 				//movimiento del animal y reacción del coche
 				cocheReaccion(animal,miCoche);
@@ -378,11 +415,6 @@ public class VentanaSimulador extends JFrame {
         		moverAnimal.start();
 			}
         });
-        //Al pusar el boton salir de la simulación y que aparezca la VentanaFin
-        JButton salir = new JButton("SALIR");
-        salir.setBackground(java.awt.Color.RED);
-        salir.setForeground(java.awt.Color.WHITE);
-        panelBotonero.add(salir);
         
         salir.addActionListener(new ActionListener() {
 			
@@ -391,8 +423,6 @@ public class VentanaSimulador extends JFrame {
 				finSimulacion(Estado.EXITO);
 			}
 		});
-        
-        
         
         movimientoCarr = movimientoCarretera(true);
         movimientoCarr.start();
@@ -456,8 +486,8 @@ public class VentanaSimulador extends JFrame {
 	
 	/** 
 	 * La reacción que debe tener el coche contemplando todas las situaciones posibles 
-	 * @param o
-	 * @param miCoche
+	 * @param o Obstaclulo
+	 * @param miCoche Coche autónomo
 	 */
 	
 	public static void cocheReaccion(Obstaculo o, Coche miCoche) {
@@ -576,7 +606,7 @@ public class VentanaSimulador extends JFrame {
 		tiempoFinal = System.currentTimeMillis();
 		
 		if (e == Estado.EXITO) {
-			BD.insertarSimulacion(fecha, (tiempoFinal-tiempoInicial)/1000, "EXITO", listaObs);
+			BD.insertarSimulacion(fecha, (tiempoFinal-tiempoInicial), "EXITO", listaObs);
 			
 		} else if (e == Estado.FRACASO) {
 			System.out.println("Colisión entre:"+listaObs);
@@ -591,5 +621,31 @@ public class VentanaSimulador extends JFrame {
 		fin.setVisible(true);
 		
 	}
+	
+	/**
+	 * Asigna un nombre a cada obstaculo y llama al método insertarObstaculo de la BD
+	 * @param o Obstáculo
+	 */
+	
+	public static void guardarObjetoBD(Obstaculo o) {
+		String nombre = null;
+		
+		if (o instanceof Peaton) nombre = "Peaton";
+		else if (o instanceof OtroCoche) nombre = "Coche";
+		else if (o instanceof Semaforo) nombre = "Semaforo";
+		else if (o instanceof Senal) nombre = "Stop";
+		else if (o instanceof Animal) nombre = "Animal";
+		
+		BD.insertarObstaculo(hora(), nombre, fecha);
+	}
+	
+	/**
+	 * Formatear hora
+	 * @return
+	 */
+	
+	public static String hora(){
+        return new SimpleDateFormat("HH:mm:ss a").format(new Date());
+    }
 }
 

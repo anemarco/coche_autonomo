@@ -7,6 +7,14 @@ public class Simulacion {
 	private String dni;
 	private String estado;
 	
+	/**
+	 * Clase que representa la tabla simulacion perteneciente a la base de datos
+	 * @param fecha	Fecha de ejecució
+	 * @param duracion Duración de la simulación
+	 * @param estado Estado 
+	 * @param dni Dni del usuario que ha ejecutado la simulación
+	 */
+	
 	public Simulacion(String fecha, long duracion, String estado, String dni) {
 		super();
 		this.fecha = fecha;
