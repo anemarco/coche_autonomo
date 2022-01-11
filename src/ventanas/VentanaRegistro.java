@@ -7,10 +7,12 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.BorderLayout;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
 import java.util.regex.Pattern;
@@ -34,7 +36,7 @@ public class VentanaRegistro extends JFrame {
 	
 	public static VentanaRegistro ventReg;
 	private JTable table;
-	private DefaultTableModel mTable;
+	public static DefaultTableModel mTable;
 	
 	public VentanaRegistro() {
 		
@@ -42,7 +44,7 @@ public class VentanaRegistro extends JFrame {
 		
 		this.setTitle("REGISTRO");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(727, 529);
+		this.setSize(727, 548);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
@@ -55,7 +57,7 @@ public class VentanaRegistro extends JFrame {
 		table = new JTable();
 		panelTabla.add(new JScrollPane(table), BorderLayout.CENTER);
 		
-		/*Crear Tabla*/
+		/*Crear Tabla*/		
 		
 		Vector<String> cabeceras = new Vector<String>(Arrays.asList("Dni", "Nombre", "Apellido"));
 		mTable = new DefaultTableModel(
@@ -68,20 +70,27 @@ public class VentanaRegistro extends JFrame {
 		}
 		
 		table.setModel(mTable);
-		
-		
-		addMouseListener(new MouseAdapter() {
+
+		table.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.isAltDown()) {
-					
-					int selectRow = table.rowAtPoint(e.getPoint());
-					if (selectRow >= 0) {
-						
+					String selectedDni = (String) table.getValueAt(table.getSelectedRow(), 0);
+					Usuario selectUsuario = null;
+					for (Usuario u : VentanaInicio.lUsuarios) {
+						if (u.getDni().equals(selectedDni)) selectUsuario = u;
 					}
-				}
-			} 
+					
+					VentanaConfirmacion ventConf = new VentanaConfirmacion((String) table.getValueAt(table.getSelectedRow(), 1));
+					ventConf.setVisible(true);
+					
+					if (ventConf.cont.getText().equals(selectUsuario.getContrasenia())) {
+						BD.eliminarUsuario(selectedDni);
+						mTable.removeRow(table.getSelectedRow());
+					}
+				}	
+			}
 			
 		});
 		
@@ -132,7 +141,7 @@ public class VentanaRegistro extends JFrame {
 		getContentPane().add(btnRegistrar);
 		
 		JButton btnInicio = new JButton("INICIO");
-		btnInicio.setBounds(20, 456, 105, 23);
+		btnInicio.setBounds(20, 474, 105, 23);
 		getContentPane().add(btnInicio);
 		
 		JLabel lblNewLabel = new JLabel("Introduzca sus datos");
@@ -142,6 +151,10 @@ public class VentanaRegistro extends JFrame {
 		JLabel lblUsuarios = new JLabel("Usuarios");
 		lblUsuarios.setBounds(432, 15, 115, 14);
 		getContentPane().add(lblUsuarios);
+		
+		JLabel lblNewLabel_1 = new JLabel("Alt + Clik para eliminar a un usuario");
+		lblNewLabel_1.setBounds(480, 476, 240, 14);
+		getContentPane().add(lblNewLabel_1);
 		
 		btnInicio.addActionListener(new ActionListener() {
 			
@@ -198,16 +211,34 @@ class VentanaConfirmacion extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	public VentanaConfirmacion() {
-		this.setTitle("VENTANA DE CONFIRMACIÓN");
+	public JTextField cont;
+
+	public VentanaConfirmacion(String nom) {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(100, 60);
+		this.setSize(290, 195);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		JLabel info = new JLabel("Para borrar el usuario X ha de introducir su contraseña");
-		getContentPane().add(info);
+		JLabel instruccion = new JLabel("<html>Para eliminar a un usuario"
+										+ "<br>ha de introducir su contraseña:<html>");
+		instruccion.setBounds(50, 22, 200, 30);
+		getContentPane().add(instruccion);
 		
+		cont = new JTextField();
+		cont.setBounds(69, 76, 150, 20);
+		getContentPane().add(cont);
+		cont.setColumns(10);
+		
+		JButton eliminar = new JButton("ELIMINAR");
+		eliminar.setBounds(95, 100, 100, 25);
+		getContentPane().add(eliminar);
+		
+		eliminar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+			}
+		});
 	}
-	
 }

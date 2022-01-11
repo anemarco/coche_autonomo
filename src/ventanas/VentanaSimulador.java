@@ -57,8 +57,6 @@ public class VentanaSimulador extends JFrame {
 	static long tiempoFinal;
 	static long tiempoActual;
 	
-
-
 	/*Main*/
 	
 	public static void main(String[] args) {
