@@ -37,7 +37,8 @@ public class VentanaInicio extends JFrame {
 		
 		ventInic = this;
 		
-		BD.initBD("simulacion.bd");
+		BD.initBD("iniciosesion.db");
+		BD.crearTablas();
 		lUsuarios = BD.getUsuarios();
 		
 		/*Connection con = BD.initBD("iniciosesion.db");
@@ -122,17 +123,22 @@ public class VentanaInicio extends JFrame {
 					}
 				}
 				
-				/*if(!dni.equals("") && !c.equals("")) {
+				if(!dni.equals("") && !cont.equals("")) {
 					BD.initBD("iniciosesion.db");
-					int resul = BD.obtenerMapaUsuarios();
-					if(resul == 0) {
-						JOptionPane.showMessageDialog(null, "No est�s registrado, tienes que registrarte primero");
-					}else if(resul == 1) {
-						JOptionPane.showMessageDialog(null, "Contrasenya incorrecta");
+					TreeMap<String, Usuario> tm = BD.obtenerMapaUsuarios();
+					for(String d: tm.keySet())
+						System.out.println(d);
+					if(tm.get(dni) == null) {
+						JOptionPane.showMessageDialog(null, "No estas registrado, tienes que registrarte primero");
 					}else {
-						JOptionPane.showMessageDialog(null, "Bienvenido");
+						Usuario usu = tm.get(dni);
+						if(!usu.getContrasenia().equals(cont)) {
+							JOptionPane.showMessageDialog(null, "Contrasenya incorrecta");
+						}else {
+							JOptionPane.showMessageDialog(null, "Bienvenido");
+						}
 					}
-				}*/
+				}
 				
 			}
 			

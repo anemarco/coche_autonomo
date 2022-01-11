@@ -31,7 +31,7 @@ public class BD {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:"+nombreBD);
-			generarLog("Conexión abierta con " + nombreBD);
+			generarLog("Conexion abierta con " + nombreBD);
 		}catch (ClassNotFoundException e){
 			e.printStackTrace();
 		}catch (SQLException e) {
@@ -58,10 +58,18 @@ public class BD {
 	 * Metodo que crea las tablas de la base de datos y algunos datos
 	 */
 	
+	/*
+	String sent = select nombre from simulacion s, obstaculoUsado ou, obstaculo o where s.cod=ou.cod_sim and ou.cod_obs=o.cod;
+	ResultSet rs = st.executeQuery(sent);
+	ArrayList<String> nombres = new ArrayList<>();
+	while(rs.next()) {
+		String n = rs.getString(1);
+		nombres.add(n);
+	}
+	return nombres;
+	*/
 	
-	
-	
-	/*public static void crearTablas() {
+	public static void crearTablas() {
 		
 		
 		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);";
@@ -96,10 +104,10 @@ public class BD {
 			}
 		}
 	}
-	*/
+	
 	
 	/**
-	 * Método que lee todos los usuarios de la base de datos, los convierte en objetos 
+	 * Metodo que lee todos los usuarios de la base de datos, los convierte en objetos 
 	 * y los guarda en una lista
 	 * @return	Lista de usuarios de la BD
 	 */
@@ -135,7 +143,7 @@ public class BD {
 	 public static ArrayList<Simulacion> getSimulacionesDeUnaPersona(String dni) {
 		 try (Statement st = con.createStatement()) {
 			 ArrayList<Simulacion> lSimulaciones = new ArrayList<>();
-			 String sent = "SELECT * FROM simulacion WHERE dni ='"+dni+"';";
+			 String sent = "SELECT * FROM simulacion WHERE cod ='"+dni+"';";
 			 ResultSet rs = st.executeQuery(sent);
 			 generarLog(sent);
 			 
@@ -272,6 +280,7 @@ public class BD {
 				String ape = rs.getString("apellido");
 				String c = rs.getString("contrasenia");
 				Usuario u = new Usuario(dni, nom, ape, c);
+				System.out.println(u);
 				tmUsuario.put(dni, u);
 			}
 		} catch (SQLException e) {
