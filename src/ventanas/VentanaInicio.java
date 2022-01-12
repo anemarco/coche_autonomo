@@ -33,13 +33,12 @@ public class VentanaInicio extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public VentanaInicio() {
 		
 		ventInic = this;
 		
-		//BD.initBD("iniciosesion.db");
-		//BD.crearTablas();
-		BD.initBD("simulacion.db");
+		BD.initBD("simulacion.bd");
 		lUsuarios = BD.getUsuarios();
 		
 		/*Connection con = BD.initBD("iniciosesion.db");
@@ -49,43 +48,43 @@ public class VentanaInicio extends JFrame {
 		
 		this.setTitle("INICIO DE SESIÓN");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(482, 436);
+		this.setSize(600, 500);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 
 		
 		JLabel titulo = new JLabel("SIMULADOR DE COCHE AUTÓNOMO");
 		titulo.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		titulo.setBounds(93, 54, 282, 33);
+		titulo.setBounds(148, 82, 363, 33);
 		getContentPane().add(titulo);
 		
 		JButton btnSalir = new JButton("SALIR");
-		btnSalir.setBounds(20, 353, 104, 23);
+		btnSalir.setBounds(10, 427, 104, 23);
 		getContentPane().add(btnSalir);
 		
 		JButton btnIniciarSesion = new JButton("INICIAR SESION");
-		btnIniciarSesion.setBounds(160, 239, 140, 23);
+		btnIniciarSesion.setBounds(227, 324, 140, 23);
 		getContentPane().add(btnIniciarSesion);
 		
 		JButton btnRegistrar = new JButton("REGISTRAR");
-		btnRegistrar.setBounds(346, 353, 110, 23);
+		btnRegistrar.setBounds(464, 427, 110, 23);
 		getContentPane().add(btnRegistrar);
 		
 		JLabel lblDni = new JLabel("Introduce tu DNI:");
-		lblDni.setBounds(79, 140, 118, 28);
+		lblDni.setBounds(129, 178, 118, 28);
 		getContentPane().add(lblDni);
 		
 		textDni = new JTextField();
-		textDni.setBounds(247, 144, 118, 20);
+		textDni.setBounds(311, 182, 118, 20);
 		getContentPane().add(textDni);
 		textDni.setColumns(10);
 		
 		JLabel lblContrasenya = new JLabel("Introduce tu contrasenya:");
-		lblContrasenya.setBounds(79, 179, 158, 20);
+		lblContrasenya.setBounds(129, 236, 158, 20);
 		getContentPane().add(lblContrasenya);
 		
 		JTextField textContrasenya = new JPasswordField();
-		textContrasenya.setBounds(247, 179, 118, 20);
+		textContrasenya.setBounds(311, 236, 118, 20);
 		getContentPane().add(textContrasenya);
 		textContrasenya.setColumns(10); 
 		
@@ -124,22 +123,17 @@ public class VentanaInicio extends JFrame {
 					}
 				}
 				
-				if(!dni.equals("") && !cont.equals("")) {
-					//BD.initBD("iniciosesion.db");
-					TreeMap<String, Usuario> tm = BD.obtenerMapaUsuarios();
-					for(String d: tm.keySet())
-						System.out.println(d);
-					if(tm.get(dni) == null) {
-						JOptionPane.showMessageDialog(null, "No estas registrado, tienes que registrarte primero");
+				/*if(!dni.equals("") && !c.equals("")) {
+					BD.initBD("iniciosesion.db");
+					int resul = BD.obtenerMapaUsuarios();
+					if(resul == 0) {
+						JOptionPane.showMessageDialog(null, "No est�s registrado, tienes que registrarte primero");
+					}else if(resul == 1) {
+						JOptionPane.showMessageDialog(null, "Contrasenya incorrecta");
 					}else {
-						Usuario usu = tm.get(dni);
-						if(!usu.getContrasenia().equals(cont)) {
-							JOptionPane.showMessageDialog(null, "Contrasenya incorrecta");
-						}else {
-							JOptionPane.showMessageDialog(null, "Bienvenido");
-						}
+						JOptionPane.showMessageDialog(null, "Bienvenido");
 					}
-				}
+				}*/
 				
 			}
 			

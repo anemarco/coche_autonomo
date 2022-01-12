@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,8 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import baseDatos.BD;
-import baseDatos.ObstaculoBD;
-import baseDatos.Simulacion;
 import simulador.*;
 import simulador.Semaforo.Color;
 import simulador.Senal.Tipo;
@@ -57,7 +54,8 @@ public class VentanaSimulador extends JFrame {
 	static long tiempoInicial;
 	static long tiempoFinal;
 	static long tiempoActual;
-	
+
+
 	/*Main*/
 	
 	public static void main(String[] args) {
@@ -614,4 +612,3 @@ public class VentanaSimulador extends JFrame {
         return new SimpleDateFormat("HH:mm:ss a").format(new Date());
     }
 }
-

@@ -18,6 +18,31 @@ import ventanas.VentanaSimulador;
 
 public class BD {
 	
+	/*
+	 * CREATE TABLE usuario (
+	 * 		dni CHAR(9) PRIMARY KEY,
+	 * 		nombre VARCHAR(15),
+	 * 		apellido VARCHAR(15),
+	 * 		contrasenia VARCHAR(15)
+	 * );
+	 * 
+	 * CREATE TABLE simulacion (
+	 * 		fecha STRING PRIMARY KEY,
+	 * 		duracion FLOAT,
+	 * 		estado STRING,
+	 * 		dni CHAR(9),
+	 * 		FOREIGN KEY(dni) REFERENCES usuario(DNI) ON DELETE CASCADE
+	 * );
+	 * 
+	 * CREATE TABLE obstaculo (
+	 * 		hora STRING PRIMARY KEY,
+	 * 		nombre VARCHAR(15),
+	 * 		fecha STRING,
+	 * 		FOREIGN KEY(fecha) REFERENCES simulacion(fecha) ON DELETE CASCADE
+	 * );
+	 * 
+	 */
+	
 	static Connection con;
 	
 	/**
@@ -31,7 +56,7 @@ public class BD {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:"+nombreBD);
-			generarLog("Conexion abierta con " + nombreBD);
+			generarLog("Conexión abierta con " + nombreBD);
 		}catch (ClassNotFoundException e){
 			e.printStackTrace();
 		}catch (SQLException e) {
@@ -54,63 +79,14 @@ public class BD {
 		}
 	}
 	
-	/**
-	 * Metodo que crea las tablas de la base de datos y algunos datos
-	 */
-	
-	/*
-	String sent = select nombre from simulacion s, obstaculoUsado ou, obstaculo o where s.cod=ou.cod_sim and ou.cod_obs=o.cod;
-	ResultSet rs = st.executeQuery(sent);
-	ArrayList<String> nombres = new ArrayList<>();
-	while(rs.next()) {
-		String n = rs.getString(1);
-		nombres.add(n);
-	}
-	return nombres;
-	*/
-	
-	/*public static void crearTablas() {
-		
-		
-		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);";
-		String sent2 = "CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);";
-		String sent3 = "CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);";
-		String sent4 = "CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);";
-		
-		Statement st= null;
-		
-		try {
-			st = con.createStatement();
-			
-			st.executeUpdate(sent1);
-			generarLog(sent1);
-			st.executeUpdate(sent2);
-			generarLog(sent2);
-			st.executeUpdate(sent3);
-			generarLog(sent3);
-			st.executeUpdate(sent4);
-			generarLog(sent4);
-		
-		} catch (SQLException e) {
-			e.printStackTrace();
-			
-		} finally {
-			if(st!=null) {
-				try {
-					st.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}*/
-	
+	/*NO BORRAR POR AHORA */
 	
 	/**
-	 * Metodo que lee todos los usuarios de la base de datos, los convierte en objetos 
+	 * Método que lee todos los usuarios de la base de datos, los convierte en objetos 
 	 * y los guarda en una lista
 	 * @return	Lista de usuarios de la BD
 	 */
+	
 	 public static ArrayList<Usuario>  getUsuarios() {
 		 try (Statement st = con.createStatement()) {
 			 ArrayList<Usuario> lUsuarios = new ArrayList<>();
@@ -134,32 +110,32 @@ public class BD {
 		 }
 	 }
 	 
-	 /**
-		 * TreeMap que har� que los usuarios que se registren se guarden en el mismo.
-		 * @param con parametro que crea la conexion con la base de datos
-		 * @return devuelve el treemap de usuarios
-		 */
-		public static TreeMap<String, Usuario> obtenerMapaUsuarios(){
-			TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
+	 /** TreeMap que guarda el dni y la contraseña de los usuarios. 
+	  * @return Devuelve un treeMap con el dni como clave.
+	  */
+	 
+	public static TreeMap<String, Usuario> getMapaUsuarios(){
+		TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
 			
-			String sent = " SELECT * FROM usuario";
-			try {
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sent);
-				while(rs.next()) {
-					String dni = rs.getString("dni");
-					String nom = rs.getString("nombre");
-					String ape = rs.getString("apellido");
-					String c = rs.getString("contrasenia");
-					Usuario u = new Usuario(dni, nom, ape, c);
-					System.out.println(u);
-					tmUsuario.put(dni, u);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+		String sent = " SELECT * FROM usuario";
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sent);
+			while(rs.next()) {
+				String dni = rs.getString("dni");
+				String nom = rs.getString("nombre");
+				String ape = rs.getString("apellido");
+				String c = rs.getString("contrasenia");
+				Usuario u = new Usuario(dni, nom, ape, c);
+				System.out.println(u);
+				tmUsuario.put(dni, u);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 			return tmUsuario;
 		}
+	
 	 
 	 /**
 	  * Método que lee todas las simulaciones ejecutadas por un usuario de la base de datos
@@ -288,6 +264,31 @@ public class BD {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * TreeMap que har� que los usuarios que se registren se guarden en el mismo.
+	 * @param con parametro que crea la conexion con la base de datos
+	 * @return devuelve el treemap de usuarios
+	 */
+	public static TreeMap<String, Usuario> obtenerMapaUsuarios(){
+		TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
+		
+		String sent = " SELECT * FROM usuario";
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sent);
+			while(rs.next()) {
+				String dni = rs.getString("dni");
+				String nom = rs.getString("nombre");
+				String ape = rs.getString("apellido");
+				String c = rs.getString("contrasenia");
+				Usuario u = new Usuario(dni, nom, ape, c);
+				tmUsuario.put(dni, u);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tmUsuario;
 		
 		/*public static TreeMap<String, Persona> obtenerMapaPersonas(Connection con){
 		TreeMap<String, Persona> tmPersonas = new TreeMap<>();
@@ -313,6 +314,7 @@ public class BD {
 		return tmPersonas;
 	}*/
 		
+	}
 	
 	
 	/**

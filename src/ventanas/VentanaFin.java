@@ -3,6 +3,7 @@ package ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 
 public class VentanaFin extends JFrame {
@@ -64,7 +66,7 @@ public class VentanaFin extends JFrame {
 		/*Paneles*/
 		
 		JPanel pIzq = new JPanel();
-		pIzq.setBounds(10, 49, 475, 425);
+		pIzq.setBounds(10, 56, 475, 420);
 		getContentPane().add(pIzq);
 		
 		panelCapa = new JPanel();
@@ -72,11 +74,11 @@ public class VentanaFin extends JFrame {
 		getContentPane().add(panelCapa);
 		
 		JPanel pBotones = new JPanel();
-		pBotones.setBounds(10, 485, 752, 43);
+		pBotones.setBounds(10, 487, 752, 43);
 		getContentPane().add(pBotones);
 		
 		JPanel pInfo = new JPanel();
-		pInfo.setBounds(10, 11, 752, 27);
+		pInfo.setBounds(145, 18, 504, 27);
 		getContentPane().add(pInfo);
 		
 		JPanel panelTituloObs = new JPanel();
@@ -87,9 +89,9 @@ public class VentanaFin extends JFrame {
 		pDer.setBounds(495, 76, 280, 398);
 		getContentPane().add(pDer);
 
-		instrucciones = new JLabel("<html>Para obtener infromación más detallada"
-									+ "<br>haga Clik sobre un simulación de la "
-									+ "<br>tabla</html>");
+		instrucciones = new JLabel("<html><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
+									+ "Para obtener infromación más detallada"
+									+ "<br>haga Clik sobre una de las simulaciones </html>");
 
 		panelCapa.add(instrucciones);
 		
@@ -105,14 +107,39 @@ public class VentanaFin extends JFrame {
 		btnIrAlInicio = new JButton("Inicio");
 		pBotones.add(btnIrAlInicio);
 		
-		btnEliminar = new JButton("Eliminar usuario");
+		/*btnEliminar = new JButton("Eliminar usuario");
 		pBotones.add(btnEliminar);
 		
 		btnEliminarTodosLosUsuarios = new JButton("Eliminar todos los Usuarios");
-		pBotones.add(btnEliminarTodosLosUsuarios);
+		pBotones.add(btnEliminarTodosLosUsuarios);*/
+		
+		JButton bNuevaSimulacion = new JButton("Nueva Simulación");
+		pBotones.add(bNuevaSimulacion);
+		
+		bNuevaSimulacion.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ventFin.setVisible(false);
+				VentanaSimulador ventSim = new VentanaSimulador();
+				ventSim.setVisible(true);
+			}
+		});
+		
+		JButton bExportar = new JButton("Exportar datos");
+		pBotones.add(bExportar);
 		
 		btnSalir = new JButton("Salir");
 		pBotones.add(btnSalir);
+		
+		btnSalir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		
 		
 		/*TABLA USUARIOS*/
 		
@@ -214,6 +241,18 @@ public class VentanaFin extends JFrame {
 		
 		tablaObstaculos.setModel(modeloTablaObstaculos);
 		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 125, 34);
+		getContentPane().add(panel);
+		
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setFont(new Font("ARIAL", Font.PLAIN, 12));
+		comboBox.addItem("Todo");
+		comboBox.addItem("Éxitos");
+		comboBox.addItem("Fracasos");
+		panel.add(comboBox);
+		
+		
 		tablaObstaculos.getColumnModel().getColumn(0).setMinWidth(140);
 		tablaObstaculos.getColumnModel().getColumn(0).setMaxWidth(140);
 		tablaObstaculos.getColumnModel().getColumn(1).setMinWidth(100);
@@ -233,7 +272,8 @@ public class VentanaFin extends JFrame {
 			}
 		});
 		
-		btnEliminarTodosLosUsuarios.addActionListener(new ActionListener() {
+		
+		/*btnEliminarTodosLosUsuarios.addActionListener(new ActionListener() {
 					
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -241,17 +281,12 @@ public class VentanaFin extends JFrame {
 					modeloTablaUsuarios.removeRow(0);
 				}
 			}
-		});
+		});*/
 		
 		
 		/**
 		 * Boton que sale de la pantalla
 		 */
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
 	}
 	
 	public static void cargarTablaObstaculos(String fecha) {
