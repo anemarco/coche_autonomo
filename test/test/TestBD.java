@@ -1,14 +1,24 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.Before;
 
-import org.junit.jupiter.api.Test;
+import baseDatos.BD;
 
-class TestBD {
+class BDTest {
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
+
+	@Before
+	public void setUp() throws Exception {
+		BD.initBD("simulacion.bd");
 	}
-
+	
+	@After
+	public void tearDown() throws Exception {
+		BD.closeBD();
+	}
+	
+	public void testInsertarUsuario() {
+		
+	}
 }

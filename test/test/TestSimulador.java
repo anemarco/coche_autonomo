@@ -12,12 +12,11 @@ import simulador.Animal;
 import simulador.OtroCoche;
 import simulador.Coche;
 import simulador.Obstaculo;
-import simulador.Sensor;
 
 class TestSimulador {
 	
 	Coche c1= new Coche(0, 0, 0, 0, 0, 0);
-	Sensor s1=new Sensor(0, 0, 0);
+	
 	@Before
 	public void setUp() throws Exception {
 		
@@ -53,7 +52,7 @@ class TestSimulador {
 		c1.mover(5, 3);
 		assertEquals(5, c1.getX());
 		assertEquals(3, c1.getY());
-		//para obstáculo
+		//para obstï¿½culo
 		Obstaculo obs= new  OtroCoche(10,15);
 		obs.mover(4, 0);
 		assertEquals(14, obs.getX());

@@ -50,13 +50,13 @@ public class BD {
 	
 	static Connection con;
 	
+	
 	/**
 	 * Metodo que crea la conexion con la base de datos
 	 * @param nombreBD nombre del archivo de sqliteman de la base de datos
 	 * @return devuelve la conexion
 	 */
 
-	
 	public static void  initBD(String nombreBD) {
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -68,6 +68,7 @@ public class BD {
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * Metodo que hara que se cierre la base de datos
 	 * @param con parametro que establece la conexion con la base de datos
@@ -82,8 +83,6 @@ public class BD {
 			}
 		}
 	}
-	
-	/*NO BORRAR POR AHORA */
 	
 	/**
 	 * Método que lee todos los usuarios de la base de datos, los convierte en objetos 

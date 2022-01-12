@@ -41,11 +41,6 @@ public class VentanaInicio extends JFrame {
 		BD.initBD("simulacion.bd");
 		lUsuarios = BD.getUsuarios();
 		
-		/*Connection con = BD.initBD("iniciosesion.db");
-		BD.crearTablas(con);
-		tmUsuarios = BD.obtenerMapaUsuarios(con);
-		BD.closeBD(con);*/
-		
 		this.setTitle("INICIO DE SESIÓN");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(600, 500);

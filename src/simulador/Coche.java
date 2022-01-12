@@ -18,8 +18,6 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	/*Atributos*/
 	
 	protected double velocidad; /*public double velocidad*/
-	protected final Sensor S_RECON = new Sensor(0.0, 0.0, 50.0);	/*Sensor de reconocimiento: Avisa de los obstáculos que hay alrededor*/
-	protected final Sensor S_PROX = new Sensor(0.0, 0.0, 100.0);	/*Sensor de proximidad: Asegura que el coche matiene una distancia de seguridad con los demás vehículos*/
 	protected double dir;	/*�ngulo actual del coche*/
 	
 	/**Constructor por defecto*/
@@ -29,10 +27,7 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 		super(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
 		this.lbl = crearLabel();
 		this.lbl.setBounds(COORD_DEFECT.x, COORD_DEFECT.y, TAMANYO.width, TAMANYO.height);
-		S_RECON.setX(x);
-		S_RECON.setY(y);
-		S_PROX.setX(x);
-		S_PROX.setY(y); 
+
 	}
 	
 	/*Constructor*/
@@ -42,10 +37,7 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 		super(x, y, TAMANYO.width, TAMANYO.height);
 		this.lbl = crearLabel();
 		this.lbl.setBounds(x, y, TAMANYO.width, TAMANYO.height);
-		S_RECON.setX(x);
-		S_RECON.setY(y);
-		S_PROX.setX(x);
-		S_PROX.setY(y+h/2); 
+	
 	}
 	
 	public Coche(int x, int y, int a, int h, double v, double dir) {
@@ -53,22 +45,10 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 		super(x, y, a, h);
 		this.velocidad = v;
 		this.dir= dir;
-		S_RECON.setX(x);
-		S_RECON.setY(y);
-		S_PROX.setX(x);
-		S_PROX.setY(y+h/2); 
-		
 	}
 
 	/*Getters y setters*/
 	
-	public Sensor getSR() {
-		return S_RECON;
-	}
-	
-	public Sensor getSP() {
-		return S_PROX;
-	}
 	public double getVelocidad() {
 		return velocidad;
 	}
@@ -92,8 +72,6 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	public void setX(int x) {
 		this.x = x;
 		this.lbl.setLocation(x, y);
-		S_RECON.setX(x);
-		S_PROX.setX(x);
 	}
 	
 	
@@ -101,8 +79,6 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 	public void setY(int y) {
 		this.y = y;
 		this.lbl.setLocation(x, y);
-		S_RECON.setY(y);
-		S_PROX.setY(y);
 	}
 	
 	/*M�todo que indica si el coche se ha chocado con un obst�culo
