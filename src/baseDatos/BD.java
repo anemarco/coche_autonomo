@@ -1,5 +1,9 @@
 package baseDatos;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 
 import java.sql.DriverManager;
@@ -7,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
@@ -73,7 +78,6 @@ public class BD {
 				con.close();
 				generarLog("Conexion cerrada");
 			}catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -143,9 +147,9 @@ public class BD {
 	  * @return Lista de las simulaciones
 	  */
 	 
-	 public static ArrayList<Simulacion> getSimulacionesDeUnaPersona(String dni) {
+	 public static List<Simulacion> getSimulacionesDeUnaPersona(String dni) {
 		 try (Statement st = con.createStatement()) {
-			 ArrayList<Simulacion> lSimulaciones = new ArrayList<>();
+			 List<Simulacion> lSimulaciones = new ArrayList<>();
 			 String sent = "SELECT * FROM simulacion WHERE dni ='"+dni+"';";
 			 ResultSet rs = st.executeQuery(sent);
 			 generarLog(sent);
@@ -169,9 +173,9 @@ public class BD {
 	  * @return
 	  */
 	 
-	 public static ArrayList<ObstaculoBD> getObstaculosDeUnaSimulacion(String fecha) {
+	 public static List<ObstaculoBD> getObstaculosDeUnaSimulacion(String fecha) {
 		 try (Statement st = con.createStatement()) {
-			 ArrayList<ObstaculoBD> lObstaculos = new ArrayList<>();
+			 List<ObstaculoBD> lObstaculos = new ArrayList<>();
 			 String sent = "SELECT * FROM obstaculo WHERE fecha ='"+fecha+"';";
 			 ResultSet rs = st.executeQuery(sent);
 			 generarLog(sent);
@@ -334,6 +338,35 @@ public class BD {
 			fh.close();
 			
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Método que imprime todos los datos referentes a un usuario en un fichero
+	 * @param file fichero de texto
+	 * @param dni Dni del usuario
+	 */
+	
+	public static void guardarDatos(File file, String dni) {
+		List<Simulacion> lSimulaciones = getSimulacionesDeUnaPersona(dni);
+		List<ObstaculoBD> lObstaculos;
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+			for (Simulacion s : lSimulaciones) {
+				bw.write("\nFecha de ejecución: " + s.getFecha());
+				bw.write("\nDuración: " + s.getDuracion() + " s");
+				bw.write("\nEstado: " + s.getEstado());
+				
+				lObstaculos = getObstaculosDeUnaSimulacion(s.getFecha());
+				for (ObstaculoBD o : lObstaculos) {
+					bw.write("\n\t[Tipo: " + o.getNombre() + "\tTiempo de ejecución: " + o.getHora() +"]");
+				}
+			}
+			
+			bw.close();
+			
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

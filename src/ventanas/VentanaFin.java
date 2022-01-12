@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,16 +24,18 @@ import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 
 
 public class VentanaFin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private JButton btnSalir, btnEliminar, btnEliminarTodosLosUsuarios, btnIrAlInicio;
+	private JButton btnSalir, btnIrAlInicio;
 	
 	public static VentanaFin ventFin;
 	
@@ -41,8 +44,8 @@ public class VentanaFin extends JFrame {
 	private static JTable tablaObstaculos;
 	private static DefaultTableModel modeloTablaObstaculos;
 	
-	public static ArrayList<Simulacion> lSimulaciones;
-	public static ArrayList<ObstaculoBD> lObstaculos;
+	public static List<Simulacion> lSimulaciones;
+	public static List<ObstaculoBD> lObstaculos;
 	
 	public static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );
 	
@@ -107,12 +110,6 @@ public class VentanaFin extends JFrame {
 		btnIrAlInicio = new JButton("Inicio");
 		pBotones.add(btnIrAlInicio);
 		
-		/*btnEliminar = new JButton("Eliminar usuario");
-		pBotones.add(btnEliminar);
-		
-		btnEliminarTodosLosUsuarios = new JButton("Eliminar todos los Usuarios");
-		pBotones.add(btnEliminarTodosLosUsuarios);*/
-		
 		JButton bNuevaSimulacion = new JButton("Nueva Simulación");
 		pBotones.add(bNuevaSimulacion);
 		
@@ -128,6 +125,23 @@ public class VentanaFin extends JFrame {
 		
 		JButton bExportar = new JButton("Exportar datos");
 		pBotones.add(bExportar);
+		
+		bExportar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("Ficheros TXT", "txt");
+				fc.setFileFilter(filter);
+				
+				int status = fc.showOpenDialog(ventFin);
+				if (status == JFileChooser.APPROVE_OPTION) {
+					BD.guardarDatos(fc.getSelectedFile(), VentanaInicio.usuarioActivo.getDni());
+				}
+				
+				
+			}
+		});
 		
 		btnSalir = new JButton("Salir");
 		pBotones.add(btnSalir);
