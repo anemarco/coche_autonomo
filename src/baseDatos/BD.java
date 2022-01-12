@@ -69,7 +69,7 @@ public class BD {
 	return nombres;
 	*/
 	
-	public static void crearTablas() {
+	/*public static void crearTablas() {
 		
 		
 		String sent1 = "CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);";
@@ -103,7 +103,7 @@ public class BD {
 				}
 			}
 		}
-	}
+	}*/
 	
 	
 	/**
@@ -135,6 +135,33 @@ public class BD {
 	 }
 	 
 	 /**
+		 * TreeMap que har� que los usuarios que se registren se guarden en el mismo.
+		 * @param con parametro que crea la conexion con la base de datos
+		 * @return devuelve el treemap de usuarios
+		 */
+		public static TreeMap<String, Usuario> obtenerMapaUsuarios(){
+			TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
+			
+			String sent = " SELECT * FROM usuario";
+			try {
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(sent);
+				while(rs.next()) {
+					String dni = rs.getString("dni");
+					String nom = rs.getString("nombre");
+					String ape = rs.getString("apellido");
+					String c = rs.getString("contrasenia");
+					Usuario u = new Usuario(dni, nom, ape, c);
+					System.out.println(u);
+					tmUsuario.put(dni, u);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return tmUsuario;
+		}
+	 
+	 /**
 	  * Método que lee todas las simulaciones ejecutadas por un usuario de la base de datos
 	  * @param con
 	  * @return Lista de las simulaciones
@@ -143,7 +170,7 @@ public class BD {
 	 public static ArrayList<Simulacion> getSimulacionesDeUnaPersona(String dni) {
 		 try (Statement st = con.createStatement()) {
 			 ArrayList<Simulacion> lSimulaciones = new ArrayList<>();
-			 String sent = "SELECT * FROM simulacion WHERE cod ='"+dni+"';";
+			 String sent = "SELECT * FROM simulacion WHERE dni ='"+dni+"';";
 			 ResultSet rs = st.executeQuery(sent);
 			 generarLog(sent);
 			 
@@ -261,32 +288,6 @@ public class BD {
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * TreeMap que har� que los usuarios que se registren se guarden en el mismo.
-	 * @param con parametro que crea la conexion con la base de datos
-	 * @return devuelve el treemap de usuarios
-	 */
-	public static TreeMap<String, Usuario> obtenerMapaUsuarios(){
-		TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
-		
-		String sent = " SELECT * FROM usuario";
-		try {
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sent);
-			while(rs.next()) {
-				String dni = rs.getString("dni");
-				String nom = rs.getString("nombre");
-				String ape = rs.getString("apellido");
-				String c = rs.getString("contrasenia");
-				Usuario u = new Usuario(dni, nom, ape, c);
-				System.out.println(u);
-				tmUsuario.put(dni, u);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return tmUsuario;
 		
 		/*public static TreeMap<String, Persona> obtenerMapaPersonas(Connection con){
 		TreeMap<String, Persona> tmPersonas = new TreeMap<>();
@@ -312,7 +313,6 @@ public class BD {
 		return tmPersonas;
 	}*/
 		
-	}
 	
 	
 	/**

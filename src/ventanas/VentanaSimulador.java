@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import baseDatos.BD;
+import baseDatos.ObstaculoBD;
 import baseDatos.Simulacion;
 import simulador.*;
 import simulador.Semaforo.Color;

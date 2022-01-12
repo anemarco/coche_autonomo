@@ -37,8 +37,9 @@ public class VentanaInicio extends JFrame {
 		
 		ventInic = this;
 		
-		BD.initBD("iniciosesion.db");
-		BD.crearTablas();
+		//BD.initBD("iniciosesion.db");
+		//BD.crearTablas();
+		BD.initBD("simulacion.db");
 		lUsuarios = BD.getUsuarios();
 		
 		/*Connection con = BD.initBD("iniciosesion.db");
@@ -124,7 +125,7 @@ public class VentanaInicio extends JFrame {
 				}
 				
 				if(!dni.equals("") && !cont.equals("")) {
-					BD.initBD("iniciosesion.db");
+					//BD.initBD("iniciosesion.db");
 					TreeMap<String, Usuario> tm = BD.obtenerMapaUsuarios();
 					for(String d: tm.keySet())
 						System.out.println(d);

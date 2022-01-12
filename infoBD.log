@@ -3057,3 +3057,143 @@ ene 11, 2022 5:40:32 P. M. baseDatos.BD generarLog
 INFO: INSERT INTO simulacion VALUES('11/01/2022 17:40:26',6.219,'EXITO','11111111A');
 ene 11, 2022 5:40:32 P. M. baseDatos.BD generarLog
 INFO: SELECT * FROM simulacion WHERE cod ='11111111A';
+ene. 12, 2022 9:33:09 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:33:09 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 12, 2022 9:33:09 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 12, 2022 9:33:09 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 12, 2022 9:33:09 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 12, 2022 9:33:09 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 12, 2022 9:33:19 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:33:49 A. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('12/01/2022 09:33:19',29.443,'EXITO','11111111A');
+ene. 12, 2022 9:33:49 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE cod ='11111111A';
+ene. 12, 2022 9:36:01 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:36:01 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 12, 2022 9:36:01 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 12, 2022 9:36:01 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 12, 2022 9:36:01 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 12, 2022 9:36:01 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 12, 2022 9:36:10 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:36:17 A. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('12/01/2022 09:36:10',7.34,'EXITO','11111111A');
+ene. 12, 2022 9:36:17 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE cod ='11111111A';
+ene. 12, 2022 9:38:15 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:38:15 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 12, 2022 9:38:15 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 12, 2022 9:38:15 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 12, 2022 9:38:15 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 12, 2022 9:38:15 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 12, 2022 9:38:23 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:38:31 A. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('12/01/2022 09:38:23',8.062,'EXITO','11111111A');
+ene. 12, 2022 9:38:31 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE cod ='11111111A';
+ene. 12, 2022 9:48:30 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:48:30 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 12, 2022 9:48:30 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 12, 2022 9:48:30 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 12, 2022 9:48:30 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 12, 2022 9:48:30 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 12, 2022 9:48:39 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:48:44 A. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('12/01/2022 09:48:39',4.406,'EXITO','11111111A');
+ene. 12, 2022 9:48:44 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE cod ='11111111A';
+ene. 12, 2022 9:53:42 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:53:42 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 12, 2022 9:53:42 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 12, 2022 9:53:42 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 12, 2022 9:53:42 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 12, 2022 9:53:42 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 12, 2022 9:53:51 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:53:56 A. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('12/01/2022 09:53:51',4.789,'EXITO','11111111A');
+ene. 12, 2022 9:53:56 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE cod ='11111111A';
+ene. 12, 2022 9:55:18 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:55:18 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 12, 2022 9:55:18 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 12, 2022 9:55:18 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 12, 2022 9:55:18 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 12, 2022 9:55:18 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 12, 2022 9:55:26 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:55:31 A. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('12/01/2022 09:55:26',4.383,'EXITO','11111111A');
+ene. 12, 2022 9:57:07 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:57:08 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 12, 2022 9:57:15 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:57:20 A. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('12/01/2022 09:57:15',4.319,'EXITO','11111111A');
+ene. 12, 2022 9:58:06 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 9:58:06 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS usuario(dni String, nombre String, apellido String, contrasenia String);
+ene. 12, 2022 9:58:06 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS simulacion(cod String, fecha bigint, hora String, duracion float);
+ene. 12, 2022 9:58:06 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculo(cod String, nombre String);
+ene. 12, 2022 9:58:06 A. M. baseDatos.BD generarLog
+INFO: CREATE TABLE IF NOT EXISTS obstaculoUsado(cod_obs String, cod_sim String);
+ene. 12, 2022 9:58:06 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 12, 2022 10:09:17 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 10:09:17 A. M. baseDatos.BD generarLog
+INFO: SELECT * FROM usuario;
+ene. 12, 2022 10:09:25 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con iniciosesion.db
+ene. 12, 2022 10:09:29 A. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('12/01/2022 10:09:25',3.5,'EXITO','11111111A');
+ene. 12, 2022 10:12:37 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con simulacion.db
+ene. 12, 2022 10:15:40 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con simulacion.db
+ene. 12, 2022 10:19:55 A. M. baseDatos.BD generarLog
+INFO: Conexion abierta con simulacion.db

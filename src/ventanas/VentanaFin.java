@@ -59,6 +59,7 @@ public class VentanaFin extends JFrame {
 		getContentPane().setLayout(null);
 		
 		lSimulaciones = BD.getSimulacionesDeUnaPersona(VentanaInicio.usuarioActivo.getDni());
+		System.out.println(lSimulaciones);
 		
 		/*Paneles*/
 		
