@@ -7,14 +7,12 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.BorderLayout;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.TreeMap;
 import java.util.Vector;
 import java.util.regex.Pattern;
 
@@ -41,6 +39,8 @@ public class VentanaRegistro extends JFrame {
 	private static JTable table;
 	public static DefaultTableModel mTable;
 	
+	public static TreeMap<String, Usuario> lUsuarios;
+	
 	public VentanaRegistro() {
 		
 		ventReg = this;
@@ -58,9 +58,6 @@ public class VentanaRegistro extends JFrame {
 		panelTabla = new JPanel();
 		panelTabla.setBounds(226, 40, 475, 439);
 		getContentPane().add(panelTabla);
-		
-		table = new JTable();
-		panelTabla.add(new JScrollPane(table), BorderLayout.CENTER);
 		
 		/**
 		 * Crare compnentes b√°sicos: labels, textfields y botones
@@ -156,7 +153,7 @@ public class VentanaRegistro extends JFrame {
 					JOptionPane.showMessageDialog(null, "Usuario regristrado correctamente", "REGISTRO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
 					vaciarCampos();
 				}else {
-					JOptionPane.showMessageDialog(null, "El dni no es correcto", "°°ERROR!!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "El dni no es correcto", "ÔøΩÔøΩERROR!!", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -208,13 +205,13 @@ public class VentanaRegistro extends JFrame {
 	 */
 	
 	public static void updateUI() {
-		VentanaInicio.lUsuarios = BD.getMapaUsuarios();
+		lUsuarios = BD.getMapaUsuarios();
 		
 		for(int i = mTable.getRowCount() - 1; i >= 0; i--) {
 			mTable.removeRow(i);
 		}
 		
-		for (Usuario u : VentanaInicio.lUsuarios.values()) {
+		for (Usuario u : lUsuarios.values()) {
 			mTable.addRow(new Object[] {u.getDni(), u.getNombre(), u.getApellido()});
 		}
 		
@@ -258,7 +255,7 @@ class VentanaConfirmacion extends JFrame {
 		instruccion.setBounds(40, 22, 200, 30);
 		getContentPane().add(instruccion);
 		
-		JTextField tfContra = new JPasswordField("Introduzaza la cotrase√±a");
+		JTextField tfContra = new JTextField("Introduzaza la cotrase√±a");
 		tfContra.setBounds(60, 72, 150, 20);
 		getContentPane().add(tfContra);
 		tfContra.setColumns(10);

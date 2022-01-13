@@ -40,7 +40,6 @@ public class VentanaFin extends JFrame {
 	
 	private static JTable tSimulaciones, tObstaculos;
 	private static DefaultTableModel mSimulaciones, mObstaculos;
-	private static JComboBox<String> comboBox; 
 	public static List<Simulacion> lSimulaciones;
 	public static List<ObstaculoBD> lObstaculos;
 	
@@ -49,6 +48,8 @@ public class VentanaFin extends JFrame {
 	public static JPanel panelCapa, pIzq, pDer, pBotones, pInfo, panelTituloObs, panel;
 	public static JScrollPane scrollPane;
 	public static JLabel info, instrucciones, nomUsuario;
+	
+	public static JComboBox<String> comboBox;
 
 	/**
 	 * Create the frame.
@@ -212,29 +213,7 @@ public class VentanaFin extends JFrame {
 		tSimulaciones.getColumnModel().getColumn(0).setMinWidth(140);
 		tSimulaciones.getColumnModel().getColumn(0).setMaxWidth(140);
 		
-		tSimulaciones.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-			private static final long serialVersionUID = 1L;
-			
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-				JLabel ret = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-				
-				if (column==0 || column==1 || column==2) {
-					ret.setHorizontalAlignment(JLabel.LEFT);
-				} else if (column==3) {
-					ret.setHorizontalAlignment(JLabel.RIGHT);
-				}
-				
-				if (row>=1 && column<=1) {
-					if (lSimulaciones.get(row).getEstado().equals("FRACASO")) {
-						ret.setForeground(Color.RED);
-					} else if (lSimulaciones.get(row).getEstado().equals("EXITO")) {
-						ret.setForeground(Color.BLACK);
-					}
-				}
-				return ret;
-			}
-		});
+		renderizarSimulaciones();
 		
 		/**
 		 * Crear tabla usuarios
@@ -280,10 +259,10 @@ public class VentanaFin extends JFrame {
 		panel.setBounds(10, 11, 125, 34);
 		getContentPane().add(panel);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<String>();
 		comboBox.setFont(new Font("ARIAL", Font.PLAIN, 12));
 		comboBox.addItem("Todo");
-		comboBox.addItem("Éxitos");
+		comboBox.addItem("Exitos");
 		comboBox.addItem("Fracasos");
 		panel.add(comboBox);
 		
@@ -298,25 +277,37 @@ public class VentanaFin extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String sel = comboBox.getSelectedItem().toString();
-				if(sel!=null) {
-					List<Simulacion> l = null;
-					if(sel.equals("Exitos")) {
-						l = BD.getSimulacionesDeUnaPersonaConEstado(VentanaInicio.usuarioActivo.getDni(), "EXITO");
-					}else if(sel.equals("Fracasos")){
-						l = BD.getSimulacionesDeUnaPersonaConEstado(VentanaInicio.usuarioActivo.getDni(), "FRACASO");
-					}else {
-						l = BD.getSimulacionesDeUnaPersonaConEstado(VentanaInicio.usuarioActivo.getDni(), "TODAS");
-					}
-					while(mSimulaciones.getRowCount()>0)
-						mSimulaciones.removeRow(0);
-					for(Simulacion s: l) {
-						lObstaculos = BD.getObstaculosDeUnaSimulacion(s.getFecha());
-						mSimulaciones.addRow(new Object[] {s.getFecha(), s.getDuracion(), s.getEstado(),lObstaculos.size()});
-					}
-				}
+				cargarTablaSimulaciones();
 			}
 		});
+	}
+	
+	/**
+	 * Actualiza la tabla de simulaciones cuando se realizen cambios en ella debido al comboBox
+	 * @param fecha
+	 */
+	
+	public static void cargarTablaSimulaciones() {
+		String sel = comboBox.getSelectedItem().toString();
+		
+		if(sel!=null) {
+			if(sel.equals("Exitos")) {
+				lSimulaciones = BD.getSimulacionesDeUnaPersonaConEstado(VentanaInicio.usuarioActivo.getDni(), "EXITO");
+			}else if(sel.equals("Fracasos")){
+				lSimulaciones = BD.getSimulacionesDeUnaPersonaConEstado(VentanaInicio.usuarioActivo.getDni(), "FRACASO");
+			}else {
+				lSimulaciones = BD.getSimulacionesDeUnaPersonaConEstado(VentanaInicio.usuarioActivo.getDni(), "TODAS");
+			}
+			
+			while(mSimulaciones.getRowCount()>0)  mSimulaciones.removeRow(0);
+			
+			for(Simulacion s: lSimulaciones) {
+				lObstaculos = BD.getObstaculosDeUnaSimulacion(s.getFecha());
+				mSimulaciones.addRow(new Object[] {s.getFecha(), s.getDuracion(), s.getEstado(),lObstaculos.size()});
+			}
+		}
+		
+		renderizarSimulaciones();
 	}
 	
 	/**
@@ -336,5 +327,36 @@ public class VentanaFin extends JFrame {
 		}
 		
 		tObstaculos.setModel(mObstaculos);
+	}
+	
+	/**
+	 * Renderizar tabla de simulaciones
+	 */
+	
+	public static void renderizarSimulaciones() {
+		
+		tSimulaciones.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				JLabel ret = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				
+				if (column==0 || column==1 || column==2) {
+					ret.setHorizontalAlignment(JLabel.LEFT);
+				} else if (column==3) {
+					ret.setHorizontalAlignment(JLabel.RIGHT);
+				}
+				
+				if (row>=0 && column<=0) {
+					if (lSimulaciones.get(row).getEstado().equals("FRACASO")) {
+						ret.setForeground(Color.RED);
+					} else if (lSimulaciones.get(row).getEstado().equals("EXITO")) {
+						ret.setForeground(Color.BLACK);
+					}
+				}
+				return ret;
+			}
+		});
 	}
 }

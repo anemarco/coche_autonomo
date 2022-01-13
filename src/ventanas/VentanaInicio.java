@@ -8,7 +8,6 @@ import baseDatos.BD;
 import baseDatos.Usuario;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.TreeMap;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -120,7 +119,7 @@ public class VentanaInicio extends JFrame {
 					}else {
 						Usuario usu = tm.get(dni);
 						if(!usu.getContrasenia().equals(cont)) {
-							JOptionPane.showMessageDialog(null, "Contrasena incorrecta", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Contrasena incorrecta", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
 						}else {
 							usuarioActivo = usu;
 							JOptionPane.showMessageDialog(null, "Bienvenido");
@@ -156,6 +155,7 @@ public class VentanaInicio extends JFrame {
 	 * Vaciaria los campos cuando el usuario pulse un boton
 	 */
 	
+	@SuppressWarnings("unused")
 	private void vaciarCampos() {
 		textNombre.setText("");
 		textDni.setText("");

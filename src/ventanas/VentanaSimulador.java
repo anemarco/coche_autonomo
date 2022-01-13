@@ -23,6 +23,10 @@ import simulador.*;
 import simulador.Semaforo.Color;
 import simulador.Senal.Tipo;
 
+/**
+ * Ventana principal 
+ */
+
 public class VentanaSimulador extends JFrame {
 
 	/*Constantes*/
