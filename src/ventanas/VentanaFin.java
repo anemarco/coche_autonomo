@@ -1,6 +1,7 @@
 package ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -21,9 +22,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -56,11 +63,14 @@ public class VentanaFin extends JFrame {
 	 */
 	
 	public VentanaFin() {
+		
+		
 		ventFin = this;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(150, 100, 798, 578);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
+		
 		
 		lSimulaciones = BD.getSimulacionesDeUnaPersona(VentanaInicio.usuarioActivo.getDni());
 		System.out.println(lSimulaciones);
@@ -266,7 +276,7 @@ public class VentanaFin extends JFrame {
 		comboBox.addItem("Fracasos");
 		panel.add(comboBox);
 		
-		
+		cargarTablaSimulaciones();
 		tObstaculos.getColumnModel().getColumn(0).setMinWidth(140);
 		tObstaculos.getColumnModel().getColumn(0).setMaxWidth(140);
 		tObstaculos.getColumnModel().getColumn(1).setMinWidth(100);
@@ -280,8 +290,8 @@ public class VentanaFin extends JFrame {
 				cargarTablaSimulaciones();
 			}
 		});
+		
 	}
-	
 	/**
 	 * Actualiza la tabla de simulaciones cuando se realizen cambios en ella debido al comboBox
 	 * @param fecha

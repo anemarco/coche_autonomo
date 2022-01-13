@@ -1,13 +1,18 @@
 package ventanas;
 
 import java.awt.Font;
+
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
-
+import java.sql.Timestamp;
 import baseDatos.BD;
 import baseDatos.Usuario;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Properties;
 import java.util.TreeMap;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -29,12 +34,21 @@ public class VentanaInicio extends JFrame {
 	public static TreeMap<String, Usuario> lUsuarios;
 	public static Usuario usuarioActivo;
 	
-
+	protected Properties properties;
+	protected JLabel ultimoAcceso;
 	/**
 	 * Create the frame.
 	 */
 	
 	public VentanaInicio() {
+		
+		//cargar properties
+				properties= new Properties();
+				try {
+					properties.loadFromXML(new FileInputStream("properties.xml"));
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}
 		
 		ventInic = this;
 		
@@ -59,6 +73,11 @@ public class VentanaInicio extends JFrame {
 		titulo.setFont(new Font("Agency FB", Font.PLAIN, 30));
 		titulo.setBounds(148, 82, 363, 33);
 		getContentPane().add(titulo);
+		
+		JLabel ultimoAcceso = new JLabel("Último acceso: "+properties.getProperty("Última conexió"));
+		ultimoAcceso.setFont(new Font("Agency FB", Font.PLAIN, 18));
+		ultimoAcceso.setBounds(180, 130, 304, 33);
+		getContentPane().add(ultimoAcceso);
 		
 		JButton btnSalir = new JButton("SALIR");
 		btnSalir.setBounds(10, 427, 104, 23);
@@ -167,6 +186,13 @@ public class VentanaInicio extends JFrame {
 	 */
 	
 	private void iniciarSimulador() {
+		Timestamp timestamp= new Timestamp(System.currentTimeMillis());
+		properties.setProperty("Última conexió", timestamp.toString());
+		try {
+			properties.storeToXML(new PrintStream("properties.xml"), "PROPIEDADES");
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		ventInic.setVisible(false);
 		
 		Thread hilo = new Thread() {

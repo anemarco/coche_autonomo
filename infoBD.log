@@ -5901,3 +5901,885 @@ ene. 13, 2022 9:29:45 P. M. baseDatos.BD generarLog
 INFO: INSERT INTO simulacion VALUES('13/01/2022 21:29:44',1.149,'EXITO','11111111A');
 ene. 13, 2022 9:29:45 P. M. baseDatos.BD generarLog
 INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene 13, 2022 9:59:18 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 9:59:48 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:00:27 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:00:27 p. m.','Animal','13/01/2022 21:59:52');
+ene 13, 2022 10:00:29 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:00:29 p. m.','Coche','13/01/2022 21:59:52');
+ene 13, 2022 10:00:31 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('13/01/2022 21:59:52',37.118,'FRACASO','11111111A');
+ene 13, 2022 10:00:31 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:48:18';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:49:37';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:57:16';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:03:01';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:11:30';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:13:11';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:17:32';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:19:51';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 22:24:12';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:30';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:39';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:46:33';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:52:19';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:55:54';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:00:07';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:02:35';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:04:22';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:11:34';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:13:12';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:15:30';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:16:28';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:17:37';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:23:47';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:25:35';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:27:14';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:28:03';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:29:44';
+ene 13, 2022 10:00:32 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:59:52';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A' AND estado ='EXITO';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:49:37';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:57:16';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:03:01';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:11:30';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:13:11';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:17:32';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:19:51';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 22:24:12';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:30';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:39';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:46:33';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:52:19';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:55:54';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:00:07';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:02:35';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:04:22';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:11:34';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:13:12';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:15:30';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:16:28';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:17:37';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:23:47';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:25:35';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:27:14';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:28:03';
+ene 13, 2022 10:00:49 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:29:44';
+ene 13, 2022 10:12:47 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:13:01 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:13:07 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:13:07 p. m.','Coche','13/01/2022 22:13:02');
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('13/01/2022 22:13:02',9.71,'EXITO','11111111A');
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:48:18';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:49:37';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:57:16';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:03:01';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:11:30';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:13:11';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:17:32';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:19:51';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 22:24:12';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:30';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:39';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:46:33';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:52:19';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:55:54';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:00:07';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:02:35';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:04:22';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:11:34';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:13:12';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:15:30';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:16:28';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:17:37';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:23:47';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:25:35';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:27:14';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:28:03';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:29:44';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:59:52';
+ene 13, 2022 10:13:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:13:02';
+ene 13, 2022 10:13:22 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A' AND estado ='FRACASO';
+ene 13, 2022 10:13:22 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:48:18';
+ene 13, 2022 10:13:22 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:59:52';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A' AND estado ='EXITO';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:49:37';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:57:16';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:03:01';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:11:30';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:13:11';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:17:32';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:19:51';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 22:24:12';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:30';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:39';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:46:33';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:52:19';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:55:54';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:00:07';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:02:35';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:04:22';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:11:34';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:13:12';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:15:30';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:16:28';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:17:37';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:23:47';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:25:35';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:27:14';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:28:03';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:29:44';
+ene 13, 2022 10:13:25 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:13:02';
+ene 13, 2022 10:13:28 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A'
+ene 13, 2022 10:13:28 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:13:28 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:48:18';
+ene 13, 2022 10:13:28 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:49:37';
+ene 13, 2022 10:13:28 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:57:16';
+ene 13, 2022 10:13:28 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:03:01';
+ene 13, 2022 10:13:28 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:11:30';
+ene 13, 2022 10:13:28 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:13:11';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:17:32';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:19:51';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 22:24:12';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:30';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:39';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:46:33';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:52:19';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:55:54';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:00:07';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:02:35';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:04:22';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:11:34';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:13:12';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:15:30';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:16:28';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:17:37';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:23:47';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:25:35';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:27:14';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:28:03';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:29:44';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:59:52';
+ene 13, 2022 10:13:29 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:13:02';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A' AND estado ='EXITO';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:49:37';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:57:16';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:03:01';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:11:30';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:13:11';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:17:32';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:19:51';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 22:24:12';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:30';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:39';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:46:33';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:52:19';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:55:54';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:00:07';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:02:35';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:04:22';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:11:34';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:13:12';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:15:30';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:16:28';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:17:37';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:23:47';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:25:35';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:27:14';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:28:03';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:29:44';
+ene 13, 2022 10:13:52 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:13:02';
+ene 13, 2022 10:13:59 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A' AND estado ='FRACASO';
+ene 13, 2022 10:13:59 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:48:18';
+ene 13, 2022 10:13:59 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:59:52';
+ene 13, 2022 10:19:14 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:19:35 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:19:41 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:19:41 p. m.','Coche','13/01/2022 22:19:38');
+ene 13, 2022 10:19:44 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:19:44 p. m.','Peaton','13/01/2022 22:19:38');
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('13/01/2022 22:19:38',13.249,'EXITO','11111111A');
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:48:18';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:49:37';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:57:16';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:03:01';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:11:30';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:13:11';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:17:32';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:19:51';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 22:24:12';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:30';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:39';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:46:33';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:52:19';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:55:54';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:00:07';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:02:35';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:04:22';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:11:34';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:13:12';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:15:30';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:16:28';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:17:37';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:23:47';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:25:35';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:27:14';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:28:03';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:29:44';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:59:52';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:13:02';
+ene 13, 2022 10:19:51 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:19:38';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A'
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:48:18';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:49:37';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:57:16';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:03:01';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:11:30';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:13:11';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:17:32';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:19:51';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 22:24:12';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:30';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:39';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:46:33';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:52:19';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:55:54';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:00:07';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:02:35';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:04:22';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:11:34';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:13:12';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:15:30';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:16:28';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:17:37';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:23:47';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:25:35';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:27:14';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:28:03';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:29:44';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:59:52';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:13:02';
+ene 13, 2022 10:20:00 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:19:38';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A' AND estado ='EXITO';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:49:37';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:57:16';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:03:01';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:11:30';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:13:11';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:17:32';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:19:51';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 22:24:12';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:30';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:39';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:46:33';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:52:19';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:55:54';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:00:07';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:02:35';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:04:22';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:11:34';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:13:12';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:15:30';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:16:28';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:17:37';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:23:47';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:25:35';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:27:14';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:28:03';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:29:44';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:13:02';
+ene 13, 2022 10:20:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:19:38';
+ene 13, 2022 10:28:01 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:28:20 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:28:30 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:28:30 p. m.','Peaton','13/01/2022 22:28:22');
+ene 13, 2022 10:28:31 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:28:31 p. m.','Peaton','13/01/2022 22:28:22');
+ene 13, 2022 10:28:32 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:28:32 p. m.','Coche','13/01/2022 22:28:22');
+ene 13, 2022 10:28:35 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('13/01/2022 22:28:22',10.622,'FRACASO','11111111A');
+ene 13, 2022 10:32:14 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:32:25 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:32:29 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:32:29 p. m.','Semaforo','13/01/2022 22:32:26');
+ene 13, 2022 10:32:31 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:32:31 p. m.','Stop','13/01/2022 22:32:26');
+ene 13, 2022 10:32:33 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('13/01/2022 22:32:26',6.485,'EXITO','11111111A');
+ene 13, 2022 10:32:33 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A' AND estado ='EXITO';
+ene 13, 2022 10:32:58 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:33:08 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:33:12 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('13/01/2022 22:33:09',3.09,'EXITO','11111111A');
+ene 13, 2022 10:33:12 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A' AND estado ='EXITO';
+ene 13, 2022 10:36:43 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:36:54 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:37:01 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('13/01/2022 22:36:56',5.114,'EXITO','11111111A');
+ene 13, 2022 10:38:28 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:38:44 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene 13, 2022 10:38:53 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:38:53 p. m.','Animal','13/01/2022 22:38:46');
+ene 13, 2022 10:38:55 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:38:55 p. m.','Stop','13/01/2022 22:38:46');
+ene 13, 2022 10:38:57 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:38:57 p. m.','Semaforo','13/01/2022 22:38:46');
+ene 13, 2022 10:39:00 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('22:39:00 p. m.','Coche','13/01/2022 22:38:46');
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO simulacion VALUES('13/01/2022 22:38:46',13.936,'FRACASO','11111111A');
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:48:18';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:49:37';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:57:16';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:03:01';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:11:30';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:13:11';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:17:32';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:19:51';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 22:24:12';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:30';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:39';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:46:33';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:52:19';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:55:54';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:00:07';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:02:35';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:04:22';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:11:34';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:13:12';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:15:30';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:16:28';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:17:37';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:23:47';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:25:35';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:27:14';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:28:03';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:29:44';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:59:52';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:13:02';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:19:38';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:28:22';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:32:26';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:33:09';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:36:56';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:38:46';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A' AND estado ='EXITO';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:49:37';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:57:16';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:03:01';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:11:30';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:13:11';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:17:32';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 17:19:51';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 22:24:12';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:30';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:20:39';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:46:33';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:52:19';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:55:54';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:00:07';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:02:35';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:04:22';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:11:34';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:13:12';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:15:30';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:16:28';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:17:37';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:23:47';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:25:35';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:27:14';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:28:03';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 21:29:44';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:13:02';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:19:38';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:32:26';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:33:09';
+ene 13, 2022 10:39:03 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 22:36:56';
+ene 13, 2022 10:39:11 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 18:45:30';
+ene 13, 2022 10:39:14 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene 13, 2022 10:57:38 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene 13, 2022 10:58:15 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene 13, 2022 10:59:20 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene 13, 2022 10:59:47 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene 13, 2022 11:00:12 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene 13, 2022 11:00:31 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene 13, 2022 11:01:10 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
