@@ -3717,3 +3717,65 @@ ene. 13, 2022 1:15:21 A.聽M. baseDatos.BD generarLog
 INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 01:15:20';
 ene. 13, 2022 1:17:50 A.聽M. baseDatos.BD generarLog
 INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:47:28';
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:48:18';
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: INSERT INTO obstaculo VALUES('16:48:20 p.聽m.','Coche','null');
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='52384730J';
+ene. 13, 2022 1:07:01 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:48:18';
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexi贸n abierta con simulacion.bd
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='52384730J';
+ene. 13, 2022 1:21:47 P.燤. baseDatos.BD generarLog
+INFO: Conexion cerrada
