@@ -28,21 +28,7 @@ class TestSimulador {
 	public void tearDown() throws Exception {
 		
 	}
-	//Comprobar el metodo acelerar de la clase Coche
-	@Test
-	void testAcelerar() {
-		c1.acelerar(4);
-		assertEquals(4, c1.getVelocidad());
-	}
 
-	//Comprobar el metodo choca de la clase Coche
-	@Test
-	void testChoca() {
-		OtroCoche obst1= new OtroCoche(0,0);
-		Animal obst2= new Animal();
-		assertTrue( c1.choca(obst1));
-		assertFalse(c1.choca(obst2));
-	}
 	//Comprobar el metodo acelerar de la clase Coche y Obstaculo
 	@Test
 	void testMover() {
