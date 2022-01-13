@@ -22,7 +22,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
@@ -39,10 +38,10 @@ public class VentanaFin extends JFrame {
 	
 	public static VentanaFin ventFin;
 	
-	private JTable tablaUsuarios;
-	private DefaultTableModel modeloTablaUsuarios;
-	private static JTable tablaObstaculos;
-	private static DefaultTableModel modeloTablaObstaculos;
+	private JTable tSimulaciones;
+	private DefaultTableModel mSimulaciones;
+	private static JTable tObstaculos;
+	private static DefaultTableModel mObstaculos;
 	
 	public static List<Simulacion> lSimulaciones;
 	public static List<ObstaculoBD> lObstaculos;
@@ -67,7 +66,9 @@ public class VentanaFin extends JFrame {
 		lSimulaciones = BD.getSimulacionesDeUnaPersona(VentanaInicio.usuarioActivo.getDni());
 		System.out.println(lSimulaciones);
 		
-		/*Paneles*/
+		/**
+		 * Crear paneles
+		 */
 		
 		JPanel pIzq = new JPanel();
 		pIzq.setBounds(10, 56, 475, 420);
@@ -92,14 +93,16 @@ public class VentanaFin extends JFrame {
 		JPanel pDer = new JPanel();
 		pDer.setBounds(495, 76, 280, 398);
 		getContentPane().add(pDer);
-
-		instrucciones = new JLabel("<html><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
-									+ "Para obtener infromación más detallada"
-									+ "<br>haga Clik sobre una de las simulaciones </html>");
+		
+		/**
+		 * Componentes básicos
+		 */
+		
+		instrucciones = new JLabel("<html><br><br><br><br><br><br><br><br><br><br>"
+				+ "Para obtener infromación más detallada"
+				+ "<br>haga Clik sobre una de las simulaciones </html>");
 
 		panelCapa.add(instrucciones);
-		
-		/*Componentes*/
 		
 		JLabel nomUsuario = new JLabel(VentanaInicio.usuarioActivo.getNombre());
 		pInfo.add(nomUsuario);
@@ -114,6 +117,19 @@ public class VentanaFin extends JFrame {
 		JButton bNuevaSimulacion = new JButton("Nueva Simulación");
 		pBotones.add(bNuevaSimulacion);
 		
+		JButton bExportar = new JButton("Exportar datos");
+		pBotones.add(bExportar);
+		
+		btnSalir = new JButton("Salir");
+		pBotones.add(btnSalir);
+		
+		/*EVENTOS*/
+		
+		/**
+		 * Permite a un usuario volver a ejecutar una simulación sin volvera tener que registarse 
+		 * en la ventana de inidio
+		 */
+		
 		bNuevaSimulacion.addActionListener(new ActionListener() {
 			
 			@Override
@@ -124,8 +140,10 @@ public class VentanaFin extends JFrame {
 			}
 		});
 		
-		JButton bExportar = new JButton("Exportar datos");
-		pBotones.add(bExportar);
+		/**
+		 * Permite a un usuario exportar todos los datos de sus simulaciones y sus obstáculos
+		 * mediante un fichero de texto
+		 */
 		
 		bExportar.addActionListener(new ActionListener() {
 			
@@ -144,9 +162,6 @@ public class VentanaFin extends JFrame {
 			}
 		});
 		
-		btnSalir = new JButton("Salir");
-		pBotones.add(btnSalir);
-		
 		btnSalir.addActionListener(new ActionListener() {
 			
 			@Override
@@ -155,50 +170,51 @@ public class VentanaFin extends JFrame {
 			}
 		});
 		
+		btnIrAlInicio.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ventFin.setVisible(false);
+				VentanaInicio ventReg = new VentanaInicio();
+				ventReg.setVisible(true);
+				
+			}
+		});
 		
-		/*TABLA USUARIOS*/
 		
 		/**
-		 * Creamos una JTable que mostrar� el TreeMap de usuarios que han usado
-		 * el simulador con su nombre, dni y la puntuaci�n que han conseguido al 
-		 * sortear los diferentes obst�culos.
+		 * Crear tabla de simulaciones
 		 */
 		
-		modeloTablaUsuarios = new DefaultTableModel() {
+		mSimulaciones = new DefaultTableModel() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public boolean isCellEditable(int row, int col) {
-				if(col == 0 && col == 1 && col == 2) {
-					return false;
-				} else {
-					return true;
-				}
+				return false;
 			}
 		};
 		
 		String [] columnas = {"Fecha", "Duración (seg)", "Estado", "Obstáculos"};
-		modeloTablaUsuarios.setColumnIdentifiers(columnas);
+		mSimulaciones.setColumnIdentifiers(columnas);
 		
-		tablaUsuarios = new JTable(modeloTablaUsuarios);
-		JScrollPane scrollTabla = new JScrollPane(tablaUsuarios); 
+		tSimulaciones = new JTable(mSimulaciones);
+		JScrollPane scrollTabla = new JScrollPane(tSimulaciones); 
 		scrollTabla.setPreferredSize(new java.awt.Dimension(460, 410));
 		pIzq.add(scrollTabla);
 		
 		for (Simulacion s : lSimulaciones) {
 			lObstaculos = BD.getObstaculosDeUnaSimulacion(s.getFecha());
-			modeloTablaUsuarios.addRow(new Object[] {s.getFecha(), s.getDuracion(), s.getEstado(),lObstaculos.size()});
+			mSimulaciones.addRow(new Object[] {s.getFecha(), s.getDuracion(), s.getEstado(),lObstaculos.size()});
 		}
 		
-		tablaUsuarios.setModel(modeloTablaUsuarios);
+		tSimulaciones.setModel(mSimulaciones);
 		
-		tablaUsuarios.getColumnModel().getColumn(0).setMinWidth(140);
-		tablaUsuarios.getColumnModel().getColumn(0).setMaxWidth(140);
+		tSimulaciones.getColumnModel().getColumn(0).setMinWidth(140);
+		tSimulaciones.getColumnModel().getColumn(0).setMaxWidth(140);
 		
-		/*Renderizar tabla*/
-		
-		tablaUsuarios.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+		tSimulaciones.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
 			private static final long serialVersionUID = 1L;
 			
 			@Override
@@ -222,25 +238,30 @@ public class VentanaFin extends JFrame {
 			}
 		});
 		
-		/*TABLA OBSTACULOS*/
+		/**
+		 * Crear tabla usuarios
+		 */
 		
-		tablaObstaculos = new JTable();
-		scrollPane = new JScrollPane(tablaObstaculos);
+		tObstaculos = new JTable();
+		scrollPane = new JScrollPane(tObstaculos);
 		scrollPane.setPreferredSize(new java.awt.Dimension(240, 375));
 		scrollPane.setVisible(false);
 		pDer.add(scrollPane, BorderLayout.WEST);
 		
 		Vector<String> cabeceras = new Vector<String>(Arrays.asList("Nombre", "Hora"));
-		modeloTablaObstaculos = new DefaultTableModel(
+		mObstaculos = new DefaultTableModel(
 				new Vector<Vector<Object>>(),
 				cabeceras
 		);
 		
 		System.out.println(lObstaculos);
 		
-		/*Al hacer la tabla usuarios se cargan los datos en la tabla usuario*/
+		/**
+		 * Añadir un evento de ratón a la tabla simulación. Al pulsar una simulación se creará una tabla
+		 * adicional a la derecha de la ventana con los obstáculos creados en dicha simulación
+		 */
 		
-		tablaUsuarios.addMouseListener(new MouseAdapter() {
+		tSimulaciones.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -249,13 +270,13 @@ public class VentanaFin extends JFrame {
 				info.setVisible(true);
 				scrollPane.setVisible(true);
 				
-				String fecha = (String) tablaUsuarios.getValueAt(tablaUsuarios.getSelectedRow(), 0);
+				String fecha = (String) tSimulaciones.getValueAt(tSimulaciones.getSelectedRow(), 0);
 				cargarTablaObstaculos(fecha);
 				info.setText(fecha);
 			}
 		});
 		
-		tablaObstaculos.setModel(modeloTablaObstaculos);
+		tObstaculos.setModel(mObstaculos);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 11, 125, 34);
@@ -269,54 +290,29 @@ public class VentanaFin extends JFrame {
 		panel.add(comboBox);
 		
 		
-		tablaObstaculos.getColumnModel().getColumn(0).setMinWidth(140);
-		tablaObstaculos.getColumnModel().getColumn(0).setMaxWidth(140);
-		tablaObstaculos.getColumnModel().getColumn(1).setMinWidth(100);
-		tablaObstaculos.getColumnModel().getColumn(1).setMaxWidth(100);
-		
+		tObstaculos.getColumnModel().getColumn(0).setMinWidth(140);
+		tObstaculos.getColumnModel().getColumn(0).setMaxWidth(140);
+		tObstaculos.getColumnModel().getColumn(1).setMinWidth(100);
+		tObstaculos.getColumnModel().getColumn(1).setMaxWidth(100);
 
-		/*BOTONES*/
-		
-		btnIrAlInicio.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ventFin.setVisible(false);
-				VentanaInicio ventReg = new VentanaInicio();
-				ventReg.setVisible(true);
-				
-			}
-		});
-		
-		
-		/*btnEliminarTodosLosUsuarios.addActionListener(new ActionListener() {
-					
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				while(tablaUsuarios.getRowCount() > 0) {
-					modeloTablaUsuarios.removeRow(0);
-				}
-			}
-		});*/
-		
-		
-		/**
-		 * Boton que sale de la pantalla
-		 */
 	}
 	
+	/**
+	 * Actualiza la tabla de obstáculos en función de la simulación que esté seleccionada
+	 * @param fecha Fecha de la simulación seleccionada
+	 */
+	
 	public static void cargarTablaObstaculos(String fecha) {
-		
-		while(tablaObstaculos.getRowCount() > 0) {
-			modeloTablaObstaculos.removeRow(0);
+		while(tObstaculos.getRowCount() > 0) {
+			mObstaculos.removeRow(0);
 		}
 		
 		lObstaculos = BD.getObstaculosDeUnaSimulacion(fecha);
 		
 		for (ObstaculoBD o : lObstaculos) {
-			modeloTablaObstaculos.addRow(new Object[] {o.getNombre(), o.getHora()});
+			mObstaculos.addRow(new Object[] {o.getNombre(), o.getHora()});
 		}
 		
-		tablaObstaculos.setModel(modeloTablaObstaculos);
+		tObstaculos.setModel(mObstaculos);
 	}
 }

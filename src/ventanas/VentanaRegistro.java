@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 import java.util.regex.Pattern;
 
@@ -25,6 +26,9 @@ import javax.swing.JTable;
 
 import baseDatos.*;
 
+/**
+ * Ventana que gestiona todo lo referente a los usuarios de la base de datos
+ */
 
 public class VentanaRegistro extends JFrame {
 
@@ -35,8 +39,11 @@ public class VentanaRegistro extends JFrame {
 	private JTextField tfDni;
 	
 	public static VentanaRegistro ventReg;
-	private JTable table;
+	private static JTable table;
 	public static DefaultTableModel mTable;
+	
+	public static Usuario selectUsuario;
+	public static List<Usuario> lUsuarios;
 	
 	public VentanaRegistro() {
 		
@@ -48,53 +55,17 @@ public class VentanaRegistro extends JFrame {
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		/*Panel de la tabla*/
+		/**
+		 * Crar panel de la tabla
+		 */
 		
 		JPanel panelTabla = new JPanel();
 		panelTabla.setBounds(226, 40, 475, 439);
 		getContentPane().add(panelTabla);
 		
-		table = new JTable();
-		panelTabla.add(new JScrollPane(table), BorderLayout.CENTER);
-		
-		/*Crear Tabla*/		
-		
-		Vector<String> cabeceras = new Vector<String>(Arrays.asList("Dni", "Nombre", "Apellido"));
-		mTable = new DefaultTableModel(
-				new Vector<Vector<Object>>(),
-				cabeceras
-		);
-		
-		for (Usuario u : VentanaInicio.lUsuarios) {
-			mTable.addRow(new Object[] {u.getDni(), u.getNombre(), u.getApellido()});
-		}
-		
-		table.setModel(mTable);
-
-		table.addMouseListener(new MouseAdapter() {
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.isAltDown()) {
-					String selectedDni = (String) table.getValueAt(table.getSelectedRow(), 0);
-					Usuario selectUsuario = null;
-					for (Usuario u : VentanaInicio.lUsuarios) {
-						if (u.getDni().equals(selectedDni)) selectUsuario = u;
-					}
-					
-					VentanaConfirmacion ventConf = new VentanaConfirmacion((String) table.getValueAt(table.getSelectedRow(), 1));
-					ventConf.setVisible(true);
-					
-					if (ventConf.cont.getText().equals(selectUsuario.getContrasenia())) {
-						BD.eliminarUsuario(selectedDni);
-						mTable.removeRow(table.getSelectedRow());
-					}
-				}	
-			}
-			
-		});
-		
-		/*Crar JLabels*/
+		/**
+		 * Crare compnentes básicos: labels, textfields y botones
+		 */
 		
 		JLabel lblNombre = new JLabel("Nombre: ");
 		lblNombre.setBounds(20, 93, 85, 14);
@@ -112,7 +83,17 @@ public class VentanaRegistro extends JFrame {
 		lblContrasenya.setBounds(20, 167, 85, 14);
 		getContentPane().add(lblContrasenya);
 		
-		/*Crara JTextFields*/
+		JLabel lblNewLabel = new JLabel("Introduzca sus datos");
+		lblNewLabel.setBounds(50, 53, 142, 14);
+		getContentPane().add(lblNewLabel);
+		
+		JLabel lblUsuarios = new JLabel("Usuarios");
+		lblUsuarios.setBounds(432, 15, 115, 14);
+		getContentPane().add(lblUsuarios);
+		
+		JLabel lblNewLabel_1 = new JLabel("Alt + Clik para eliminar a un usuario");
+		lblNewLabel_1.setBounds(480, 476, 240, 14);
+		getContentPane().add(lblNewLabel_1);
 		
 		tfNombre = new JTextField();
 		tfNombre.setBounds(103, 90, 86, 20);
@@ -134,8 +115,6 @@ public class VentanaRegistro extends JFrame {
 		getContentPane().add(tfContrasenya);
 		tfContrasenya.setColumns(10);
 		
-		/*Crear Botones*/
-		
 		JButton btnRegistrar = new JButton("REGISTRAR");
 		btnRegistrar.setBounds(50, 209, 105, 23);
 		getContentPane().add(btnRegistrar);
@@ -144,17 +123,9 @@ public class VentanaRegistro extends JFrame {
 		btnInicio.setBounds(20, 474, 105, 23);
 		getContentPane().add(btnInicio);
 		
-		JLabel lblNewLabel = new JLabel("Introduzca sus datos");
-		lblNewLabel.setBounds(50, 53, 142, 14);
-		getContentPane().add(lblNewLabel);
-		
-		JLabel lblUsuarios = new JLabel("Usuarios");
-		lblUsuarios.setBounds(432, 15, 115, 14);
-		getContentPane().add(lblUsuarios);
-		
-		JLabel lblNewLabel_1 = new JLabel("Alt + Clik para eliminar a un usuario");
-		lblNewLabel_1.setBounds(480, 476, 240, 14);
-		getContentPane().add(lblNewLabel_1);
+		/**
+		 * Anñadir eventos a los botones
+		 */
 		
 		btnInicio.addActionListener(new ActionListener() {
 			
@@ -188,11 +159,69 @@ public class VentanaRegistro extends JFrame {
 				
 			}
 		});
+		
+		
+		/*
+		 * Crear tabla usuarios
+		 */
+		
+		table = new JTable();
+		panelTabla.add(new JScrollPane(table), BorderLayout.CENTER);
+
+		Vector<String> cabeceras = new Vector<String>(Arrays.asList("Dni", "Nombre", "Apellido"));
+		mTable = new DefaultTableModel(
+				new Vector<Vector<Object>>(),
+				cabeceras
+		);
+		
+		updateUI();
+		
+		/*
+		 * Añadir un evento de ratón a la tabal usuarios. Al hacer click sobre una fila de la
+		 * tabla se iniciará un proceso para borrar el usuario que se encuentra en dicha fila de la bd
+		 */
+
+		table.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				if (e.isAltDown()) {
+					String selectedDni = (String) table.getValueAt(table.getSelectedRow(), 0);
+					for (Usuario u : VentanaInicio.lUsuarios) {
+						if (u.getDni().equals(selectedDni)) selectUsuario = u;
+					}
+				}
+				
+				VentanaConfirmacion ventConf = new VentanaConfirmacion(selectUsuario);
+				ventConf.setVisible(true);
+			}
+			
+		});
 	}
 	
 	/**
-	 * Vaciaria los campos cuando el usuario pulse un boton
+	 * Método que actualiza la tabla de usuarios cada vez que se realiza un cambio en la base de datos
 	 */
+	
+	public static void updateUI() {
+		lUsuarios = BD.getUsuarios();
+		
+		for(int i = mTable.getRowCount() - 1; i >= 0; i--) {
+			mTable.removeRow(i);
+		}
+		
+		for (Usuario u : lUsuarios) {
+			mTable.addRow(new Object[] {u.getDni(), u.getNombre(), u.getApellido()});
+		}
+		
+		table.setModel(mTable);
+	}
+	
+	/**
+	 * Método que vacía los campos de todos los textFields
+	 */
+	
 	private void vaciarCampos() {
 		tfNombre.setText("");
 		tfApellido.setText("");
@@ -202,42 +231,52 @@ public class VentanaRegistro extends JFrame {
 }
 
 /**
- * Ventana de confirmación que pedirá una contraseña cuando se desee 
- * borrar un usuario de la BD
+ * Ventana adicional que se despliega al seleccionar un usuario en la tabla.
+ * Pide una confirmación por contraeña para el usuario antes de borrarlo de la base de datos
  * @author iness
+ *
  */
 
 class VentanaConfirmacion extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	public JTextField cont;
+	public VentanaConfirmacion vent;
 
-	public VentanaConfirmacion(String nom) {
+	public VentanaConfirmacion(Usuario u) {
+		vent = this;
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(290, 195);
+		this.setSize(280, 190);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		JLabel instruccion = new JLabel("<html>Para eliminar a un usuario"
-										+ "<br>ha de introducir su contraseña:<html>");
-		instruccion.setBounds(50, 22, 200, 30);
+		JLabel instruccion = new JLabel("Usuario a eliminar: " + u.getNombre() + " " + u.getApellido());
+		instruccion.setBounds(40, 22, 200, 30);
 		getContentPane().add(instruccion);
 		
-		cont = new JTextField();
-		cont.setBounds(69, 76, 150, 20);
-		getContentPane().add(cont);
-		cont.setColumns(10);
+		JTextField tfContra = new JTextField("Introduzaza la cotraseña");
+		tfContra.setBounds(60, 72, 150, 20);
+		getContentPane().add(tfContra);
+		tfContra.setColumns(10);
 		
 		JButton eliminar = new JButton("ELIMINAR");
-		eliminar.setBounds(95, 100, 100, 25);
+		eliminar.setBounds(92, 100, 100, 25);
 		getContentPane().add(eliminar);
 		
 		eliminar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+				if (tfContra.getText().equals(u.getContrasenia())) {
+					BD.eliminarUsuario(u.getDni());
+					vent.setVisible(false);
+					VentanaRegistro.updateUI();
+					JOptionPane.showMessageDialog(null, "Usuario elimienado correctamente");
+				} else {
+					JOptionPane.showMessageDialog(null, "Contraseña incorrecta. No se ha podido eliminar el usuario");
+					vent.setVisible(false);
+				}
 			}
 		});
 	}

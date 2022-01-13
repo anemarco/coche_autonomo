@@ -38,15 +38,22 @@ public class VentanaInicio extends JFrame {
 		
 		ventInic = this;
 		
-		BD.initBD("simulacion.bd");
-		lUsuarios = BD.getUsuarios();
-		
 		this.setTitle("INICIO DE SESIÓN");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(600, 500);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
+		
+		/**
+		 * Abrir conexión con la base de datos
+		 */
+		
+		BD.initBD("simulacion.bd");
+		lUsuarios = BD.getUsuarios();
 
+		/**
+		 * Crear los componentes
+		 */
 		
 		JLabel titulo = new JLabel("SIMULADOR DE COCHE AUTÓNOMO");
 		titulo.setFont(new Font("Agency FB", Font.PLAIN, 30));
@@ -84,6 +91,7 @@ public class VentanaInicio extends JFrame {
 		textContrasenya.setColumns(10); 
 		
 		/*EVENTOS*/
+		
 		/**
 		 * Boton que sale de la pantalla de inicio
 		 */
@@ -96,7 +104,7 @@ public class VentanaInicio extends JFrame {
 		
 		/**
 		 * Boton que haria que el usuario inicie sesion una vez ya registrado y nos llevara a la pantalla de simulacion
-		 * */
+		 */
 		
 		btnIniciarSesion.addActionListener(new ActionListener(){
 			
@@ -139,6 +147,7 @@ public class VentanaInicio extends JFrame {
 		/**
 		 * Boton que registra un usuario si no esta ya registrado y lo guardara en la base de datos
 		 */
+		
 		btnRegistrar.addActionListener(new ActionListener() {
 					
 			@Override
@@ -155,11 +164,16 @@ public class VentanaInicio extends JFrame {
 	/**
 	 * Vaciaria los campos cuando el usuario pulse un boton
 	 */
+	
 	private void vaciarCampos() {
 		textNombre.setText("");
 		textDni.setText("");
 		textContrasenya.setText("");
 	}
+	
+	/**
+	 * Método que crea una ventana simulador
+	 */
 	
 	private void iniciarSimulador() {
 		ventInic.setVisible(false);
