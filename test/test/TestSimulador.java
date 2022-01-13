@@ -1,16 +1,8 @@
 package test;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
-
-import simulador.Animal;
 import simulador.OtroCoche;
-import simulador.Semaforo;
 import simulador.Coche;
 import simulador.Obstaculo;
 
@@ -18,16 +10,6 @@ class TestSimulador {
 	
 	Coche c1= new Coche(0, 0);
 	Obstaculo obs= new OtroCoche(10,15); 
-
-	@Before
-	public void setUp() throws Exception {
-		
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		
-	}
 
 	//Comprobar el metodo acelerar de la clase Coche y Obstaculo
 	@Test
