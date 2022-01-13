@@ -16,8 +16,6 @@ import java.util.TreeMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-
-import simulador.Obstaculo;
 import ventanas.VentanaInicio;
 import ventanas.VentanaSimulador;
 
@@ -50,13 +48,13 @@ public class BD {
 	
 	static Connection con;
 	
-	
 	/**
 	 * Metodo que crea la conexion con la base de datos
 	 * @param nombreBD nombre del archivo de sqliteman de la base de datos
 	 * @return devuelve la conexion
 	 */
 
+	
 	public static void  initBD(String nombreBD) {
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -68,6 +66,7 @@ public class BD {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	/**
 	 * Metodo que hara que se cierre la base de datos
@@ -83,6 +82,7 @@ public class BD {
 			}
 		}
 	}
+
 	
 	/**
 	 * Método que lee todos los usuarios de la base de datos, los convierte en objetos 
@@ -198,7 +198,7 @@ public class BD {
 	  * @param fecha
 	  */
 	 
-	 public static void insertarObstaculo(String hora, String nombre, String fecha) {
+	 public static boolean insertarObstaculo(String hora, String nombre) {
 		 String sent = "INSERT INTO obstaculo VALUES('"+hora+"','"+nombre+"','"+VentanaSimulador.fecha+"');";
 		 
 		 try {
@@ -206,8 +206,10 @@ public class BD {
 				stmt.executeUpdate(sent);
 				generarLog(sent);
 				stmt.close();
+				return true;
 			} catch (SQLException e) {
 				e.printStackTrace();
+				return false;
 			}
 	 }
 	 
@@ -218,7 +220,7 @@ public class BD {
 	  * @param lObstaculos Lista de óbstáculos ejecutados en la simulación
 	  */
 	 
-	 public static void insertarSimulacion(String fecha, double duracion, String estado, ArrayList<Obstaculo> lObstaculos) {
+	 public static boolean insertarSimulacion(String fecha, double duracion, String estado) {
 		 String sent = "INSERT INTO simulacion VALUES('"+fecha+"',"+duracion+",'"+estado+"','"+ VentanaInicio.usuarioActivo.getDni() +"');";
 		 
 		 try {
@@ -226,8 +228,10 @@ public class BD {
 				stmt.executeUpdate(sent);
 				generarLog(sent);
 				stmt.close();
+				return true;
 			} catch (SQLException e) {
 				e.printStackTrace();
+				return false;
 			}
 	 }
 	
@@ -238,7 +242,7 @@ public class BD {
 	 * @param dni dni del usuario que se desea insertar
 	 * @param contrasenia contrasenia del usuario que se desea insertar
 	 */
-	public static void insertarUsuario(String dni, String nombre, String apellido, String contrasenia) {
+	public static boolean insertarUsuario(String dni, String nombre, String apellido, String contrasenia) {
 		String sent = "INSERT INTO usuario VALUES('"+dni+"','"+nombre+"','"+apellido+"',"+contrasenia+");";
 		
 		try {
@@ -246,8 +250,10 @@ public class BD {
 			stmt.executeUpdate(sent);
 			generarLog(sent);
 			stmt.close();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 		
 	}
@@ -256,15 +262,17 @@ public class BD {
 	 * @param con parametro que establece la conexion con la base de datos
 	 * @param dni dni del usuario que se desea eliminar
 	 */
-	public static void eliminarUsuario(String dni) {
+	public static boolean eliminarUsuario(String dni) {
 		String sent = "DELETE FROM usuario WHERE dni="+dni+"';";
 		try {
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate(sent);
 			generarLog(sent);
 			stmt.close();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -325,7 +333,7 @@ public class BD {
 	 * @param info Información a guardar
 	 */
 	
-	public static void generarLog (String info) {
+	public static boolean generarLog (String info) {
 		Logger logger = Logger.getLogger("BD");
 		FileHandler fh;
 		
@@ -335,9 +343,11 @@ public class BD {
 			fh.setFormatter(new SimpleFormatter());
 			logger.info(info);
 			fh.close();
+			return true;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -347,7 +357,7 @@ public class BD {
 	 * @param dni Dni del usuario
 	 */
 	
-	public static void guardarDatos(File file, String dni) {
+	public static boolean guardarDatos(File file, String dni) {
 		List<Simulacion> lSimulaciones = getSimulacionesDeUnaPersona(dni);
 		List<ObstaculoBD> lObstaculos;
 		try {
@@ -364,9 +374,11 @@ public class BD {
 			}
 			
 			bw.close();
+			return true;
 			
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 }

@@ -570,14 +570,14 @@ public class VentanaSimulador extends JFrame {
 		tiempoFinal = System.currentTimeMillis();
 		
 		if (e == Estado.EXITO) {
-			BD.insertarSimulacion(fecha, (tiempoFinal-tiempoInicial)/1000.00, "EXITO", listaObs);
+			BD.insertarSimulacion(fecha, (tiempoFinal-tiempoInicial)/1000.00, "EXITO");
 			
 		} else if (e == Estado.FRACASO) {
 			System.out.println("Colisión entre:"+listaObs);
 			logger.log( Level.SEVERE, "COLISIÓN");
 			JOptionPane.showMessageDialog(null, "Se producirá una colisión. Debe mejorar el sistema", "ALERTA", JOptionPane.WARNING_MESSAGE);
 			
-			BD.insertarSimulacion(fecha, (tiempoFinal-tiempoInicial)/1000.00, "FRACASO", listaObs);
+			BD.insertarSimulacion(fecha, (tiempoFinal-tiempoInicial)/1000.00, "FRACASO");
 		}
 		
 		vent.setVisible(false);
@@ -600,7 +600,7 @@ public class VentanaSimulador extends JFrame {
 		else if (o instanceof Senal) nombre = "Stop";
 		else if (o instanceof Animal) nombre = "Animal";
 		
-		BD.insertarObstaculo(hora(), nombre, fecha);
+		BD.insertarObstaculo(hora(), nombre);
 	}
 	
 	/**

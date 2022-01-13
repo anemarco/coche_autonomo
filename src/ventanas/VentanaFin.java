@@ -56,6 +56,7 @@ public class VentanaFin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public VentanaFin() {
 		ventFin = this;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -162,6 +163,7 @@ public class VentanaFin extends JFrame {
 		 * el simulador con su nombre, dni y la puntuaci�n que han conseguido al 
 		 * sortear los diferentes obst�culos.
 		 */
+		
 		modeloTablaUsuarios = new DefaultTableModel() {
 			
 			private static final long serialVersionUID = 1L;
