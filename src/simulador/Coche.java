@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 import ventanas.VentanaSimulador;
 
-public class Coche extends ObjetoSimulacion implements Movible, Chocable {
+public class Coche extends ObjetoSimulacion implements Movible {
 	
 	/*Constantes*/
 	
@@ -81,43 +81,12 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 		this.lbl.setLocation(x, y);
 	}
 	
-	/*Mï¿½todo que indica si el coche se ha chocado con un obstï¿½culo
-	 * Recibe un objeto de la clase obstï¿½culo
-	 * Si la distancia de las posiciï¿½n (x e y) del coche y obstï¿½culo son menores que las proporciones de sus imagenes devuelve TRUE
-	 */
-	@Override
-	public boolean choca(Obstaculo obst) {
-		//if ((this.x-obst.getX() < this.h/2 + obst.getH()/2) && (Math.abs(y-obst.getY()) < Math.abs(a/2 + obst.getA()/2))) return true;	/*De frente y de cualquiera de los lados*/
-		if (obst instanceof OtroCoche) {
-			OtroCoche oc = (OtroCoche) obst;
-			if ((oc.getX() == this.getX())) {
-				return true;
-			}
-		}
-		return false;
-	}
+	//Método de interfaz. Consiste en cambiar los parametos del coche
 
 	@Override
 	public void mover(int dx, int dy) {
 		setX(getX() + dx);
 		setY(getY() + dy);
-	}
-
-	/*Mï¿½todo que indica los grados que el choche debe tomar para maniobrar o esquibar un obstï¿½culo
-	 * Desde la ventana se le enviarï¿½ la cantidad de grados que debe moverse por maniobra u objeto
-	 * Asï¿½ reaccionara de manera autï¿½noma
-	 */
-	
-	@Override
-	public void acelerar(double a) {
-		velocidad = velocidad + a;
-		
-	}
-
-	@Override
-	public void girar(double grados) {
-		
-		
 	}
 	
 	@Override
@@ -128,16 +97,6 @@ public class Coche extends ObjetoSimulacion implements Movible, Chocable {
 		
 		return lbl;
 	}
-	
-	/*
-	@Override
-	public void girar(double grados) {
-		this.setDir(this.getDir()+grados);
-		this.setX(Math.cos(this.dir));
-		this.setY(Math.sin(this.dir));
-		
-	}
-	*/
 	
 }
 

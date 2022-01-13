@@ -112,8 +112,6 @@ public class VentanaSimulador extends JFrame {
 	     //Al pusar el boton salir de la simulación y que aparezca la VentanaFin
 	     JButton salir = new JButton("FINALIZAR");
 	     panel.add(salir, BorderLayout.SOUTH);
-	     //salir.setBackground(java.awt.Color.RED);
-	     //salir.setForeground(java.awt.Color.WHITE);
 		
 		//Crear botones de cada obstÃ¡culo y aÃ±adirlos al panel
 		
@@ -125,8 +123,6 @@ public class VentanaSimulador extends JFrame {
 		bSemaf.setMaximumSize(new Dimension(Integer.MAX_VALUE, bSemaf.getMinimumSize().height));
 		JButton bStop = new JButton("  STOP  ");
 		bStop.setMaximumSize(new Dimension(Integer.MAX_VALUE, bStop.getMinimumSize().height));
-		/*JButton bCeda = new JButton("             Ceda            ");
-		JButton bSentidoCon = new JButton(" Sentido Contrario ");		Para el futuro*/
 		JButton bAnimal = new JButton("  Animal  ");
 		bAnimal.setMaximumSize(new Dimension(Integer.MAX_VALUE, bAnimal.getMinimumSize().height));
 		  
@@ -134,11 +130,9 @@ public class VentanaSimulador extends JFrame {
 		panelBotonero .add(bCoche );
 		panelBotonero .add(bSemaf );
 		panelBotonero .add(bStop );
-		//panelBotonero.add(bCeda );
-		//panelBotonero.add(bSentidoCon );
 		panelBotonero .add(bAnimal );
 		
-		/*BotÃ³n que cree un obtÃ¡culo peaton*/
+		/*Botón que cree un obtáculo Peaton*/
 		
 		bPeaton.addActionListener(new ActionListener() {
 		      
