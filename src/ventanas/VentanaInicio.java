@@ -19,14 +19,15 @@ public class VentanaInicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-
 	private JTextField textNombre, textDni;
 	private JPasswordField textContrasenya;
-	public static TreeMap<String, Usuario> tmUsuarios;
+	public static TreeMap<String, Usuario> tmUsuarios = new TreeMap<>();
+	public JLabel titulo, lblDni, lblContrasenya;
+	public JButton btnSalir, btnIniciarSesion, btnRegistrar;
 	
 	public static VentanaInicio ventInic;
 	
-	public static ArrayList<Usuario> lUsuarios;
+	public static TreeMap<String, Usuario> lUsuarios;
 	public static Usuario usuarioActivo;
 	
 
@@ -49,7 +50,7 @@ public class VentanaInicio extends JFrame {
 		 */
 		
 		BD.initBD("simulacion.bd");
-		lUsuarios = BD.getUsuarios();
+		lUsuarios = BD.getMapaUsuarios();
 
 		/**
 		 * Crear los componentes
@@ -111,32 +112,22 @@ public class VentanaInicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String dni = textDni.getText();
 				String cont = textContrasenya.getText();
-				
-				if(textDni.getText().trim().equals("") || textContrasenya.getText().trim().equals("")) {
-					JOptionPane.showMessageDialog(null, "Por favor rellena todas los datos");
-					
-				} else {
-					for (Usuario u : lUsuarios) {
-						if ((u.getDni().equals(dni)) && (u.getContrasenia().equals(cont))) {
-							usuarioActivo = u;
+				if(!dni.equals("") && !cont.equals("")) {
+					BD.initBD("simulacion.bd");
+					TreeMap<String, Usuario> tm = BD.getMapaUsuarios();
+					if(tm.get(dni) == null) {
+						JOptionPane.showMessageDialog(null, "No estas registrado, tienes que registrarte primero");
+					}else {
+						Usuario usu = tm.get(dni);
+						if(!usu.getContrasenia().equals(cont)) {
+							JOptionPane.showMessageDialog(null, "Contrasena incorrecta", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
+						}else {
+							usuarioActivo = usu;
+							JOptionPane.showMessageDialog(null, "Bienvenido");
 							iniciarSimulador();
-						} else {
-							
 						}
 					}
 				}
-				
-				/*if(!dni.equals("") && !c.equals("")) {
-					BD.initBD("iniciosesion.db");
-					int resul = BD.obtenerMapaUsuarios();
-					if(resul == 0) {
-						JOptionPane.showMessageDialog(null, "No estï¿½s registrado, tienes que registrarte primero");
-					}else if(resul == 1) {
-						JOptionPane.showMessageDialog(null, "Contrasenya incorrecta");
-					}else {
-						JOptionPane.showMessageDialog(null, "Bienvenido");
-					}
-				}*/
 				
 			}
 			

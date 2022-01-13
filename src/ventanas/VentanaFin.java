@@ -34,23 +34,21 @@ public class VentanaFin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private JButton btnSalir, btnIrAlInicio;
+	private JButton btnSalir, btnIrAlInicio, bExportar, bNuevaSimulacion;
 	
 	public static VentanaFin ventFin;
 	
-	private JTable tSimulaciones;
-	private DefaultTableModel mSimulaciones;
-	private static JTable tObstaculos;
-	private static DefaultTableModel mObstaculos;
-	
+	private static JTable tSimulaciones, tObstaculos;
+	private static DefaultTableModel mSimulaciones, mObstaculos;
+	private static JComboBox<String> comboBox; 
 	public static List<Simulacion> lSimulaciones;
 	public static List<ObstaculoBD> lObstaculos;
 	
 	public static SimpleDateFormat sdf = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );
 	
-	public static JPanel panelCapa;
+	public static JPanel panelCapa, pIzq, pDer, pBotones, pInfo, panelTituloObs, panel;
 	public static JScrollPane scrollPane;
-	public static JLabel info, instrucciones;
+	public static JLabel info, instrucciones, nomUsuario;
 
 	/**
 	 * Create the frame.
@@ -70,7 +68,7 @@ public class VentanaFin extends JFrame {
 		 * Crear paneles
 		 */
 		
-		JPanel pIzq = new JPanel();
+		pIzq = new JPanel();
 		pIzq.setBounds(10, 56, 475, 420);
 		getContentPane().add(pIzq);
 		
@@ -78,19 +76,19 @@ public class VentanaFin extends JFrame {
 		panelCapa.setBounds(512, 49, 250, 400);
 		getContentPane().add(panelCapa);
 		
-		JPanel pBotones = new JPanel();
+		pBotones = new JPanel();
 		pBotones.setBounds(10, 487, 752, 43);
 		getContentPane().add(pBotones);
 		
-		JPanel pInfo = new JPanel();
+		pInfo = new JPanel();
 		pInfo.setBounds(145, 18, 504, 27);
 		getContentPane().add(pInfo);
 		
-		JPanel panelTituloObs = new JPanel();
+		panelTituloObs = new JPanel();
 		panelTituloObs.setBounds(512, 49, 250, 27);
 		getContentPane().add(panelTituloObs);
 		
-		JPanel pDer = new JPanel();
+		pDer = new JPanel();
 		pDer.setBounds(495, 76, 280, 398);
 		getContentPane().add(pDer);
 		
@@ -104,7 +102,7 @@ public class VentanaFin extends JFrame {
 
 		panelCapa.add(instrucciones);
 		
-		JLabel nomUsuario = new JLabel(VentanaInicio.usuarioActivo.getNombre());
+		nomUsuario = new JLabel(VentanaInicio.usuarioActivo.getNombre());
 		pInfo.add(nomUsuario);
 		
 		info = new JLabel();
@@ -114,10 +112,10 @@ public class VentanaFin extends JFrame {
 		btnIrAlInicio = new JButton("Inicio");
 		pBotones.add(btnIrAlInicio);
 		
-		JButton bNuevaSimulacion = new JButton("Nueva Simulación");
+		bNuevaSimulacion = new JButton("Nueva Simulación");
 		pBotones.add(bNuevaSimulacion);
 		
-		JButton bExportar = new JButton("Exportar datos");
+		bExportar = new JButton("Exportar datos");
 		pBotones.add(bExportar);
 		
 		btnSalir = new JButton("Salir");
@@ -294,7 +292,31 @@ public class VentanaFin extends JFrame {
 		tObstaculos.getColumnModel().getColumn(0).setMaxWidth(140);
 		tObstaculos.getColumnModel().getColumn(1).setMinWidth(100);
 		tObstaculos.getColumnModel().getColumn(1).setMaxWidth(100);
-
+		
+		
+		comboBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String sel = comboBox.getSelectedItem().toString();
+				if(sel!=null) {
+					List<Simulacion> l = null;
+					if(sel.equals("Exitos")) {
+						l = BD.getSimulacionesDeUnaPersonaConEstado(VentanaInicio.usuarioActivo.getDni(), "EXITO");
+					}else if(sel.equals("Fracasos")){
+						l = BD.getSimulacionesDeUnaPersonaConEstado(VentanaInicio.usuarioActivo.getDni(), "FRACASO");
+					}else {
+						l = BD.getSimulacionesDeUnaPersonaConEstado(VentanaInicio.usuarioActivo.getDni(), "TODAS");
+					}
+					while(mSimulaciones.getRowCount()>0)
+						mSimulaciones.removeRow(0);
+					for(Simulacion s: l) {
+						lObstaculos = BD.getObstaculosDeUnaSimulacion(s.getFecha());
+						mSimulaciones.addRow(new Object[] {s.getFecha(), s.getDuracion(), s.getEstado(),lObstaculos.size()});
+					}
+				}
+			}
+		});
 	}
 	
 	/**

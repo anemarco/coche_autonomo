@@ -90,7 +90,7 @@ public class BD {
 	 * @return	Lista de usuarios de la BD
 	 */
 	
-	 public static ArrayList<Usuario>  getUsuarios() {
+	 /*public static ArrayList<Usuario>  getUsuarios() {
 		 try (Statement st = con.createStatement()) {
 			 ArrayList<Usuario> lUsuarios = new ArrayList<>();
 			 String sent = "SELECT * FROM usuario;";
@@ -111,7 +111,7 @@ public class BD {
 			 e.printStackTrace();
 			 return null;
 		 }
-	 }
+	 }*/
 	 
 	 /** TreeMap que guarda el dni y la contraseña de los usuarios. 
 	  * @return Devuelve un treeMap con el dni como clave.
@@ -119,7 +119,7 @@ public class BD {
 	 
 	public static TreeMap<String, Usuario> getMapaUsuarios(){
 		TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
-			
+		
 		String sent = " SELECT * FROM usuario";
 		try {
 			Statement stmt = con.createStatement();
@@ -136,8 +136,9 @@ public class BD {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-			return tmUsuario;
-		}
+		return tmUsuario;
+			
+	}
 	
 	 
 	 /**
@@ -276,56 +277,8 @@ public class BD {
 		}
 	}
 	
-	/**
-	 * TreeMap que har� que los usuarios que se registren se guarden en el mismo.
-	 * @param con parametro que crea la conexion con la base de datos
-	 * @return devuelve el treemap de usuarios
-	 */
-	public static TreeMap<String, Usuario> obtenerMapaUsuarios(){
-		TreeMap<String, Usuario> tmUsuario = new TreeMap<>();
-		
-		String sent = " SELECT * FROM usuario";
-		try {
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sent);
-			while(rs.next()) {
-				String dni = rs.getString("dni");
-				String nom = rs.getString("nombre");
-				String ape = rs.getString("apellido");
-				String c = rs.getString("contrasenia");
-				Usuario u = new Usuario(dni, nom, ape, c);
-				tmUsuario.put(dni, u);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return tmUsuario;
-		
-		/*public static TreeMap<String, Persona> obtenerMapaPersonas(Connection con){
-		TreeMap<String, Persona> tmPersonas = new TreeMap<>();
-		
-		String sentSQL = "SELECT * FROM alumno";
-		try {
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sentSQL);
-			while(rs.next()) { //Mientras no hayamos llegado al final del conjunto de resultados
-				String dni = rs.getString("dni");
-				String nom = rs.getString("nombre");
-				int edad = rs.getInt("edad");
-				Persona p = new Persona(dni,nom,edad);
-				tmPersonas.put(dni, p);
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return tmPersonas;
-	}*/
-		
-	}
+	
+	
 	
 	
 	/**
@@ -381,4 +334,28 @@ public class BD {
 			return false;
 		}
 	}
+	
+	public static List<Simulacion> getSimulacionesDeUnaPersonaConEstado(String dni, String estate) {
+		 try (Statement st = con.createStatement()) {
+			 List<Simulacion> lSimulaciones = new ArrayList<>();
+			 String sent = null;
+			 if(estate.equals("TODAS"))
+				 sent = "SELECT * FROM simulacion WHERE dni ='"+dni+"'";
+			 else
+				 sent = "SELECT * FROM simulacion WHERE dni ='"+dni+"' AND estado ='"+estate+"';";
+			 ResultSet rs = st.executeQuery(sent);
+			 generarLog(sent);
+			 
+			 while (rs.next()) {
+				 String fecha = rs.getString("fecha");
+				 long duracion = rs.getLong("duracion");
+				 String estado = rs.getString("estado");
+				 lSimulaciones.add(new Simulacion(fecha, duracion, estado, dni));
+			 }
+			 return lSimulaciones;
+		 } catch (SQLException e) {
+			 e.printStackTrace();
+			 return null;
+		 }
+	 }
 }

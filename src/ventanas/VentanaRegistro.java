@@ -33,17 +33,13 @@ import baseDatos.*;
 public class VentanaRegistro extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField tfNombre;
-	private JTextField tfApellido;
-	private JTextField tfContrasenya;
-	private JTextField tfDni;
-	
+	private JTextField tfNombre, tfApellido, tfContrasenya, tfDni;
+	private JLabel lblNombre, lblApellido, lblDni, lblContrasenya, lblUsuarios, lblNewLabel, lblNewLabel_1;
+	private JPanel panelTabla;
+	private JButton btnRegistrar, btnInicio;
 	public static VentanaRegistro ventReg;
 	private static JTable table;
 	public static DefaultTableModel mTable;
-	
-	public static Usuario selectUsuario;
-	public static List<Usuario> lUsuarios;
 	
 	public VentanaRegistro() {
 		
@@ -59,39 +55,42 @@ public class VentanaRegistro extends JFrame {
 		 * Crar panel de la tabla
 		 */
 		
-		JPanel panelTabla = new JPanel();
+		panelTabla = new JPanel();
 		panelTabla.setBounds(226, 40, 475, 439);
 		getContentPane().add(panelTabla);
+		
+		table = new JTable();
+		panelTabla.add(new JScrollPane(table), BorderLayout.CENTER);
 		
 		/**
 		 * Crare compnentes bÃ¡sicos: labels, textfields y botones
 		 */
 		
-		JLabel lblNombre = new JLabel("Nombre: ");
+		lblNombre = new JLabel("Nombre: ");
 		lblNombre.setBounds(20, 93, 85, 14);
 		getContentPane().add(lblNombre);
 		
-		JLabel lblApellido = new JLabel("Apellido: ");
+		lblApellido = new JLabel("Apellido: ");
 		lblApellido.setBounds(20, 118, 65, 14);
 		getContentPane().add(lblApellido);
 		
-		JLabel lblDni = new JLabel("DNI:");
+		lblDni = new JLabel("DNI:");
 		lblDni.setBounds(20, 142, 46, 14);
 		getContentPane().add(lblDni);
 		
-		JLabel lblContrasenya = new JLabel("Contrasenya: ");
+		lblContrasenya = new JLabel("Contrasenya: ");
 		lblContrasenya.setBounds(20, 167, 85, 14);
 		getContentPane().add(lblContrasenya);
 		
-		JLabel lblNewLabel = new JLabel("Introduzca sus datos");
+		lblNewLabel = new JLabel("Introduzca sus datos");
 		lblNewLabel.setBounds(50, 53, 142, 14);
 		getContentPane().add(lblNewLabel);
 		
-		JLabel lblUsuarios = new JLabel("Usuarios");
+		lblUsuarios = new JLabel("Usuarios");
 		lblUsuarios.setBounds(432, 15, 115, 14);
 		getContentPane().add(lblUsuarios);
 		
-		JLabel lblNewLabel_1 = new JLabel("Alt + Clik para eliminar a un usuario");
+		lblNewLabel_1 = new JLabel("Alt + Clik para eliminar a un usuario");
 		lblNewLabel_1.setBounds(480, 476, 240, 14);
 		getContentPane().add(lblNewLabel_1);
 		
@@ -115,11 +114,11 @@ public class VentanaRegistro extends JFrame {
 		getContentPane().add(tfContrasenya);
 		tfContrasenya.setColumns(10);
 		
-		JButton btnRegistrar = new JButton("REGISTRAR");
+		btnRegistrar = new JButton("REGISTRAR");
 		btnRegistrar.setBounds(50, 209, 105, 23);
 		getContentPane().add(btnRegistrar);
 		
-		JButton btnInicio = new JButton("INICIO");
+		btnInicio = new JButton("INICIO");
 		btnInicio.setBounds(20, 474, 105, 23);
 		getContentPane().add(btnInicio);
 		
@@ -150,13 +149,15 @@ public class VentanaRegistro extends JFrame {
 					String a = tfApellido.getText();
 					String c = tfContrasenya.getText();
 					Usuario u = new Usuario(d, n, a, c);
-					VentanaInicio.tmUsuarios .put(u.getDni(), u);
+					VentanaInicio.tmUsuarios.put(u.getDni(), u);
+					BD.insertarUsuario(d, n, a, c);
+					String newRow[] = {d,n,a,c};
+					mTable.addRow(newRow);
 					JOptionPane.showMessageDialog(null, "Usuario regristrado correctamente", "REGISTRO CORRECTO", JOptionPane.INFORMATION_MESSAGE);
 					vaciarCampos();
 				}else {
-					JOptionPane.showMessageDialog(null, "El dni no es correcto", "ï¿½ï¿½ERROR!!", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "El dni no es correcto", "¡¡ERROR!!", JOptionPane.ERROR_MESSAGE);
 				}
-				
 			}
 		});
 		
@@ -186,10 +187,12 @@ public class VentanaRegistro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
+				Usuario selectUsuario = null;
 				if (e.isAltDown()) {
 					String selectedDni = (String) table.getValueAt(table.getSelectedRow(), 0);
-					for (Usuario u : VentanaInicio.lUsuarios) {
-						if (u.getDni().equals(selectedDni)) selectUsuario = u;
+					for (Usuario u : VentanaInicio.lUsuarios.values()) {
+						if (u.getDni().equals(selectedDni)) 
+							selectUsuario = u;
 					}
 				}
 				
@@ -205,13 +208,13 @@ public class VentanaRegistro extends JFrame {
 	 */
 	
 	public static void updateUI() {
-		lUsuarios = BD.getUsuarios();
+		VentanaInicio.lUsuarios = BD.getMapaUsuarios();
 		
 		for(int i = mTable.getRowCount() - 1; i >= 0; i--) {
 			mTable.removeRow(i);
 		}
 		
-		for (Usuario u : lUsuarios) {
+		for (Usuario u : VentanaInicio.lUsuarios.values()) {
 			mTable.addRow(new Object[] {u.getDni(), u.getNombre(), u.getApellido()});
 		}
 		
