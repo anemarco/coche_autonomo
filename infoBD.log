@@ -6785,3 +6785,51 @@ ene 13, 2022 11:01:10 P. M. baseDatos.BD generarLog
 INFO: ConexiÃ³n abierta con simulacion.bd
 ene 13, 2022 11:19:23 P. M. baseDatos.BD generarLog
 INFO: ConexiÃ³n abierta con simulacion.bd
+ene. 13, 2022 11:35:06 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM obstaculo WHERE fecha ='12/01/2022 16:48:18';
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 13, 2022 11:37:14 P. M. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 11:37:15 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 13, 2022 11:37:15 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='11111111A';
+ene. 13, 2022 11:37:15 P. M. baseDatos.BD generarLog
+INFO: SELECT * FROM simulacion WHERE dni ='52384730J';
+ene. 13, 2022 11:37:15 P. M. baseDatos.BD generarLog
+INFO: Conexion cerrada
+ene. 13, 2022 11:38:34 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 13, 2022 11:39:17 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd
+ene. 13, 2022 11:39:46 P. M. baseDatos.BD generarLog
+INFO: INSERT INTO usuario VALUES('72106669J','Inés','Peña','ines');
+ene. 13, 2022 11:39:49 P. M. baseDatos.BD generarLog
+INFO: Conexión abierta con simulacion.bd

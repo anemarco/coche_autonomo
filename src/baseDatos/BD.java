@@ -244,7 +244,7 @@ public class BD {
 	 * @param contrasenia contrasenia del usuario que se desea insertar
 	 */
 	public static boolean insertarUsuario(String dni, String nombre, String apellido, String contrasenia) {
-		String sent = "INSERT INTO usuario VALUES('"+dni+"','"+nombre+"','"+apellido+"',"+contrasenia+");";
+		String sent = "INSERT INTO usuario VALUES('"+dni+"','"+nombre+"','"+apellido+"','"+contrasenia+"');";
 		
 		try {
 			Statement stmt = con.createStatement();
