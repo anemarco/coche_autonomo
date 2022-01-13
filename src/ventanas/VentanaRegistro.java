@@ -258,7 +258,7 @@ class VentanaConfirmacion extends JFrame {
 		instruccion.setBounds(40, 22, 200, 30);
 		getContentPane().add(instruccion);
 		
-		JTextField tfContra = new JTextField("Introduzaza la cotraseña");
+		JTextField tfContra = new JPasswordField("Introduzaza la cotraseña");
 		tfContra.setBounds(60, 72, 150, 20);
 		getContentPane().add(tfContra);
 		tfContra.setColumns(10);

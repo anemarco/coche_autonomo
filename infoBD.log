@@ -4243,3 +4243,11 @@ ene 13, 2022 8:25:40 P. M. baseDatos.BD generarLog
 INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 19:05:01';
 ene 13, 2022 8:25:40 P. M. baseDatos.BD generarLog
 INFO: SELECT * FROM obstaculo WHERE fecha ='13/01/2022 20:25:34';
+ene 13, 2022 8:27:31 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene 13, 2022 8:33:34 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene 13, 2022 8:35:46 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
+ene 13, 2022 8:35:59 P. M. baseDatos.BD generarLog
+INFO: ConexiÃ³n abierta con simulacion.bd
